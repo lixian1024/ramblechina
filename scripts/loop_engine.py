@@ -62,7 +62,7 @@ def validate(cfg):
     ids = {c['id'] for c in suite['cases']}
     for tid in cfg['group_tasks']:
         assert tid in queue and queue[tid]['status'] in ['todo', 'doing', 'blocked', 'done']
-        relevant = re.findall(r'[A-Z]+\d+', queue[tid]['evals'])
+        relevant = [x for x in re.findall(r'[A-Z]+\d+', queue[tid]['evals']) if not re.fullmatch(r'H\d+', x)]
         assert relevant and set(relevant) <= ids, f'Unknown or missing EVALS for {tid}'
         assert cfg['task_modes'][tid] in ['read-only', 'workspace-write']
     for p in CONTROL:
@@ -136,7 +136,7 @@ def run(cfg, queue, suite):
     state['evidence_dir'] = str(run_dir.relative_to(ROOT))
     for task in pending:
         tid = task['id']
-        ids = re.findall(r'[A-Z]+\d+', task['evals'])
+        ids = [x for x in re.findall(r'[A-Z]+\d+', task['evals']) if not re.fullmatch(r'H\d+', x)]
         relevant = [c for c in suite['cases'] if c['id'] in ids]
         feedback = ''
         mode = cfg['task_modes'][tid]
