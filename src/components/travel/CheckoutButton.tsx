@@ -1,0 +1,5 @@
+"use client";
+import { useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
+import type { PlanInput } from '@/lib/travel/planner';
+export default function CheckoutButton({kind,label,input,enabled}:{kind:'guide'|'itinerary';label:string;input?:PlanInput;enabled:boolean}){const [busy,setBusy]=useState(false);const [error,setError]=useState('');async function checkout(){setBusy(true);setError('');try{const r=await fetch('/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({kind,input})});const d=await r.json();if(!r.ok)throw Error(d.error||'Checkout unavailable.');window.location.assign(d.url);}catch(e){setError(e instanceof Error?e.message:'Checkout unavailable.');setBusy(false);}}return <div><button className="button" disabled={!enabled||busy} onClick={checkout}>{busy?'Opening secure checkout…':enabled?label:'Complete edition · coming soon'}{enabled&&<ArrowUpRight size={16}/>}</button>{error&&<p role="alert" className="error">{error}</p>}</div>}

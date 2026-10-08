@@ -1,0 +1,2 @@
+import { createPlan, validateInput } from '@/lib/travel/planner';
+export async function POST(request:Request){try{const text=await request.text();if(text.length>12000)return Response.json({error:'Trip details are too large.'},{status:413});return Response.json(createPlan(validateInput(JSON.parse(text))));}catch(e){return Response.json({error:e instanceof Error?e.message:'Invalid trip details.'},{status:400});}}

@@ -1,0 +1,4 @@
+import { mkdir, writeFile } from 'node:fs/promises';
+import { makePdf } from '../src/lib/travel/pdf';
+import { createPlan } from '../src/lib/travel/planner';
+async function main(){await mkdir('output/pdf',{recursive:true});const preview=process.argv.includes('--preview');const out=preview?'ramble-china-preview.pdf':'ramble-china-complete-draft.pdf';await writeFile('output/pdf/'+out,await makePdf({kind:'guide',preview}));console.log('Created '+out);const plan=createPlan({days:7,people:2,budget:12000,start:'2026-10-15',end:'2026-10-21',cities:['beijing','shanghai'],preferences:['Culture','Food'],sights:['Mutianyu Great Wall']});await writeFile('output/pdf/ramble-china-itinerary-preview.pdf',await makePdf({kind:'itinerary',plan,preview:true}));console.log('Created itinerary preview');}main().catch(e=>{console.error(e);process.exit(1)});

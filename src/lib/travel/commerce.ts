@@ -1,0 +1,5 @@
+import Stripe from 'stripe';
+export function stripeClient(){if(!process.env.STRIPE_SECRET_KEY)throw Error('Payments are not configured.');return new Stripe(process.env.STRIPE_SECRET_KEY);}
+export const priceId=(kind:'guide'|'itinerary')=>kind==='guide'?process.env.STRIPE_GUIDE_PRICE_ID:process.env.STRIPE_ITINERARY_PRICE_ID;
+export function salesEnabled(kind:'guide'|'itinerary'){return process.env.CONTENT_REVIEWED==='true'&&!!process.env.STRIPE_SECRET_KEY&&!!priceId(kind)&&!!process.env.NEXT_PUBLIC_APP_URL;}
+export async function productPrice(kind:'guide'|'itinerary'){if(!salesEnabled(kind))return null;try{const p=await stripeClient().prices.retrieve(priceId(kind)!);if(!p.active||p.type!=='one_time'||p.unit_amount==null)return null;const format=new Intl.NumberFormat('en',{style:'currency',currency:p.currency});const zeroDecimal=['bif','clp','djf','gnf','jpy','kmf','krw','mga','pyg','rwf','ugx','vnd','vuv','xaf','xof','xpf'].includes(p.currency);return format.format(p.unit_amount/(zeroDecimal?1:100));}catch{return null;}}

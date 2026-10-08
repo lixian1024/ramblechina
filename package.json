@@ -1,0 +1,54 @@
+{
+  "name": "chinatravelagent",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "tsx scripts/verify.ts",
+    "export:pdf": "tsx scripts/export-guide.ts",
+    "export:sample": "tsx scripts/export-guide.ts --preview",
+    "export:daybook": "tsx scripts/export-daybook.ts",
+    "test:daybook": "tsx scripts/verify-daybook.ts",
+    "test:i18n": "tsx scripts/verify-i18n.ts",
+    "prebuild": "npm run test:i18n && npm run test:editorial",
+    "test:editorial": "tsx scripts/verify-editorial.ts",
+    "test:planner": "tsx scripts/verify-planner-workbench.ts",
+    "eval:validate": "node scripts/product-evals.mjs validate",
+    "eval:init": "node scripts/product-evals.mjs init",
+    "eval:gate": "node scripts/product-evals.mjs gate",
+    "test:eval-infra": "node --test scripts/product-evals.test.mjs",
+    "test:concierge": "tsx scripts/verify-concierge.ts",
+    "test:trip-routing": "tsx scripts/verify-trip-routing.ts",
+    "check:product": "npm run test:i18n && npm run test:editorial && npm run test:daybook && npm run test:planner && npm run test:concierge && npm run test:trip-routing"
+  },
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^2.1.3",
+    "@pdf-lib/fontkit": "^1.1.1",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^1.18.0",
+    "next": "^16.2.9",
+    "pdf-lib": "^1.17.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "stripe": "^22.6.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/google.maps": "^3.66.4",
+    "@types/leaflet": "^1.9.22",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^16.2.9",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "postcss": "8.5.28"
+  }
+}

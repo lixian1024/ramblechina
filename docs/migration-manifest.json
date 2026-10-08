@@ -1,0 +1,230 @@
+[
+  {
+    "path": "docs/design/travel-home-concept.png",
+    "sha256": "e0ddb7059ceb4ecf23daa03db4e37358e2806d14937edf081a3cc9381e1b53a4"
+  },
+  {
+    "path": "scripts/seed-travel.py",
+    "sha256": "3b7d55db2e93fc6f3ce5aa0f25d9d4814ba53b92e961690113ae7d92cbbb3b96"
+  },
+  {
+    "path": "scripts/fetch-travel-photos.py",
+    "sha256": "508e74b81cfc9030fe5b95c705c302f7fbf9c4873f911110c1934caaf4872b0f"
+  },
+  {
+    "path": "src/lib/travel/cities.json",
+    "sha256": "8b132d56fef138e4fc391e5cdc4e7e0ac5dce0dca67e91d4b626ebe963914b35"
+  },
+  {
+    "path": "src/lib/travel/photos.json",
+    "sha256": "fa542d5677582c87a1a5866a0f52e1da0c1a35ca118753f565904dc6ef5e7ae9"
+  },
+  {
+    "path": "public/travel/kunming.json",
+    "sha256": "db93aedfdfb156bdb6b28c269a11b7ce121c63ee775f46248d64e16d0992bb6b"
+  },
+  {
+    "path": "public/travel/suzhou.json",
+    "sha256": "1f0d27a184864f4e71c60f849256f270f5dbc31999a1dc0b1cea2ace06c1e0cf"
+  },
+  {
+    "path": "public/travel/shenyang.jpg",
+    "sha256": "9975a2037f7754b7e1645a72a54ae08c839bbe2bb97006b50c255f175e78f900"
+  },
+  {
+    "path": "public/travel/chengdu.jpg",
+    "sha256": "51ada1742e41dc6b47c68ebcf2dc3e1b01ce96ab645ce86e1d57b0a9b801bfb3"
+  },
+  {
+    "path": "public/travel/chengdu.json",
+    "sha256": "adfa4ca377858172526bfac83aa10fbbd122f248322d570900c95013784e68bf"
+  },
+  {
+    "path": "public/travel/shanghai.jpg",
+    "sha256": "6ba38adeda6f5c266961afed6c2d63f92a15a4f7a39440116fbdee7204519b11"
+  },
+  {
+    "path": "public/travel/kunming.jpg",
+    "sha256": "e1a38512d600172c67f8236e330196da3992115f94ecc127837d0082fb30022a"
+  },
+  {
+    "path": "public/travel/guiyang.jpg",
+    "sha256": "dc519b0e42d4e63fdfa8fc6b5d4748f2f097c306d2dbf73e35793374cf67069a"
+  },
+  {
+    "path": "public/travel/xining.json",
+    "sha256": "b6ae41d7ec636a3b93d8acf0297a757c43802d1fcfff3645a62d04243f146995"
+  },
+  {
+    "path": "public/travel/beijing.jpg",
+    "sha256": "157b0706edac6d9960c70bbbb9b05a69ee9d7c2e61c69e52d1039d4924c84ff0"
+  },
+  {
+    "path": "public/travel/dali.json",
+    "sha256": "e7a72824eb95b3888eb3b033fb0ecc4922dd15e520d5dbcefc1a0a911158d173"
+  },
+  {
+    "path": "public/travel/jingdezhen.json",
+    "sha256": "d38f300878e3283b748a2035d6b8afe8b170535a50be34ba67011a018e467176"
+  },
+  {
+    "path": "public/travel/dali.jpg",
+    "sha256": "6262b0f2a337cf312bbab89b3477265d53ee35b4fdad99d14d78226dbffdae5d"
+  },
+  {
+    "path": "public/travel/dalian.jpg",
+    "sha256": "c2afd52c9c89de32c2cf88bebe0f83b05e09ac25b3f8e85c084d68f0964fe5f4"
+  },
+  {
+    "path": "public/travel/dalian.json",
+    "sha256": "b8feb0e4b2d43de7a51b627946404f94df27b4ab03f515324b5d2c40bb9794c3"
+  },
+  {
+    "path": "public/travel/quanzhou.jpg",
+    "sha256": "184b395ddc135be6dbec1dbf0d221fc175f87aa9016e1a3c2af4e773342ed858"
+  },
+  {
+    "path": "public/travel/guangzhou.jpg",
+    "sha256": "1bafd985ade57947bae2305e494c5e65b78d79047e8e1974cca2120e3e677ace"
+  },
+  {
+    "path": "public/travel/jinan.json",
+    "sha256": "8292ea89923ce03ec826169624efe7607a0dad38bb4e075d43c3a1e349777186"
+  },
+  {
+    "path": "public/travel/guilin.json",
+    "sha256": "85db833ba1268e0625359927dfcf34592d2f31a2afea2f48108d94d7a923cd37"
+  },
+  {
+    "path": "public/travel/chongqing.jpg",
+    "sha256": "717b47aa0f22d088dde1a3627dc513844fd2b9308e12f4a2d17930b507df22b5"
+  },
+  {
+    "path": "public/travel/harbin.jpg",
+    "sha256": "c2c8c9f0ec7b84ee0ab626f54f28564344cd915b16ec6c2bdf529f85e9082aef"
+  },
+  {
+    "path": "public/travel/harbin.json",
+    "sha256": "63ec08cc48ef94b02b82948afada93402e59ee1a5a90d222289aa62db5ae8090"
+  },
+  {
+    "path": "public/travel/hangzhou.json",
+    "sha256": "42d0ab46f1b4772855d5cc8334324d962941160083f2acb6a5c68cff40ccdb6e"
+  },
+  {
+    "path": "public/travel/guiyang.json",
+    "sha256": "dfba7a75d87713a9cb684a0dfa897b97dbfe456a0e338c25dd7662829a733fde"
+  },
+  {
+    "path": "public/travel/wuyishan.json",
+    "sha256": "d6da52f76c09238d12130e97a8bb039e524b15a12e8fedb0f0a8851694dad93c"
+  },
+  {
+    "path": "public/travel/macao.json",
+    "sha256": "acf0422c9ec246464f6174d0011b16fc4d0f89ced8dc201d6ce98f6c99dea012"
+  },
+  {
+    "path": "public/travel/shenyang.json",
+    "sha256": "9aff08a49528a70db092b05923f5fb3c5b7882fb88e20bf071442443ce3be7ae"
+  },
+  {
+    "path": "public/travel/beijing.json",
+    "sha256": "7da458a39c40d9492f087da7c3d397e2ea6bc18a02a3023f81b982bdf422e5df"
+  },
+  {
+    "path": "public/travel/quanzhou.json",
+    "sha256": "565f386713e1484bc4e80fd29d62df257cb024ce23c41569c1b3307b3e022772"
+  },
+  {
+    "path": "public/travel/guangzhou.json",
+    "sha256": "cbdebad4a771b471147a8a7f5e6b8371eeff254b1a113c5c9b2925895a3cf2f8"
+  },
+  {
+    "path": "public/travel/wuyishan.jpg",
+    "sha256": "8b45f51a32f7c88ffb120fa63674cb589ee164ac72d2ec85d8246d2fd1e729bd"
+  },
+  {
+    "path": "public/travel/lanzhou.jpg",
+    "sha256": "8fa5436e935975ea940627810910a042e5723d48922870d383db390a4e2ab0f3"
+  },
+  {
+    "path": "public/travel/macao.jpg",
+    "sha256": "c092d8d89f9f8bb1ea68d432fcecb38c670f4cb2a3166b08f55e82ebbab9b226"
+  },
+  {
+    "path": "public/travel/lijiang.jpg",
+    "sha256": "87f4ec0ed8cbc710188ebd9ed83d9ebb88c7cc6f98ea792d4e303d49f67f6bcf"
+  },
+  {
+    "path": "public/travel/lijiang.json",
+    "sha256": "4b9e6689c0cb7b3ae96019198ade42e366677226bc8527c1be9a990ad78eb80c"
+  },
+  {
+    "path": "public/travel/suzhou.jpg",
+    "sha256": "11f82d2cd7217757bb2dd70e4e26056574a8cd2d9bd7d8cdeccfbbe8eececd8c"
+  },
+  {
+    "path": "public/travel/hangzhou.jpg",
+    "sha256": "a53627a76124c3454f63b7a082a2630b11aa88ef32f1189e86fd909311867ca7"
+  },
+  {
+    "path": "public/travel/sanya.jpg",
+    "sha256": "b0a0bdcb8e74e8cdd1262b6d52d0fa67ef4a9de62bf8da892517969402806466"
+  },
+  {
+    "path": "public/travel/chongqing.json",
+    "sha256": "b03b3ab913f05b4db847fe7c5141fc545b081fc78312dbead5345cd195580a9c"
+  },
+  {
+    "path": "public/travel/sanya.json",
+    "sha256": "82caf3ca8f91d7100dd60bb1095fa161e3b614d239b0ad4106e64d8d538dc654"
+  },
+  {
+    "path": "public/travel/jingdezhen.jpg",
+    "sha256": "45ee522f189a332a36a34571fb742c525530c8b0dc446d3f88c959d9a8c4f222"
+  },
+  {
+    "path": "public/travel/shanghai.json",
+    "sha256": "b76239c0181e9aa422ab0946f1785ea7a17d0cbbfe21dcac0a46acbe2740dba5"
+  },
+  {
+    "path": "public/travel/guilin.jpg",
+    "sha256": "124cfb57071073b96ccd8381cf1e1a9be620ba6d1c33b30c5f098fbd09eb5f99"
+  },
+  {
+    "path": "public/travel/xiamen.json",
+    "sha256": "e04d286e6235c9aa6ebb32663d7587f4089a144e44a69f34792f90b1ebb44c10"
+  },
+  {
+    "path": "public/travel/xiamen.jpg",
+    "sha256": "f6102f136abf7ca7effdc94ca61f73a27a451921524d3f9cd09470ca1e4ef91d"
+  },
+  {
+    "path": "public/travel/xining.jpg",
+    "sha256": "d5ef737d2ec19ffda0e23292ad5600b2e5a2c66f009f57d2f7374ff7db71f995"
+  },
+  {
+    "path": "public/travel/haikou.jpg",
+    "sha256": "07ffa8e787e70d210e2eb932f5232511e1859b6b6b8598afd38129622877dc6a"
+  },
+  {
+    "path": "public/travel/xian.jpg",
+    "sha256": "0381dd986bbed6413f8519202eb55a3d252cc304f869ffda09aa42b570299116"
+  },
+  {
+    "path": "public/travel/haikou.json",
+    "sha256": "e282183b49251280414d090d8c3fbf5d9116363e6af9d9fcb3a54e9c8eaf678e"
+  },
+  {
+    "path": "public/travel/jinan.jpg",
+    "sha256": "992ddaa49b3f80526f15ba1772cf3fac6ad946145d07a2a5e83a31a8bd7536f6"
+  },
+  {
+    "path": "public/travel/lanzhou.json",
+    "sha256": "9729b2fb2ed96abb71a771307b59446e11f0e7926f6685874d912db7b2b429ba"
+  },
+  {
+    "path": "public/travel/xian.json",
+    "sha256": "109a70a4fde99faa2d081eff0b3a8806361a845ba240cb47fa119383b88f4914"
+  }
+]

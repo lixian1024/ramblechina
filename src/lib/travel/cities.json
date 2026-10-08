@@ -1,0 +1,1514 @@
+[
+  {
+    "slug": "beijing",
+    "name": "Beijing",
+    "chinese": "北京",
+    "region": "North",
+    "province": "Beijing",
+    "days": "4–5",
+    "season": "April–May · September–October",
+    "lat": 39.9,
+    "lng": 116.4,
+    "wiki": "Forbidden City",
+    "tagline": "Imperial stories, lived one hutong at a time.",
+    "description": "The scale is imperial, but the memorable moments are often small: breakfast at a neighbourhood stall, a turn into a quiet hutong, the first glimpse of a courtyard roof. Give Beijing enough days to move between its monumental history and everyday life without rushing.",
+    "highlights": [
+      {
+        "name": "Forbidden City",
+        "description": "Give the palace a full morning and leave time for the galleries, not just the central axis."
+      },
+      {
+        "name": "Temple of Heaven",
+        "description": "Walk through the park before exploring the ceremonial architecture."
+      },
+      {
+        "name": "Mutianyu Great Wall",
+        "description": "Make this a separate day trip, with transport back to the city arranged in advance."
+      }
+    ],
+    "food": "Peking duck · jianbing · sesame noodles",
+    "tip": "Book major sights through their official channels. Beijing is spread out: group each day around one part of the city.",
+    "image": "/travel/beijing.jpg",
+    "source": "https://en.wikipedia.org/wiki/Forbidden_City",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "shanghai",
+    "name": "Shanghai",
+    "chinese": "上海",
+    "region": "East",
+    "province": "Shanghai",
+    "days": "3–4",
+    "season": "April–May · October–November",
+    "lat": 31.23,
+    "lng": 121.47,
+    "wiki": "The Bund",
+    "tagline": "Old lanes, new horizons, and one remarkable river.",
+    "description": "Shanghai rewards walking. Start with the grand riverfront, then turn towards leafy residential streets, small cafés and the everyday rhythms of the old lanes. Its pleasure lies in the contrast between a constantly changing skyline and details you only notice at street level.",
+    "highlights": [
+      {
+        "name": "The Bund",
+        "description": "Walk the historic waterfront and return after dusk for a different view."
+      },
+      {
+        "name": "Former French Concession",
+        "description": "Explore plane-tree streets, independent shops and the architecture around Wukang Road."
+      },
+      {
+        "name": "Shanghai Museum",
+        "description": "Choose a museum branch and check the exhibitions before setting aside a half-day."
+      }
+    ],
+    "food": "Xiaolongbao · scallion-oil noodles · shengjianbao",
+    "tip": "Choose accommodation near a metro station. The two airports are far apart: check SHA versus PVG carefully.",
+    "image": "/travel/shanghai.jpg",
+    "source": "https://en.wikipedia.org/wiki/The_Bund",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "guilin",
+    "name": "Guilin",
+    "chinese": "桂林",
+    "region": "South",
+    "province": "Guangxi",
+    "days": "3–4",
+    "season": "April–June · September–October",
+    "lat": 25.27,
+    "lng": 110.29,
+    "wiki": "Li River",
+    "tagline": "Let the river set the pace.",
+    "description": "The landscape is the reason to come, but slowing down is what makes it memorable. Limestone peaks rise above rivers, villages and fields. Spend part of the journey around Yangshuo, with enough time to enjoy rural paths between the famous viewpoints.",
+    "highlights": [
+      {
+        "name": "Li River",
+        "description": "Choose a river excursion for limestone peaks and changing reflections."
+      },
+      {
+        "name": "Yulong River",
+        "description": "Base yourself in Yangshuo for quiet rural lanes and river scenery."
+      },
+      {
+        "name": "Xingping",
+        "description": "Spend time along the riverside and explore beyond the busiest photo stop."
+      }
+    ],
+    "food": "Guilin rice noodles · stuffed vegetables · beer fish",
+    "tip": "Guilin and Yangshuo are different bases. Check exactly where your train arrives and where your river trip starts.",
+    "image": "/travel/guilin.jpg",
+    "source": "https://en.wikipedia.org/wiki/Li_River",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "chengdu",
+    "name": "Chengdu",
+    "chinese": "成都",
+    "region": "Southwest",
+    "province": "Sichuan",
+    "days": "3–4",
+    "season": "March–May · September–November",
+    "lat": 30.57,
+    "lng": 104.06,
+    "wiki": "Chengdu Research Base of Giant Panda Breeding",
+    "tagline": "Good food. Long tea breaks. No need to rush.",
+    "description": "This is a city that makes room for a long lunch and an even longer cup of tea. Pandas may bring you here, but parks, neighbourhood cooking and the rhythm of daily life are reasons to stay. A flexible afternoon can be as rewarding as a booked attraction.",
+    "highlights": [
+      {
+        "name": "Panda Research Base",
+        "description": "Visit early and give the animals space; sightings and activity vary."
+      },
+      {
+        "name": "People’s Park",
+        "description": "Order tea and watch everyday life unfold around the teahouses."
+      },
+      {
+        "name": "Wenshu Monastery",
+        "description": "Pair the monastery with the surrounding lanes and a leisurely vegetarian meal."
+      }
+    ],
+    "food": "Mapo tofu · dan dan noodles · Sichuan hotpot",
+    "tip": "Hotpot can be very spicy. Ask for a mild broth and keep one unplanned afternoon for teahouses.",
+    "image": "/travel/chengdu-pandas.jpg",
+    "source": "https://en.wikipedia.org/wiki/Chengdu_Research_Base_of_Giant_Panda_Breeding",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "xian",
+    "name": "Xi’an",
+    "chinese": "西安",
+    "region": "Northwest",
+    "province": "Shaanxi",
+    "days": "3–4",
+    "season": "March–May · September–November",
+    "lat": 34.34,
+    "lng": 108.94,
+    "wiki": "Terracotta Army",
+    "tagline": "An ancient capital with stories beneath the surface.",
+    "description": "An ancient capital with stories beneath the surface. Build your stay around Terracotta Army, then make space for Xi’an City Wall and the neighbourhoods in between. The Terracotta Army is outside the centre. Do not combine it with an overfull city sightseeing day.",
+    "highlights": [
+      {
+        "name": "Terracotta Army",
+        "description": "Reserve a separate half-day or longer, allowing for travel outside the city."
+      },
+      {
+        "name": "Xi’an City Wall",
+        "description": "Walk a section of the wall for a sense of the old city’s scale."
+      },
+      {
+        "name": "Great Mosque",
+        "description": "Explore the historic courtyard complex respectfully, then the surrounding food streets."
+      }
+    ],
+    "food": "Biangbiang noodles · roujiamo · yangrou paomo",
+    "tip": "The Terracotta Army is outside the centre. Do not combine it with an overfull city sightseeing day.",
+    "image": "/travel/xian.jpg",
+    "source": "https://en.wikipedia.org/wiki/Terracotta_Army",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "hangzhou",
+    "name": "Hangzhou",
+    "chinese": "杭州",
+    "region": "East",
+    "province": "Zhejiang",
+    "days": "2–3",
+    "season": "March–May · September–November",
+    "lat": 30.27,
+    "lng": 120.15,
+    "wiki": "West Lake",
+    "tagline": "Tea-green hills and a lake worth slowing down for.",
+    "description": "Tea-green hills and a lake worth slowing down for. Build your stay around West Lake, then make space for Lingyin Temple and the neighbourhoods in between. Stay near the lake or a convenient metro line. Tea harvest scenery and visitor numbers change with the season.",
+    "highlights": [
+      {
+        "name": "West Lake",
+        "description": "Choose one stretch of shoreline and its gardens rather than trying to circle everything."
+      },
+      {
+        "name": "Lingyin Temple",
+        "description": "Allow time for the temple area and surrounding Buddhist stone carvings."
+      },
+      {
+        "name": "Longjing tea villages",
+        "description": "Walk among tea-growing hills and ask clearly about prices before a tasting."
+      }
+    ],
+    "food": "Longjing tea · dongpo pork · pian’erchuan noodles",
+    "tip": "Stay near the lake or a convenient metro line. Tea harvest scenery and visitor numbers change with the season.",
+    "image": "/travel/hangzhou.jpg",
+    "source": "https://en.wikipedia.org/wiki/West_Lake",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "chongqing",
+    "name": "Chongqing",
+    "chinese": "重庆",
+    "region": "Southwest",
+    "province": "Chongqing",
+    "days": "3–4",
+    "season": "March–May · October–November",
+    "lat": 29.56,
+    "lng": 106.55,
+    "wiki": "Hongya Cave",
+    "tagline": "A city of rivers, stairs, and unexpected levels.",
+    "description": "A city of rivers, stairs, and unexpected levels. Build your stay around Hongyadong, then make space for Shancheng lanes and the neighbourhoods in between. Map distance can hide steep stairs and different street levels. Allow extra time for walking and transfers.",
+    "highlights": [
+      {
+        "name": "Hongyadong",
+        "description": "View the illuminated riverside buildings from across the street or river."
+      },
+      {
+        "name": "Shancheng lanes",
+        "description": "Walk the hillside lanes to understand the city’s layered geography."
+      },
+      {
+        "name": "Dazu Rock Carvings",
+        "description": "Make the carvings a separate excursion rather than a quick city stop."
+      }
+    ],
+    "food": "Chongqing hotpot · xiaomian · grilled fish",
+    "tip": "Map distance can hide steep stairs and different street levels. Allow extra time for walking and transfers.",
+    "image": "/travel/chongqing.jpg",
+    "source": "https://en.wikipedia.org/wiki/Hongya_Cave",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "suzhou",
+    "name": "Suzhou",
+    "chinese": "苏州",
+    "region": "East",
+    "province": "Jiangsu",
+    "days": "2–3",
+    "season": "March–May · September–November",
+    "lat": 31.3,
+    "lng": 120.58,
+    "wiki": "Humble Administrator's Garden",
+    "tagline": "Gardens that turn a small space into a whole world.",
+    "description": "Gardens that turn a small space into a whole world. Build your stay around Humble Administrator’s Garden, then make space for Pingjiang Road and the neighbourhoods in between. Choose two gardens thoughtfully instead of racing through several. Popular museums and gardens may need advance booking.",
+    "highlights": [
+      {
+        "name": "Humble Administrator’s Garden",
+        "description": "Take your time with framed views, water and small architectural details."
+      },
+      {
+        "name": "Pingjiang Road",
+        "description": "Explore the canal-side streets in the morning, then drift into smaller lanes."
+      },
+      {
+        "name": "Suzhou Museum",
+        "description": "Combine the museum’s architecture and collections with nearby historic neighbourhoods."
+      }
+    ],
+    "food": "Suzhou-style noodles · sweet pastries · seasonal river fish",
+    "tip": "Choose two gardens thoughtfully instead of racing through several. Popular museums and gardens may need advance booking.",
+    "image": "/travel/suzhou.jpg",
+    "source": "https://en.wikipedia.org/wiki/Humble_Administrator's_Garden",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "zhangjiajie",
+    "name": "Zhangjiajie",
+    "chinese": "张家界",
+    "region": "Central",
+    "province": "Hunan",
+    "days": "3–4",
+    "season": "April–May · September–October",
+    "lat": 29.12,
+    "lng": 110.48,
+    "wiki": "Wulingyuan",
+    "tagline": "Sandstone towers that change with every cloud.",
+    "description": "Sandstone towers that change with every cloud. Build your stay around Wulingyuan, then make space for Tianzi Mountain and the neighbourhoods in between. Zhangjiajie city, Wulingyuan and Tianmen are distinct areas. Choose your hotel around the places you actually plan to visit.",
+    "highlights": [
+      {
+        "name": "Wulingyuan",
+        "description": "Allow two days for different parts of the forest park and its shuttle network."
+      },
+      {
+        "name": "Tianzi Mountain",
+        "description": "Choose viewpoints according to weather and the park’s daily operating arrangements."
+      },
+      {
+        "name": "Tianmen Mountain",
+        "description": "Treat this as a separate outing near Zhangjiajie city, not inside Wulingyuan."
+      }
+    ],
+    "food": "Tujia dishes · smoked pork · mushroom dishes",
+    "tip": "Zhangjiajie city, Wulingyuan and Tianmen are distinct areas. Choose your hotel around the places you actually plan to visit.",
+    "image": "/travel/zhangjiajie.jpg",
+    "source": "https://en.wikipedia.org/wiki/Wulingyuan",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "huangshan",
+    "name": "Huangshan",
+    "chinese": "黄山",
+    "region": "East",
+    "province": "Anhui",
+    "days": "3–4",
+    "season": "April–May · September–November",
+    "lat": 29.71,
+    "lng": 118.34,
+    "wiki": "Huangshan",
+    "tagline": "Granite peaks above, white-walled villages below.",
+    "description": "Granite peaks above, white-walled villages below. Build your stay around Yellow Mountain, then make space for Hongcun and the neighbourhoods in between. Huangshan city and the mountain entrance are not the same place. Cable cars do not remove all stair climbing.",
+    "highlights": [
+      {
+        "name": "Yellow Mountain",
+        "description": "Plan the mountain route around your fitness and the day’s weather."
+      },
+      {
+        "name": "Hongcun",
+        "description": "Stay long enough to see the village beyond its busiest midday hours."
+      },
+      {
+        "name": "Tunxi Old Street",
+        "description": "Use the old town for an easy arrival evening and regional food."
+      }
+    ],
+    "food": "Bamboo shoots · Anhui tofu · mountain tea",
+    "tip": "Huangshan city and the mountain entrance are not the same place. Cable cars do not remove all stair climbing.",
+    "image": "/travel/huangshan.jpg",
+    "source": "https://en.wikipedia.org/wiki/Huangshan",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "dali",
+    "name": "Dali",
+    "chinese": "大理",
+    "region": "Southwest",
+    "province": "Yunnan",
+    "days": "3–4",
+    "season": "March–May · September–November",
+    "lat": 25.69,
+    "lng": 100.16,
+    "wiki": "Three Pagodas",
+    "tagline": "Lake light, mountain air, and Bai architecture.",
+    "description": "Lake light, mountain air, and Bai architecture. Build your stay around Dali Old Town, then make space for Erhai and the neighbourhoods in between. The old town and the railway station are in different areas. Arrange your arrival transfer and protect against strong sun.",
+    "highlights": [
+      {
+        "name": "Dali Old Town",
+        "description": "Explore smaller streets beyond the main shopping lanes."
+      },
+      {
+        "name": "Erhai",
+        "description": "Choose a lakeside section for walking or cycling rather than rushing the whole shoreline."
+      },
+      {
+        "name": "Xizhou",
+        "description": "Look for Bai courtyard architecture and explore the surrounding village landscape."
+      }
+    ],
+    "food": "Xizhou baba · rushan cheese · rice noodles",
+    "tip": "The old town and the railway station are in different areas. Arrange your arrival transfer and protect against strong sun.",
+    "image": "/travel/dali.jpg",
+    "source": "https://en.wikipedia.org/wiki/Three_Pagodas",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "lijiang",
+    "name": "Lijiang",
+    "chinese": "丽江",
+    "region": "Southwest",
+    "province": "Yunnan",
+    "days": "3–4",
+    "season": "March–May · September–November",
+    "lat": 26.87,
+    "lng": 100.23,
+    "wiki": "Old Town of Lijiang",
+    "tagline": "Naxi courtyards and mountains on the horizon.",
+    "description": "Naxi courtyards and mountains on the horizon. Build your stay around Lijiang Old Town, then make space for Baisha and the neighbourhoods in between. Ask how far luggage must be carried over cobbled lanes. Higher mountain outings need more preparation than the old town.",
+    "highlights": [
+      {
+        "name": "Lijiang Old Town",
+        "description": "Explore early for quieter stone lanes and canal-side courtyards."
+      },
+      {
+        "name": "Baisha",
+        "description": "Spend a slower afternoon learning about Naxi heritage and local workshops."
+      },
+      {
+        "name": "Jade Dragon Snow Mountain",
+        "description": "Make this a separate excursion and consider altitude and weather before booking."
+      }
+    ],
+    "food": "Naxi dishes · rice noodles · rose pastries",
+    "tip": "Ask how far luggage must be carried over cobbled lanes. Higher mountain outings need more preparation than the old town.",
+    "image": "/travel/lijiang.jpg",
+    "source": "https://en.wikipedia.org/wiki/Old_Town_of_Lijiang",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "kunming",
+    "name": "Kunming",
+    "chinese": "昆明",
+    "region": "Southwest",
+    "province": "Yunnan",
+    "days": "2–3",
+    "season": "March–May · October–November",
+    "lat": 25.04,
+    "lng": 102.71,
+    "wiki": "Stone Forest",
+    "tagline": "A gentle beginning to Yunnan.",
+    "description": "A gentle beginning to Yunnan. Build your stay around Green Lake, then make space for Stone Forest and the neighbourhoods in between. Leave room between a Stone Forest outing and onward transport. Check mushroom dishes with established restaurants.",
+    "highlights": [
+      {
+        "name": "Green Lake",
+        "description": "Start with a relaxed lake walk and nearby cafés."
+      },
+      {
+        "name": "Stone Forest",
+        "description": "Set aside a separate day for the karst landscape outside the city."
+      },
+      {
+        "name": "Yunnan Provincial Museum",
+        "description": "Use the collections to put the province’s varied histories into context."
+      }
+    ],
+    "food": "Crossing-the-bridge noodles · mushroom dishes · flower pastries",
+    "tip": "Leave room between a Stone Forest outing and onward transport. Check mushroom dishes with established restaurants.",
+    "image": "/travel/kunming.jpg",
+    "source": "https://en.wikipedia.org/wiki/Stone_Forest",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "guiyang",
+    "name": "Guiyang",
+    "chinese": "贵阳",
+    "region": "Southwest",
+    "province": "Guizhou",
+    "days": "2–3",
+    "season": "April–June · September–October",
+    "lat": 26.65,
+    "lng": 106.63,
+    "wiki": "Qingyan",
+    "tagline": "Mountain flavours and an easy gateway to Guizhou.",
+    "description": "Mountain flavours and an easy gateway to Guizhou. Build your stay around Qingyan Ancient Town, then make space for Qianling Park and the neighbourhoods in between. Guizhou’s major sights are spread across the province. Treat Libo and Zhaoxing as separate stays, not quick city stops.",
+    "highlights": [
+      {
+        "name": "Qingyan Ancient Town",
+        "description": "Spend half a day exploring stone lanes and historic architecture."
+      },
+      {
+        "name": "Qianling Park",
+        "description": "Walk the wooded paths and keep food secured around wildlife."
+      },
+      {
+        "name": "Jiaxiu Pavilion",
+        "description": "Visit the riverside landmark, then explore central Guiyang’s food streets."
+      }
+    ],
+    "food": "Sour soup fish · siwawa · changwang noodles",
+    "tip": "Guizhou’s major sights are spread across the province. Treat Libo and Zhaoxing as separate stays, not quick city stops.",
+    "image": "/travel/guiyang.jpg",
+    "source": "https://en.wikipedia.org/wiki/Qingyan",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "xiamen",
+    "name": "Xiamen",
+    "chinese": "厦门",
+    "region": "South",
+    "province": "Fujian",
+    "days": "2–3",
+    "season": "March–May · October–November",
+    "lat": 24.48,
+    "lng": 118.09,
+    "wiki": "Gulangyu",
+    "tagline": "Sea breezes, island lanes, and Fujian flavours.",
+    "description": "Sea breezes, island lanes, and Fujian flavours. Build your stay around Gulangyu, then make space for Shapowei and the neighbourhoods in between. Check ferry departure ports carefully. Island accommodation may involve walking with luggage.",
+    "highlights": [
+      {
+        "name": "Gulangyu",
+        "description": "Reserve the appropriate visitor ferry and leave time for walking the island."
+      },
+      {
+        "name": "Shapowei",
+        "description": "Explore the harbour-side neighbourhood and small creative spaces."
+      },
+      {
+        "name": "South Putuo Temple",
+        "description": "Visit the temple respectfully and combine it with nearby city walks."
+      }
+    ],
+    "food": "Shacha noodles · oyster omelette · peanut soup",
+    "tip": "Check ferry departure ports carefully. Island accommodation may involve walking with luggage.",
+    "image": "/travel/xiamen.jpg",
+    "source": "https://en.wikipedia.org/wiki/Gulangyu",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "guangzhou",
+    "name": "Guangzhou",
+    "chinese": "广州",
+    "region": "South",
+    "province": "Guangdong",
+    "days": "3–4",
+    "season": "October–December · March–April",
+    "lat": 23.13,
+    "lng": 113.26,
+    "wiki": "Chen Clan Ancestral Hall",
+    "tagline": "Come hungry. Stay for the neighbourhoods.",
+    "description": "Come hungry. Stay for the neighbourhoods. Build your stay around Chen Clan Ancestral Hall, then make space for Shamian and the neighbourhoods in between. Use the metro between neighbourhoods. Major trade fairs can make hotel availability and prices very different.",
+    "highlights": [
+      {
+        "name": "Chen Clan Ancestral Hall",
+        "description": "Look closely at the woodwork, ceramics and carved decoration."
+      },
+      {
+        "name": "Shamian",
+        "description": "Take a slow walk through the island’s historic streets."
+      },
+      {
+        "name": "Liwan",
+        "description": "Explore Xiguan lanes and make time for a proper Cantonese breakfast."
+      }
+    ],
+    "food": "Dim sum · wonton noodles · double-skin milk",
+    "tip": "Use the metro between neighbourhoods. Major trade fairs can make hotel availability and prices very different.",
+    "image": "/travel/guangzhou.jpg",
+    "source": "https://en.wikipedia.org/wiki/Chen_Clan_Ancestral_Hall",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "shenzhen",
+    "name": "Shenzhen",
+    "chinese": "深圳",
+    "region": "South",
+    "province": "Guangdong",
+    "days": "2–3",
+    "season": "October–December · March–April",
+    "lat": 22.54,
+    "lng": 114.06,
+    "wiki": "Shenzhen",
+    "tagline": "Design, urban parks, and a city still becoming.",
+    "description": "Design, urban parks, and a city still becoming. Build your stay around OCT Loft, then make space for Shenzhen Bay Park and the neighbourhoods in between. The city stretches a long way east to west. Cluster your day geographically rather than by a list of attractions.",
+    "highlights": [
+      {
+        "name": "OCT Loft",
+        "description": "Explore galleries, design shops and cafés at your own pace."
+      },
+      {
+        "name": "Shenzhen Bay Park",
+        "description": "Choose a section of the waterfront for an evening walk."
+      },
+      {
+        "name": "Dafen",
+        "description": "Visit painting workshops and ask before photographing artists at work."
+      }
+    ],
+    "food": "Cantonese dishes · dim sum · regional Chinese cooking",
+    "tip": "The city stretches a long way east to west. Cluster your day geographically rather than by a list of attractions.",
+    "image": "/travel/shenzhen.jpg",
+    "source": "https://en.wikipedia.org/wiki/Shenzhen",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "hong-kong",
+    "name": "Hong Kong",
+    "chinese": "香港",
+    "region": "South",
+    "province": "Hong Kong SAR",
+    "days": "3–4",
+    "season": "October–December · March–April",
+    "lat": 22.32,
+    "lng": 114.17,
+    "wiki": "Victoria Harbour",
+    "tagline": "Harbour crossings and hills behind the skyline.",
+    "description": "Harbour crossings and hills behind the skyline. Build your stay around Star Ferry, then make space for Victoria Peak and the neighbourhoods in between. Hong Kong has separate entry arrangements, currency and transport systems from mainland China. Check these before crossing.",
+    "highlights": [
+      {
+        "name": "Star Ferry",
+        "description": "Cross Victoria Harbour and explore both waterfronts."
+      },
+      {
+        "name": "Victoria Peak",
+        "description": "Choose a clear day and leave time for the walking paths."
+      },
+      {
+        "name": "Sheung Wan",
+        "description": "Walk the older streets, small shops and neighbourhood cafés."
+      }
+    ],
+    "food": "Dim sum · wonton noodles · milk tea",
+    "tip": "Hong Kong has separate entry arrangements, currency and transport systems from mainland China. Check these before crossing.",
+    "image": "/travel/hong-kong-night.jpg",
+    "source": "https://en.wikipedia.org/wiki/Victoria_Harbour",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "macao",
+    "name": "Macao",
+    "chinese": "澳门",
+    "region": "South",
+    "province": "Macao SAR",
+    "days": "1–2",
+    "season": "October–December · March–April",
+    "lat": 22.2,
+    "lng": 113.54,
+    "wiki": "Ruins of Saint Paul's",
+    "tagline": "A small city with many layers of history.",
+    "description": "A small city with many layers of history. Build your stay around Historic Centre, then make space for Taipa Village and the neighbourhoods in between. Macao has separate entry arrangements from mainland China. Allow time for border formalities if visiting overland.",
+    "highlights": [
+      {
+        "name": "Historic Centre",
+        "description": "Walk between Senado Square and the Ruins of St Paul’s."
+      },
+      {
+        "name": "Taipa Village",
+        "description": "Explore narrow streets and stop for local food."
+      },
+      {
+        "name": "Coloane",
+        "description": "Leave time for the village waterfront and a quieter afternoon."
+      }
+    ],
+    "food": "Portuguese egg tarts · Macanese cooking · almond cookies",
+    "tip": "Macao has separate entry arrangements from mainland China. Allow time for border formalities if visiting overland.",
+    "image": "/travel/macao.jpg",
+    "source": "https://en.wikipedia.org/wiki/Ruins_of_Saint_Paul's",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "nanjing",
+    "name": "Nanjing",
+    "chinese": "南京",
+    "region": "East",
+    "province": "Jiangsu",
+    "days": "2–3",
+    "season": "March–May · October–November",
+    "lat": 32.06,
+    "lng": 118.8,
+    "wiki": "Nanjing",
+    "tagline": "Old capital, leafy avenues, living history.",
+    "description": "Old capital, leafy avenues, living history. Build your stay around Nanjing City Wall, then make space for Nanjing Museum and the neighbourhoods in between. Historic sites can be far apart. Check museum opening days and book popular sites in advance where required.",
+    "highlights": [
+      {
+        "name": "Nanjing City Wall",
+        "description": "Choose a section to walk rather than attempting its full extent."
+      },
+      {
+        "name": "Nanjing Museum",
+        "description": "Allow a substantial half-day for the collections."
+      },
+      {
+        "name": "Purple Mountain",
+        "description": "Pick one or two sites in this large scenic area and plan transport between them."
+      }
+    ],
+    "food": "Salted duck · duck-blood vermicelli soup · sesame pastries",
+    "tip": "Historic sites can be far apart. Check museum opening days and book popular sites in advance where required.",
+    "image": "/travel/nanjing.jpg",
+    "source": "https://en.wikipedia.org/wiki/Nanjing_City_Wall",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "luoyang",
+    "name": "Luoyang",
+    "chinese": "洛阳",
+    "region": "Central",
+    "province": "Henan",
+    "days": "2–3",
+    "season": "April–May · September–October",
+    "lat": 34.62,
+    "lng": 112.45,
+    "wiki": "Longmen Grottoes",
+    "tagline": "Stone-carved stories along the Yi River.",
+    "description": "Stone-carved stories along the Yi River. Build your stay around Longmen Grottoes, then make space for White Horse Temple and the neighbourhoods in between. The peony season attracts extra visitors. Allow travel time between the grottoes, temples and city centre.",
+    "highlights": [
+      {
+        "name": "Longmen Grottoes",
+        "description": "Give the riverside Buddhist carvings several unhurried hours."
+      },
+      {
+        "name": "White Horse Temple",
+        "description": "Explore the temple grounds and learn about its place in Buddhist history."
+      },
+      {
+        "name": "Luoyang Museum",
+        "description": "Use the collections to understand the city’s long role as a capital."
+      }
+    ],
+    "food": "Luoyang water banquet · beef soup · flatbreads",
+    "tip": "The peony season attracts extra visitors. Allow travel time between the grottoes, temples and city centre.",
+    "image": "/travel/luoyang.jpg",
+    "source": "https://en.wikipedia.org/wiki/Longmen_Grottoes",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "datong",
+    "name": "Datong",
+    "chinese": "大同",
+    "region": "North",
+    "province": "Shanxi",
+    "days": "2–3",
+    "season": "May–June · September–October",
+    "lat": 40.08,
+    "lng": 113.3,
+    "wiki": "Yungang Grottoes",
+    "tagline": "Buddhist masterpieces and the open skies of Shanxi.",
+    "description": "Buddhist masterpieces and the open skies of Shanxi. Build your stay around Yungang Grottoes, then make space for Huayan Temple and the neighbourhoods in between. Yungang and the Hanging Temple lie in different directions. Do not assume they are neighbouring attractions.",
+    "highlights": [
+      {
+        "name": "Yungang Grottoes",
+        "description": "Allow time for the main caves and the sculptural details."
+      },
+      {
+        "name": "Huayan Temple",
+        "description": "Explore the temple and the surrounding old-city streets."
+      },
+      {
+        "name": "Hanging Temple",
+        "description": "Arrange a separate outing and consider the narrow elevated walkways."
+      }
+    ],
+    "food": "Knife-cut noodles · oat noodles · lamb dishes",
+    "tip": "Yungang and the Hanging Temple lie in different directions. Do not assume they are neighbouring attractions.",
+    "image": "/travel/datong.jpg",
+    "source": "https://en.wikipedia.org/wiki/Yungang_Grottoes",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "pingyao",
+    "name": "Pingyao",
+    "chinese": "平遥",
+    "region": "North",
+    "province": "Shanxi",
+    "days": "2",
+    "season": "April–June · September–October",
+    "lat": 37.19,
+    "lng": 112.18,
+    "wiki": "Pingyao",
+    "tagline": "A walled town best experienced after the day trips leave.",
+    "description": "A walled town best experienced after the day trips leave. Build your stay around Ancient City, then make space for Rishengchang and the neighbourhoods in between. Confirm your station: Pingyao and Pingyao Gucheng are different. Ask accommodation about luggage access inside the old town.",
+    "highlights": [
+      {
+        "name": "Ancient City",
+        "description": "Walk the streets early and stay into the evening."
+      },
+      {
+        "name": "Rishengchang",
+        "description": "Explore the history of banking and trade in Shanxi."
+      },
+      {
+        "name": "Shuanglin Temple",
+        "description": "Make time for the painted sculpture outside the walled town."
+      }
+    ],
+    "food": "Pingyao beef · local noodles · vinegar dishes",
+    "tip": "Confirm your station: Pingyao and Pingyao Gucheng are different. Ask accommodation about luggage access inside the old town.",
+    "image": "/travel/pingyao.jpg",
+    "source": "https://en.wikipedia.org/wiki/Pingyao",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "tianjin",
+    "name": "Tianjin",
+    "chinese": "天津",
+    "region": "North",
+    "province": "Tianjin",
+    "days": "1–2",
+    "season": "April–May · September–October",
+    "lat": 39.08,
+    "lng": 117.2,
+    "wiki": "Tianjin",
+    "tagline": "Riverfront architecture and an appetite for breakfast.",
+    "description": "Riverfront architecture and an appetite for breakfast. Build your stay around Five Great Avenues, then make space for Hai River and the neighbourhoods in between. Tianjin has several railway stations. Pick the one that suits your accommodation rather than the first result.",
+    "highlights": [
+      {
+        "name": "Five Great Avenues",
+        "description": "Explore the historic residential streets on foot."
+      },
+      {
+        "name": "Hai River",
+        "description": "Walk the riverfront and cross a few bridges for changing city views."
+      },
+      {
+        "name": "Ancient Culture Street",
+        "description": "Browse traditional crafts and compare before buying."
+      }
+    ],
+    "food": "Jianbing guozi · mahua · baozi",
+    "tip": "Tianjin has several railway stations. Pick the one that suits your accommodation rather than the first result.",
+    "image": "/travel/tianjin.jpg",
+    "source": "https://en.wikipedia.org/wiki/Tianjin",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "qingdao",
+    "name": "Qingdao",
+    "chinese": "青岛",
+    "region": "East",
+    "province": "Shandong",
+    "days": "2–3",
+    "season": "May–June · September–October",
+    "lat": 36.07,
+    "lng": 120.38,
+    "wiki": "Qingdao",
+    "tagline": "Red roofs, sea air, and long coastal walks.",
+    "description": "Red roofs, sea air, and long coastal walks. Build your stay around Badaguan, then make space for Zhanqiao and the neighbourhoods in between. Summer beaches can be busy. Choose accommodation around the stretch of coast you want to explore.",
+    "highlights": [
+      {
+        "name": "Badaguan",
+        "description": "Walk the leafy streets and pause by the coast."
+      },
+      {
+        "name": "Zhanqiao",
+        "description": "Explore the old seafront around the historic pier."
+      },
+      {
+        "name": "Qingdao Beer Museum",
+        "description": "Learn about brewing history and arrange safe transport if tasting."
+      }
+    ],
+    "food": "Seafood · grilled squid · Qingdao beer",
+    "tip": "Summer beaches can be busy. Choose accommodation around the stretch of coast you want to explore.",
+    "image": "/travel/qingdao.jpg",
+    "source": "https://en.wikipedia.org/wiki/Zhanqiao",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "jinan",
+    "name": "Jinan",
+    "chinese": "济南",
+    "region": "East",
+    "province": "Shandong",
+    "days": "2",
+    "season": "April–May · September–October",
+    "lat": 36.65,
+    "lng": 117.12,
+    "wiki": "Baotu Spring",
+    "tagline": "A city shaped by springs and everyday waterside life.",
+    "description": "A city shaped by springs and everyday waterside life. Build your stay around Baotu Spring, then make space for Daming Lake and the neighbourhoods in between. Combine nearby springs and old lanes on foot. Water conditions vary through the year.",
+    "highlights": [
+      {
+        "name": "Baotu Spring",
+        "description": "Explore the spring-fed gardens and surrounding paths."
+      },
+      {
+        "name": "Daming Lake",
+        "description": "Leave time for a leisurely lakeside walk."
+      },
+      {
+        "name": "Qushuiting Street",
+        "description": "Look for small waterways and old neighbourhood details."
+      }
+    ],
+    "food": "Sweet foam soup · youxuan pastries · Shandong dishes",
+    "tip": "Combine nearby springs and old lanes on foot. Water conditions vary through the year.",
+    "image": "/travel/jinan.jpg",
+    "source": "https://en.wikipedia.org/wiki/Baotu_Spring",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "harbin",
+    "name": "Harbin",
+    "chinese": "哈尔滨",
+    "region": "Northeast",
+    "province": "Heilongjiang",
+    "days": "3–4",
+    "season": "January–February · June–August",
+    "lat": 45.8,
+    "lng": 126.53,
+    "wiki": "Saint Sophia Cathedral, Harbin",
+    "tagline": "Winter spectacle and a distinctive northern cityscape.",
+    "description": "Winter spectacle and a distinctive northern cityscape. Build your stay around Central Street, then make space for Saint Sophia Cathedral and the neighbourhoods in between. Winter trips need serious cold-weather clothing. Ice attractions are seasonal: confirm dates before booking around them.",
+    "highlights": [
+      {
+        "name": "Central Street",
+        "description": "Walk the pedestrian street and look up at its architecture."
+      },
+      {
+        "name": "Saint Sophia Cathedral",
+        "description": "Explore the landmark’s square and check interior opening arrangements."
+      },
+      {
+        "name": "Songhua River",
+        "description": "Enjoy the waterfront; seasonal ice activities require official operating confirmation."
+      }
+    ],
+    "food": "Northern dumplings · smoked sausage · Russian-influenced bread",
+    "tip": "Winter trips need serious cold-weather clothing. Ice attractions are seasonal: confirm dates before booking around them.",
+    "image": "/travel/harbin.jpg",
+    "source": "https://en.wikipedia.org/wiki/Saint_Sophia_Cathedral,_Harbin",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "shenyang",
+    "name": "Shenyang",
+    "chinese": "沈阳",
+    "region": "Northeast",
+    "province": "Liaoning",
+    "days": "2–3",
+    "season": "May–June · September–October",
+    "lat": 41.8,
+    "lng": 123.43,
+    "wiki": "Mukden Palace",
+    "tagline": "An imperial chapter beyond Beijing.",
+    "description": "An imperial chapter beyond Beijing. Build your stay around Shenyang Imperial Palace, then make space for Beiling Park and the neighbourhoods in between. Winters are cold. Keep palace visits and city walks flexible around weather.",
+    "highlights": [
+      {
+        "name": "Shenyang Imperial Palace",
+        "description": "Explore the courtyards and distinctive early Qing architecture."
+      },
+      {
+        "name": "Beiling Park",
+        "description": "Allow time for the park and imperial tomb area."
+      },
+      {
+        "name": "Zhongjie",
+        "description": "Walk the shopping streets and sample northeastern cooking."
+      }
+    ],
+    "food": "Dumplings · guobaorou · northeastern stews",
+    "tip": "Winters are cold. Keep palace visits and city walks flexible around weather.",
+    "image": "/travel/shenyang.jpg",
+    "source": "https://en.wikipedia.org/wiki/Mukden_Palace",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "dalian",
+    "name": "Dalian",
+    "chinese": "大连",
+    "region": "Northeast",
+    "province": "Liaoning",
+    "days": "2–3",
+    "season": "May–June · September–October",
+    "lat": 38.91,
+    "lng": 121.61,
+    "wiki": "Dalian",
+    "tagline": "A northern port with room to breathe.",
+    "description": "A northern port with room to breathe. Build your stay around Xinghai Square, then make space for Binhai Road and the neighbourhoods in between. Coastal sights are spread out. Use transport between neighbourhoods and reserve time for simply walking by the sea.",
+    "highlights": [
+      {
+        "name": "Xinghai Square",
+        "description": "Explore the broad seafront and surrounding coastal paths."
+      },
+      {
+        "name": "Binhai Road",
+        "description": "Choose a walkable coastal section instead of covering the whole route."
+      },
+      {
+        "name": "Zhongshan Square",
+        "description": "Look at the historic architecture and explore the nearby streets."
+      }
+    ],
+    "food": "Seafood · menzi · dumplings",
+    "tip": "Coastal sights are spread out. Use transport between neighbourhoods and reserve time for simply walking by the sea.",
+    "image": "/travel/dalian.jpg",
+    "source": "https://en.wikipedia.org/wiki/Dalian",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "dunhuang",
+    "name": "Dunhuang",
+    "chinese": "敦煌",
+    "region": "Northwest",
+    "province": "Gansu",
+    "days": "3",
+    "season": "May–June · September–October",
+    "lat": 40.14,
+    "lng": 94.66,
+    "wiki": "Mogao Caves",
+    "tagline": "Silk Road art at the edge of the desert.",
+    "description": "Silk Road art at the edge of the desert. Build your stay around Mogao Caves, then make space for Crescent Lake and the neighbourhoods in between. Mogao tickets and tour language need advance checking. Desert excursions require attention to heat, wind and distances.",
+    "highlights": [
+      {
+        "name": "Mogao Caves",
+        "description": "Book through the official visitor system and follow photography restrictions."
+      },
+      {
+        "name": "Crescent Lake",
+        "description": "Explore the desert-edge landscape with sun protection and water."
+      },
+      {
+        "name": "Dunhuang Museum",
+        "description": "Put the region’s trade routes and Buddhist history into context."
+      }
+    ],
+    "food": "Yellow noodles · lamb dishes · local fruit",
+    "tip": "Mogao tickets and tour language need advance checking. Desert excursions require attention to heat, wind and distances.",
+    "image": "/travel/dunhuang.jpg",
+    "source": "https://en.wikipedia.org/wiki/Crescent_Lake",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "lanzhou",
+    "name": "Lanzhou",
+    "chinese": "兰州",
+    "region": "Northwest",
+    "province": "Gansu",
+    "days": "1–2",
+    "season": "May–June · September–October",
+    "lat": 36.06,
+    "lng": 103.83,
+    "wiki": "Lanzhou",
+    "tagline": "A bowl of noodles and a walk beside the Yellow River.",
+    "description": "A bowl of noodles and a walk beside the Yellow River. Build your stay around Yellow River waterfront, then make space for Gansu Provincial Museum and the neighbourhoods in between. Useful as a rail gateway to Gansu. Leave room for transfers rather than treating every stop as sightseeing time.",
+    "highlights": [
+      {
+        "name": "Yellow River waterfront",
+        "description": "Walk by the river and cross Zhongshan Bridge."
+      },
+      {
+        "name": "Gansu Provincial Museum",
+        "description": "Set aside time for Silk Road history and archaeological collections."
+      },
+      {
+        "name": "White Pagoda Park",
+        "description": "Explore the hillside paths for city and river views."
+      }
+    ],
+    "food": "Lanzhou beef noodles · niangpi · sweet fermented grains",
+    "tip": "Useful as a rail gateway to Gansu. Leave room for transfers rather than treating every stop as sightseeing time.",
+    "image": "/travel/lanzhou.jpg",
+    "source": "https://en.wikipedia.org/wiki/Lanzhou",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "xining",
+    "name": "Xining",
+    "chinese": "西宁",
+    "region": "Northwest",
+    "province": "Qinghai",
+    "days": "2–3",
+    "season": "June–September",
+    "lat": 36.62,
+    "lng": 101.78,
+    "wiki": "Kumbum Monastery",
+    "tagline": "A gateway to the plateau, with a culture of its own.",
+    "description": "A gateway to the plateau, with a culture of its own. Build your stay around Kumbum Monastery, then make space for Qinghai Provincial Museum and the neighbourhoods in between. Take arrival slowly at elevation. Qinghai Lake is a separate excursion with substantial driving.",
+    "highlights": [
+      {
+        "name": "Kumbum Monastery",
+        "description": "Visit respectfully and follow local rules on photography and access."
+      },
+      {
+        "name": "Qinghai Provincial Museum",
+        "description": "Learn about the province’s different landscapes and communities."
+      },
+      {
+        "name": "Dongguan Mosque area",
+        "description": "Explore the neighbourhood and check visitor access before entering religious spaces."
+      }
+    ],
+    "food": "Hand-pulled noodles · lamb · Qinghai yogurt",
+    "tip": "Take arrival slowly at elevation. Qinghai Lake is a separate excursion with substantial driving.",
+    "image": "/travel/xining.jpg",
+    "source": "https://en.wikipedia.org/wiki/Kumbum_Monastery",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "urumqi",
+    "name": "Urumqi",
+    "chinese": "乌鲁木齐",
+    "region": "Northwest",
+    "province": "Xinjiang",
+    "days": "2–3",
+    "season": "May–June · September–October",
+    "lat": 43.82,
+    "lng": 87.62,
+    "wiki": "Ürümqi",
+    "tagline": "A starting point for Xinjiang’s vast landscapes.",
+    "description": "A starting point for Xinjiang’s vast landscapes. Build your stay around Xinjiang Museum, then make space for Hongshan Park and the neighbourhoods in between. Xinjiang distances are large. Verify current access and document requirements for each onward destination; not every region is freely accessible.",
+    "highlights": [
+      {
+        "name": "Xinjiang Museum",
+        "description": "Explore the collections for context on the region’s histories."
+      },
+      {
+        "name": "Hongshan Park",
+        "description": "Walk the park for views across the city."
+      },
+      {
+        "name": "International Grand Bazaar",
+        "description": "Browse market stalls and compare prices before buying."
+      }
+    ],
+    "food": "Laghman · polo rice · naan",
+    "tip": "Xinjiang distances are large. Verify current access and document requirements for each onward destination; not every region is freely accessible.",
+    "image": "/travel/urumqi.jpg",
+    "source": "https://en.wikipedia.org/wiki/Ürümqi",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "changsha",
+    "name": "Changsha",
+    "chinese": "长沙",
+    "region": "Central",
+    "province": "Hunan",
+    "days": "2–3",
+    "season": "March–May · October–November",
+    "lat": 28.23,
+    "lng": 112.94,
+    "wiki": "Yuelu Academy",
+    "tagline": "A lively city with history behind the spice.",
+    "description": "A lively city with history behind the spice. Build your stay around Hunan Museum, then make space for Yuelu Academy and the neighbourhoods in between. Expect spice and lively evenings. Leave plenty of time if continuing to Zhangjiajie.",
+    "highlights": [
+      {
+        "name": "Hunan Museum",
+        "description": "Plan around the museum’s booking and opening arrangements."
+      },
+      {
+        "name": "Yuelu Academy",
+        "description": "Combine historic learning spaces with a walk at the foot of Yuelu Mountain."
+      },
+      {
+        "name": "Xiang River",
+        "description": "Leave an evening for the waterfront and city food streets."
+      }
+    ],
+    "food": "Stinky tofu · rice noodles · Hunan cooking",
+    "tip": "Expect spice and lively evenings. Leave plenty of time if continuing to Zhangjiajie.",
+    "image": "/travel/changsha.jpg",
+    "source": "https://en.wikipedia.org/wiki/Yuelu_Academy",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "wuhan",
+    "name": "Wuhan",
+    "chinese": "武汉",
+    "region": "Central",
+    "province": "Hubei",
+    "days": "2–3",
+    "season": "March–April · October–November",
+    "lat": 30.59,
+    "lng": 114.3,
+    "wiki": "Yellow Crane Tower",
+    "tagline": "Three towns, two rivers, countless breakfast stops.",
+    "description": "Three towns, two rivers, countless breakfast stops. Build your stay around Yellow Crane Tower, then make space for Hubei Provincial Museum and the neighbourhoods in between. Wuhan is very spread out across rivers. Avoid repeatedly crossing the city in one day.",
+    "highlights": [
+      {
+        "name": "Yellow Crane Tower",
+        "description": "Explore the landmark and nearby Wuchang streets."
+      },
+      {
+        "name": "Hubei Provincial Museum",
+        "description": "Give the archaeological collections an unhurried half-day."
+      },
+      {
+        "name": "East Lake",
+        "description": "Choose one lakeside area for walking or cycling."
+      }
+    ],
+    "food": "Hot dry noodles · doupi · lotus-root soup",
+    "tip": "Wuhan is very spread out across rivers. Avoid repeatedly crossing the city in one day.",
+    "image": "/travel/wuhan.jpg",
+    "source": "https://en.wikipedia.org/wiki/Yellow_Crane_Tower",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "zhengzhou",
+    "name": "Zhengzhou",
+    "chinese": "郑州",
+    "region": "Central",
+    "province": "Henan",
+    "days": "2",
+    "season": "March–May · September–November",
+    "lat": 34.75,
+    "lng": 113.63,
+    "wiki": "Henan Museum",
+    "tagline": "A practical base for the heartland’s deep history.",
+    "description": "A practical base for the heartland’s deep history. Build your stay around Henan Museum, then make space for Shaolin Temple and the neighbourhoods in between. Do not confuse Zhengzhou with the separate cities of Luoyang and Kaifeng when booking accommodation.",
+    "highlights": [
+      {
+        "name": "Henan Museum",
+        "description": "Start with the collections to understand the region’s ancient cultures."
+      },
+      {
+        "name": "Shaolin Temple",
+        "description": "Treat a visit near Dengfeng as a full-day excursion."
+      },
+      {
+        "name": "Erqi area",
+        "description": "Explore the central city and sample local food."
+      }
+    ],
+    "food": "Hui mian · hula soup · Henan dishes",
+    "tip": "Do not confuse Zhengzhou with the separate cities of Luoyang and Kaifeng when booking accommodation.",
+    "image": "/travel/zhengzhou.jpg",
+    "source": "https://en.wikipedia.org/wiki/Henan_Museum",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  },
+  {
+    "slug": "fuzhou",
+    "name": "Fuzhou",
+    "chinese": "福州",
+    "region": "South",
+    "province": "Fujian",
+    "days": "2",
+    "season": "March–May · October–November",
+    "lat": 26.07,
+    "lng": 119.3,
+    "wiki": "Fuzhou",
+    "tagline": "Courtyard stories under the banyan trees.",
+    "description": "Courtyard stories under the banyan trees. Build your stay around Three Lanes and Seven Alleys, then make space for West Lake Park and the neighbourhoods in between. Allow time to walk smaller lanes rather than only the main shopping street. Summer can be hot and humid.",
+    "highlights": [
+      {
+        "name": "Three Lanes and Seven Alleys",
+        "description": "Explore the historic street layout and selected courtyard houses."
+      },
+      {
+        "name": "West Lake Park",
+        "description": "Take an easy walk through the lake gardens."
+      },
+      {
+        "name": "Yantai Hill",
+        "description": "Look for historic buildings, cafés and river views."
+      }
+    ],
+    "food": "Fish balls · rouyan · peanut soup",
+    "tip": "Allow time to walk smaller lanes rather than only the main shopping street. Summer can be hot and humid.",
+    "image": "/travel/fuzhou.jpg",
+    "source": "https://en.wikipedia.org/wiki/Three_Lanes_and_Seven_Alleys",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "quanzhou",
+    "name": "Quanzhou",
+    "chinese": "泉州",
+    "region": "South",
+    "province": "Fujian",
+    "days": "2–3",
+    "season": "March–May · October–December",
+    "lat": 24.87,
+    "lng": 118.68,
+    "wiki": "Kaiyuan Temple (Quanzhou)",
+    "tagline": "A maritime trading city written in stone.",
+    "description": "A maritime trading city written in stone. Build your stay around Kaiyuan Temple, then make space for Qingjing Mosque and the neighbourhoods in between. Choose an old-city base for walking. Religious sites are active or protected spaces, not just photo backdrops.",
+    "highlights": [
+      {
+        "name": "Kaiyuan Temple",
+        "description": "Explore the temple grounds and look at the twin stone pagodas."
+      },
+      {
+        "name": "Qingjing Mosque",
+        "description": "Learn about the city’s maritime connections and respect site access rules."
+      },
+      {
+        "name": "West Street",
+        "description": "Walk the old streets and look for everyday craft and food traditions."
+      }
+    ],
+    "food": "Mianxianhu · oyster omelette · ginger duck",
+    "tip": "Choose an old-city base for walking. Religious sites are active or protected spaces, not just photo backdrops.",
+    "image": "/travel/quanzhou.jpg",
+    "source": "https://en.wikipedia.org/wiki/Kaiyuan_Temple_(Quanzhou)",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "sanya",
+    "name": "Sanya",
+    "chinese": "三亚",
+    "region": "South",
+    "province": "Hainan",
+    "days": "3–5",
+    "season": "November–April",
+    "lat": 18.25,
+    "lng": 109.51,
+    "wiki": "Sanya",
+    "tagline": "A few days where the itinerary can wait.",
+    "description": "A few days where the itinerary can wait. Build your stay around Yalong Bay, then make space for Dadonghai and the neighbourhoods in between. Check the exact bay before booking a hotel. Different beaches can be far apart, and ocean conditions vary.",
+    "highlights": [
+      {
+        "name": "Yalong Bay",
+        "description": "Choose a beach base suited to your budget and preferred pace."
+      },
+      {
+        "name": "Dadonghai",
+        "description": "Combine time by the sea with nearby dining."
+      },
+      {
+        "name": "Nanshan",
+        "description": "Plan a separate visit to the Buddhist cultural site west of the city."
+      }
+    ],
+    "food": "Hainan chicken rice · coconut dishes · seafood",
+    "tip": "Check the exact bay before booking a hotel. Different beaches can be far apart, and ocean conditions vary.",
+    "image": "/travel/sanya.jpg",
+    "source": "https://en.wikipedia.org/wiki/Sanya",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "haikou",
+    "name": "Haikou",
+    "chinese": "海口",
+    "region": "South",
+    "province": "Hainan",
+    "days": "2",
+    "season": "November–April",
+    "lat": 20.04,
+    "lng": 110.2,
+    "wiki": "Haikou",
+    "tagline": "Arcaded streets and a slower island introduction.",
+    "description": "Arcaded streets and a slower island introduction. Build your stay around Qilou Old Street, then make space for Hainan Museum and the neighbourhoods in between. Haikou and Sanya offer different experiences. Plan island rail travel separately from local sightseeing.",
+    "highlights": [
+      {
+        "name": "Qilou Old Street",
+        "description": "Walk the historic arcades and stop for coffee or snacks."
+      },
+      {
+        "name": "Hainan Museum",
+        "description": "Learn about the island beyond its beaches."
+      },
+      {
+        "name": "Holiday Beach",
+        "description": "Leave a relaxed afternoon for the waterfront."
+      }
+    ],
+    "food": "Hainan noodles · coconut desserts · local coffee",
+    "tip": "Haikou and Sanya offer different experiences. Plan island rail travel separately from local sightseeing.",
+    "image": "/travel/haikou.jpg",
+    "source": "https://en.wikipedia.org/wiki/Haikou",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "wuyishan",
+    "name": "Wuyishan",
+    "chinese": "武夷山",
+    "region": "South",
+    "province": "Fujian",
+    "days": "2–3",
+    "season": "April–June · September–November",
+    "lat": 27.76,
+    "lng": 118.04,
+    "wiki": "Wuyi Mountains",
+    "tagline": "Tea paths and a river threaded through red cliffs.",
+    "description": "Tea paths and a river threaded through red cliffs. Build your stay around Nine Bend River, then make space for Tianyou Peak and the neighbourhoods in between. Confirm the railway station and accommodation area. Mountain walks and river activities can change with weather.",
+    "highlights": [
+      {
+        "name": "Nine Bend River",
+        "description": "Check official rafting availability before building the day around it."
+      },
+      {
+        "name": "Tianyou Peak",
+        "description": "Allow for steps, weather and time to enjoy the views."
+      },
+      {
+        "name": "Wuyi tea country",
+        "description": "Explore tea-growing scenery and clarify tasting or purchase prices."
+      }
+    ],
+    "food": "Wuyi rock tea · bamboo shoots · Fujian dishes",
+    "tip": "Confirm the railway station and accommodation area. Mountain walks and river activities can change with weather.",
+    "image": "/travel/wuyishan.jpg",
+    "source": "https://en.wikipedia.org/wiki/Wuyi_Mountains",
+    "interests": [
+      "Nature",
+      "Culture"
+    ]
+  },
+  {
+    "slug": "jingdezhen",
+    "name": "Jingdezhen",
+    "chinese": "景德镇",
+    "region": "East",
+    "province": "Jiangxi",
+    "days": "2–3",
+    "season": "March–May · September–November",
+    "lat": 29.27,
+    "lng": 117.18,
+    "wiki": "Jingdezhen",
+    "tagline": "A city made by clay, fire, and human hands.",
+    "description": "A city made by clay, fire, and human hands. Build your stay around Imperial Kiln Museum, then make space for Taoxichuan and the neighbourhoods in between. Finished ceramics may not be ready during your stay. Agree on packaging, shipping and breakage policies in writing.",
+    "highlights": [
+      {
+        "name": "Imperial Kiln Museum",
+        "description": "Explore ceramic history and the museum’s distinctive architecture."
+      },
+      {
+        "name": "Taoxichuan",
+        "description": "Visit the former industrial area’s galleries, studios and shops."
+      },
+      {
+        "name": "Ceramic workshops",
+        "description": "Arrange a hands-on session and confirm firing and shipping times before paying."
+      }
+    ],
+    "food": "Local rice noodles · dumplings · Jiangxi dishes",
+    "tip": "Finished ceramics may not be ready during your stay. Agree on packaging, shipping and breakage policies in writing.",
+    "image": "/travel/jingdezhen.jpg",
+    "source": "https://en.wikipedia.org/wiki/Jingdezhen",
+    "interests": [
+      "Culture",
+      "Food"
+    ]
+  }
+]

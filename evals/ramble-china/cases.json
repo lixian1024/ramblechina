@@ -1,0 +1,408 @@
+{
+  "suiteVersion": 2,
+  "scope": "china-unfold/ramble-china",
+  "cases": [
+    {
+      "id": "DEST01",
+      "module": "Destinations",
+      "title": "比较城市并找到下一步",
+      "locales": "en",
+      "input": "打开 /en/destinations",
+      "steps": [
+        "打开 /en/destinations",
+        "比较北京与上海并打开北京详情",
+        "保存一个地点并寻找规划入口"
+      ],
+      "checks": [
+        {
+          "id": "DEST01.1",
+          "expect": "城市信息能解释差异而非相同模板"
+        },
+        {
+          "id": "DEST01.2",
+          "expect": "保存/详情指向同一地点，简介不伪装成核验执行资料"
+        },
+        {
+          "id": "DEST01.3",
+          "expect": "下一步入口明确，跨模块条件保留情况可理解"
+        }
+      ],
+      "variants": [
+        "en"
+      ]
+    },
+    {
+      "id": "ESS01",
+      "module": "Travel essentials",
+      "title": "完成一个行前准备任务",
+      "locales": "en",
+      "input": "打开 /en/essentials",
+      "steps": [
+        "打开 /en/essentials",
+        "查找支付或网络准备",
+        "找到验证与备用方案"
+      ],
+      "checks": [
+        {
+          "id": "ESS01.1",
+          "expect": "准备说明包含可执行动作而非泛泛阅读"
+        },
+        {
+          "id": "ESS01.2",
+          "expect": "动态政策/限制有来源与复核状态，未知不作保证"
+        },
+        {
+          "id": "ESS01.3",
+          "expect": "失败后有明确下一步，相关信息在手机可读"
+        }
+      ],
+      "variants": [
+        "en"
+      ]
+    },
+    {
+      "id": "PLAN01",
+      "module": "Plan a trip",
+      "title": "生成符合偏好的行程",
+      "locales": "en",
+      "input": "输入上海3天，美食建筑、不喜欢博物馆",
+      "steps": [
+        "输入上海3天，美食建筑、不喜欢博物馆",
+        "查看日程与地图",
+        "查看来源和待确认事项"
+      ],
+      "checks": [
+        {
+          "id": "PLAN01.1",
+          "expect": "不推荐用户明确排除的博物馆"
+        },
+        {
+          "id": "PLAN01.2",
+          "expect": "每个停留点与地图一致且同日无隐含跨城"
+        },
+        {
+          "id": "PLAN01.3",
+          "expect": "估时/天气/营业规则区分核验、估计与未知"
+        }
+      ],
+      "variants": [
+        "en"
+      ]
+    },
+    {
+      "id": "PLAN02",
+      "module": "Plan a trip",
+      "title": "修改与固定预约",
+      "locales": "en",
+      "input": "创建含10:00固定预约的行程",
+      "steps": [
+        "创建含10:00固定预约的行程",
+        "请求换掉下午一个地点",
+        "查看地图、详情并撤销修改"
+      ],
+      "checks": [
+        {
+          "id": "PLAN02.1",
+          "expect": "不静默修改或删掉固定预约，冲突有解释"
+        },
+        {
+          "id": "PLAN02.2",
+          "expect": "日程、地图、详情与当前版本一致"
+        },
+        {
+          "id": "PLAN02.3",
+          "expect": "撤销恢复上一版成功结果；修改不影响实际订单"
+        }
+      ],
+      "variants": [
+        "en"
+      ]
+    },
+    {
+      "id": "PLAN03",
+      "module": "Plan a trip",
+      "title": "真实服务失败恢复",
+      "locales": "en",
+      "input": "创建有效计划",
+      "steps": [
+        "创建有效计划",
+        "模拟搜索无来源或地图请求失败",
+        "查看错误并重试"
+      ],
+      "checks": [
+        {
+          "id": "PLAN03.1",
+          "expect": "不把无来源模型回答呈现为核验行程"
+        },
+        {
+          "id": "PLAN03.2",
+          "expect": "旧成功结果与输入保留且可重试"
+        },
+        {
+          "id": "PLAN03.3",
+          "expect": "缺失路线或天气明确标记，不生成伪精确数据"
+        }
+      ],
+      "variants": [
+        "en"
+      ]
+    },
+    {
+      "id": "PLAN04",
+      "module": "Plan a trip",
+      "title": "带儿童与行动约束",
+      "locales": "en",
+      "input": "输入北京3天、两个儿童、低步行强度",
+      "steps": [
+        "输入北京3天、两个儿童、低步行强度",
+        "检查每日路线与休息",
+        "询问有冲突的预约安排"
+      ],
+      "checks": [
+        {
+          "id": "PLAN04.1",
+          "expect": "遵守明确步行约束并包含儿童适合活动"
+        },
+        {
+          "id": "PLAN04.2",
+          "expect": "每日主要景点最多4个，午餐和休息不被不合理挤掉"
+        },
+        {
+          "id": "PLAN04.3",
+          "expect": "不可满足的时间约束明确提示，而非假装合理"
+        }
+      ],
+      "variants": [
+        "en"
+      ]
+    },
+    {
+      "id": "DAY01",
+      "module": "Daybook",
+      "title": "准备并执行北京一天",
+      "locales": "en",
+      "input": "打开 /en/journeys/beijing-imperial-day",
+      "steps": [
+        "打开 /en/journeys/beijing-imperial-day",
+        "选择日期人数并检查预约/过期提示",
+        "查看入口、中文卡和Plan B"
+      ],
+      "checks": [
+        {
+          "id": "DAY01.1",
+          "expect": "入口/出口/下车点分开，未知信息不猜测"
+        },
+        {
+          "id": "DAY01.2",
+          "expect": "周一或事实过期时明确预检提示，不因勾选变成官方核验"
+        },
+        {
+          "id": "DAY01.3",
+          "expect": "中文卡可读可复制，Plan B 提供可执行替代"
+        }
+      ],
+      "variants": [
+        "en"
+      ]
+    },
+    {
+      "id": "DAY02",
+      "module": "Daybook",
+      "title": "导出与网页一致",
+      "locales": "published-daybook-locales",
+      "input": "选择卡片并生成目标语言支持的PDF或PNG",
+      "steps": [
+        "选择卡片并生成目标语言支持的PDF或PNG",
+        "打开实际文件核对中文、内容版本与来源",
+        "断网打开已下载文件"
+      ],
+      "checks": [
+        {
+          "id": "DAY02.1",
+          "expect": "实际生成文件可打开，无缺字溢出拉伸，卡片与选择一致"
+        },
+        {
+          "id": "DAY02.2",
+          "expect": "导出语言和网页事实一致；未支持中文PDF时不承诺可下载"
+        },
+        {
+          "id": "DAY02.3",
+          "expect": "下载成功在生成后出现，离线文件可读不冒充离线网站"
+        }
+      ],
+      "variants": [
+        "en/daybook-pdf",
+        "ko/daybook-pdf",
+        "zh/daybook-png"
+      ]
+    },
+    {
+      "id": "FLOW01",
+      "module": "cross-module",
+      "title": "探索到当天准备闭环",
+      "locales": "en",
+      "input": "从Destinations找到北京",
+      "steps": [
+        "从Destinations找到北京",
+        "在Essentials完成相关准备",
+        "在Plan a trip规划修改后进入北京Daybook"
+      ],
+      "checks": [
+        {
+          "id": "FLOW01.1",
+          "expect": "用户无需主持人解释即可识别各模块下一步"
+        },
+        {
+          "id": "FLOW01.2",
+          "expect": "城市/日期/偏好转移或需重填的地方明确，不静默丢失条件"
+        },
+        {
+          "id": "FLOW01.3",
+          "expect": "Daybook编辑样板与个人计划关系明确，不冒充同步生成"
+        }
+      ],
+      "variants": [
+        "en"
+      ]
+    },
+    {
+      "id": "FLOW02",
+      "module": "cross-module",
+      "title": "手机任务与上下文恢复",
+      "locales": "en",
+      "input": "在窄屏完成FLOW01",
+      "steps": [
+        "在窄屏完成FLOW01",
+        "返回上一个模块或刷新",
+        "检查存档与错误提示"
+      ],
+      "checks": [
+        {
+          "id": "FLOW02.1",
+          "expect": "主动作可触达，文本和地图不溢出，不依赖悬停"
+        },
+        {
+          "id": "FLOW02.2",
+          "expect": "已宣称保存的状态刷新可恢复，存储失败明确提示"
+        },
+        {
+          "id": "FLOW02.3",
+          "expect": "模块返回不造成错误语言或错误实体"
+        }
+      ],
+      "variants": [
+        "en"
+      ]
+    },
+    {
+      "id": "LANG01",
+      "module": "multilingual",
+      "title": "语言发布与回退矩阵",
+      "locales": "en/ko/zh × four modules",
+      "input": "依次访问三个前缀下的四模块，共12组合",
+      "steps": [
+        "依次访问三个前缀下的四模块，共12组合",
+        "切换到未发布的模块语言",
+        "检查其他规划语言没有完整发布承诺"
+      ],
+      "checks": [
+        {
+          "id": "LANG01.1",
+          "expect": "每组合记录真实语言和发布状态，英语内容不伪装目标语言"
+        },
+        {
+          "id": "LANG01.2",
+          "expect": "未发布模块明确回退或不可用，切换保持实体上下文"
+        },
+        {
+          "id": "LANG01.3",
+          "expect": "手动语言选择有效，未发布语言不误报全面支持"
+        }
+      ],
+      "variants": [
+        "en/destinations",
+        "en/essentials",
+        "en/plan",
+        "en/journeys/beijing-imperial-day",
+        "ko/destinations",
+        "ko/essentials",
+        "ko/plan",
+        "ko/journeys/beijing-imperial-day",
+        "zh/destinations",
+        "zh/essentials",
+        "zh/plan",
+        "zh/journeys/beijing-imperial-day"
+      ]
+    },
+    {
+      "id": "LANG02",
+      "module": "multilingual",
+      "title": "共享事实与自然语言",
+      "locales": "published module-locale combinations",
+      "input": "逐组合核对地点/入口/预约/来源与英文事实",
+      "steps": [
+        "逐组合核对地点/入口/预约/来源与英文事实",
+        "查看中文现场卡与目标语言解释",
+        "由母语审阅者检查目标语言内容"
+      ],
+      "checks": [
+        {
+          "id": "LANG02.1",
+          "expect": "中文专名、稳定实体、来源时间与事实版本一致"
+        },
+        {
+          "id": "LANG02.2",
+          "expect": "界面和解释使用声明语言，中文现场卡按用途保留中文"
+        },
+        {
+          "id": "LANG02.3",
+          "expect": "母语审阅有记录，无关键意义反转；未审阅记blocked"
+        }
+      ],
+      "variants": [
+        "en/destinations",
+        "en/essentials",
+        "en/plan",
+        "en/journeys/beijing-imperial-day",
+        "ko/journeys/beijing-imperial-day",
+        "zh/plan",
+        "zh/journeys/beijing-imperial-day"
+      ]
+    },
+    {
+      "id": "LANG03",
+      "module": "multilingual",
+      "title": "语言切换与视觉完整性",
+      "locales": "published module-locale combinations",
+      "input": "从详情页切换语言",
+      "steps": [
+        "从详情页切换语言",
+        "检查宽屏与窄屏、加载和错误状态",
+        "核对html语言、metadata与发布索引策略"
+      ],
+      "checks": [
+        {
+          "id": "LANG03.1",
+          "expect": "切换保留实体，缺翻译有明确提示，关键按钮无漏译键"
+        },
+        {
+          "id": "LANG03.2",
+          "expect": "长文本、中文/韩文字体与错误状态无截断或遮挡"
+        },
+        {
+          "id": "LANG03.3",
+          "expect": "lang/canonical/hreflang与真实发布一致，未审阅页不伪称正式翻译"
+        }
+      ],
+      "variants": [
+        "en/destinations",
+        "en/essentials",
+        "en/plan",
+        "en/journeys/beijing-imperial-day",
+        "ko/journeys/beijing-imperial-day",
+        "zh/plan",
+        "zh/journeys/beijing-imperial-day"
+      ]
+    }
+  ]
+}

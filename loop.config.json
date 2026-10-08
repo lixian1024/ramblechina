@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "require_clean_tree": true,
+  "max_attempts": 2,
+  "timeout_seconds": 180,
+  "group_tasks": ["R001"],
+  "task_modes": {"R001": "read-only"},
+  "verification_commands": [
+    ["npm", "run", "check:product"],
+    ["npm", "run", "eval:validate"],
+    ["npm", "run", "test:eval-infra"],
+    ["python3", "scripts/test_loop_engine.py"]
+  ],
+  "product_report": "evals/ramble-china/runs/current.json"
+}

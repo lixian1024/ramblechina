@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+
+# Local Loop runtime and evidence
+.loop/
+STATE.json
+STATE.json.tmp
+__pycache__/

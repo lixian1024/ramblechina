@@ -1,0 +1,20 @@
+{
+  "en": {
+    "state": "prototype",
+    "factFingerprint": "a0cfcc75ba9402e0d9e95c2e5467772ec975baacc09f20c86ef2077a5bb3c06f",
+    "preparedAt": "2026-09-27",
+    "scope": ["home", "beijing-imperial-day"]
+  },
+  "zh": {
+    "state": "prototype",
+    "factFingerprint": "a0cfcc75ba9402e0d9e95c2e5467772ec975baacc09f20c86ef2077a5bb3c06f",
+    "preparedAt": "2026-09-27",
+    "scope": ["home", "beijing-imperial-day"]
+  },
+  "ko": {
+    "state": "prototype",
+    "factFingerprint": "a0cfcc75ba9402e0d9e95c2e5467772ec975baacc09f20c86ef2077a5bb3c06f",
+    "preparedAt": "2026-09-27",
+    "scope": ["home", "beijing-imperial-day"]
+  }
+}

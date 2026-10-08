@@ -1,0 +1,590 @@
+{
+  "北京": {
+    "file": "/travel/beijing.jpg",
+    "author": "Pixelflake",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Forbidden_City_-_View_from_Coal_Hill.jpg",
+    "city": "Beijing"
+  },
+  "Beijing": {
+    "file": "/travel/beijing.jpg",
+    "author": "Pixelflake",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Forbidden_City_-_View_from_Coal_Hill.jpg",
+    "city": "Beijing"
+  },
+  "上海": {
+    "file": "/travel/shanghai.jpg",
+    "author": "钉钉",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Bund_2.jpg",
+    "city": "Shanghai"
+  },
+  "Shanghai": {
+    "file": "/travel/shanghai.jpg",
+    "author": "钉钉",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Bund_2.jpg",
+    "city": "Shanghai"
+  },
+  "桂林": {
+    "file": "/travel/guilin.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:87318-Li-River.jpg",
+    "city": "Guilin"
+  },
+  "Guilin": {
+    "file": "/travel/guilin.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:87318-Li-River.jpg",
+    "city": "Guilin"
+  },
+  "成都": {
+    "file": "/travel/chengdu-pandas.jpg",
+    "author": "Colegota",
+    "license": "CC BY-SA 2.5 es",
+    "source": "https://commons.wikimedia.org/wiki/File:Chengdu-pandas-d10.jpg",
+    "city": "Chengdu"
+  },
+  "Chengdu": {
+    "file": "/travel/chengdu-pandas.jpg",
+    "author": "Colegota",
+    "license": "CC BY-SA 2.5 es",
+    "source": "https://commons.wikimedia.org/wiki/File:Chengdu-pandas-d10.jpg",
+    "city": "Chengdu"
+  },
+  "西安": {
+    "file": "/travel/xian.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:51714-Terracota-Army.jpg",
+    "city": "Xi’an"
+  },
+  "Xi’an": {
+    "file": "/travel/xian.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:51714-Terracota-Army.jpg",
+    "city": "Xi’an"
+  },
+  "杭州": {
+    "file": "/travel/hangzhou.jpg",
+    "author": "Takashishin",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:West_Lake,_Hangzhou_2025.jpg",
+    "city": "Hangzhou"
+  },
+  "Hangzhou": {
+    "file": "/travel/hangzhou.jpg",
+    "author": "Takashishin",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:West_Lake,_Hangzhou_2025.jpg",
+    "city": "Hangzhou"
+  },
+  "重庆": {
+    "file": "/travel/chongqing.jpg",
+    "author": "Jonashtand",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:202308_Hongya_Cave_at_night_from_Qiansimen_Bridge.jpg",
+    "city": "Chongqing"
+  },
+  "Chongqing": {
+    "file": "/travel/chongqing.jpg",
+    "author": "Jonashtand",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:202308_Hongya_Cave_at_night_from_Qiansimen_Bridge.jpg",
+    "city": "Chongqing"
+  },
+  "苏州": {
+    "file": "/travel/suzhou.jpg",
+    "author": "Zhangzhugang",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Suzhou_Zhuozheng_Yuan_2015.04.23_08-13-49.jpg",
+    "city": "Suzhou"
+  },
+  "Suzhou": {
+    "file": "/travel/suzhou.jpg",
+    "author": "Zhangzhugang",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Suzhou_Zhuozheng_Yuan_2015.04.23_08-13-49.jpg",
+    "city": "Suzhou"
+  },
+  "张家界": {
+    "file": "/travel/zhangjiajie.jpg",
+    "author": "chensiyuan",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:1_tianzishan_wulingyuan_zhangjiajie_2012.jpg",
+    "city": "Zhangjiajie"
+  },
+  "Zhangjiajie": {
+    "file": "/travel/zhangjiajie.jpg",
+    "author": "chensiyuan",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:1_tianzishan_wulingyuan_zhangjiajie_2012.jpg",
+    "city": "Zhangjiajie"
+  },
+  "黄山": {
+    "file": "/travel/huangshan.jpg",
+    "author": "Chi King",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Huangshan_pic_4.jpg",
+    "city": "Huangshan"
+  },
+  "Huangshan": {
+    "file": "/travel/huangshan.jpg",
+    "author": "Chi King",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Huangshan_pic_4.jpg",
+    "city": "Huangshan"
+  },
+  "大理": {
+    "file": "/travel/dali.jpg",
+    "author": "Yumeto",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:20240502_Chongshengsi_Santa_(131232).jpg",
+    "city": "Dali"
+  },
+  "Dali": {
+    "file": "/travel/dali.jpg",
+    "author": "Yumeto",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:20240502_Chongshengsi_Santa_(131232).jpg",
+    "city": "Dali"
+  },
+  "丽江": {
+    "file": "/travel/lijiang.jpg",
+    "author": "Pavel Špindler",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lijiang_-_panoramio_(6).jpg",
+    "city": "Lijiang"
+  },
+  "Lijiang": {
+    "file": "/travel/lijiang.jpg",
+    "author": "Pavel Špindler",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lijiang_-_panoramio_(6).jpg",
+    "city": "Lijiang"
+  },
+  "昆明": {
+    "file": "/travel/kunming.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Shilin,_Yunnan_24740.jpg",
+    "city": "Kunming"
+  },
+  "Kunming": {
+    "file": "/travel/kunming.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Shilin,_Yunnan_24740.jpg",
+    "city": "Kunming"
+  },
+  "贵阳": {
+    "file": "/travel/guiyang.jpg",
+    "author": "Harry Alverson",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Qingyan_Town.jpg",
+    "city": "Guiyang"
+  },
+  "Guiyang": {
+    "file": "/travel/guiyang.jpg",
+    "author": "Harry Alverson",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Qingyan_Town.jpg",
+    "city": "Guiyang"
+  },
+  "厦门": {
+    "file": "/travel/xiamen.jpg",
+    "author": "-森屿-",
+    "license": "CC BY 2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:2018%E5%B9%B4%E7%9A%84%E9%BC%93%E6%B5%AA%E5%B1%BF.jpg",
+    "city": "Xiamen"
+  },
+  "Xiamen": {
+    "file": "/travel/xiamen.jpg",
+    "author": "-森屿-",
+    "license": "CC BY 2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:2018%E5%B9%B4%E7%9A%84%E9%BC%93%E6%B5%AA%E5%B1%BF.jpg",
+    "city": "Xiamen"
+  },
+  "广州": {
+    "file": "/travel/guangzhou.jpg",
+    "author": "Shujianyang",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chen_Clan_Ancestral_Hall_2025.06_02.jpg",
+    "city": "Guangzhou"
+  },
+  "Guangzhou": {
+    "file": "/travel/guangzhou.jpg",
+    "author": "Shujianyang",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chen_Clan_Ancestral_Hall_2025.06_02.jpg",
+    "city": "Guangzhou"
+  },
+  "深圳": {
+    "file": "/travel/shenzhen.jpg",
+    "author": "Charlie fong",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Commercial_area_of_futian_to_east2020.jpg",
+    "city": "Shenzhen"
+  },
+  "Shenzhen": {
+    "file": "/travel/shenzhen.jpg",
+    "author": "Charlie fong",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Commercial_area_of_futian_to_east2020.jpg",
+    "city": "Shenzhen"
+  },
+  "香港": {
+    "file": "/travel/hong-kong-night.jpg",
+    "author": "Base64, retouched by CarolSpears",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Hong_Kong_Night_Skyline.jpg",
+    "city": "Hong Kong"
+  },
+  "Hong Kong": {
+    "file": "/travel/hong-kong-night.jpg",
+    "author": "Base64, retouched by CarolSpears",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Hong_Kong_Night_Skyline.jpg",
+    "city": "Hong Kong"
+  },
+  "澳门": {
+    "file": "/travel/macao.jpg",
+    "author": "GG001213",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E5%A4%A7%E4%B8%89%E5%B7%B4%E7%89%8C%E5%9D%8A.jpg",
+    "city": "Macao"
+  },
+  "Macao": {
+    "file": "/travel/macao.jpg",
+    "author": "GG001213",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E5%A4%A7%E4%B8%89%E5%B7%B4%E7%89%8C%E5%9D%8A.jpg",
+    "city": "Macao"
+  },
+  "南京": {
+    "file": "/travel/nanjing.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Nanjing_CBD_from_City_Wall.jpg",
+    "city": "Nanjing"
+  },
+  "Nanjing": {
+    "file": "/travel/nanjing.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Nanjing_CBD_from_City_Wall.jpg",
+    "city": "Nanjing"
+  },
+  "洛阳": {
+    "file": "/travel/luoyang.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:27427-Luoyang_(49067744628).jpg",
+    "city": "Luoyang"
+  },
+  "Luoyang": {
+    "file": "/travel/luoyang.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:27427-Luoyang_(49067744628).jpg",
+    "city": "Luoyang"
+  },
+  "大同": {
+    "file": "/travel/datong.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:61292-Yungang-Grottoes_(28498548881).jpg",
+    "city": "Datong"
+  },
+  "Datong": {
+    "file": "/travel/datong.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:61292-Yungang-Grottoes_(28498548881).jpg",
+    "city": "Datong"
+  },
+  "平遥": {
+    "file": "/travel/pingyao.jpg",
+    "author": "Zhangzhugang",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pingyao_Shilou_2013.08.25_07-01-33.jpg",
+    "city": "Pingyao"
+  },
+  "Pingyao": {
+    "file": "/travel/pingyao.jpg",
+    "author": "Zhangzhugang",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pingyao_Shilou_2013.08.25_07-01-33.jpg",
+    "city": "Pingyao"
+  },
+  "天津": {
+    "file": "/travel/tianjin.jpg",
+    "author": "KangTyngrwey",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tianjin_Eye_and_Tianjin.jpg",
+    "city": "Tianjin"
+  },
+  "Tianjin": {
+    "file": "/travel/tianjin.jpg",
+    "author": "KangTyngrwey",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tianjin_Eye_and_Tianjin.jpg",
+    "city": "Tianjin"
+  },
+  "青岛": {
+    "file": "/travel/qingdao.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Qingdao_Harbour_51341-Qingdao_(49055637186).jpg",
+    "city": "Qingdao"
+  },
+  "Qingdao": {
+    "file": "/travel/qingdao.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Qingdao_Harbour_51341-Qingdao_(49055637186).jpg",
+    "city": "Qingdao"
+  },
+  "济南": {
+    "file": "/travel/jinan.jpg",
+    "author": "Ermell",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:China_Jinan_5196975.jpg",
+    "city": "Jinan"
+  },
+  "Jinan": {
+    "file": "/travel/jinan.jpg",
+    "author": "Ermell",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:China_Jinan_5196975.jpg",
+    "city": "Jinan"
+  },
+  "哈尔滨": {
+    "file": "/travel/harbin.jpg",
+    "author": "N509FZ",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:West_facade_of_St._Sophia_Cathedral,_Harbin_(20230721150450).jpg",
+    "city": "Harbin"
+  },
+  "Harbin": {
+    "file": "/travel/harbin.jpg",
+    "author": "N509FZ",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:West_facade_of_St._Sophia_Cathedral,_Harbin_(20230721150450).jpg",
+    "city": "Harbin"
+  },
+  "沈阳": {
+    "file": "/travel/shenyang.jpg",
+    "author": "Techyan",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mukden_Palace_drone_view_5_(cropped_%26_rotated).jpg",
+    "city": "Shenyang"
+  },
+  "Shenyang": {
+    "file": "/travel/shenyang.jpg",
+    "author": "Techyan",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mukden_Palace_drone_view_5_(cropped_%26_rotated).jpg",
+    "city": "Shenyang"
+  },
+  "大连": {
+    "file": "/travel/dalian.jpg",
+    "author": "Fumihiko Ueno",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Xigang,_Dalian,_Liaoning,_China_-_panoramio_(18).jpg",
+    "city": "Dalian"
+  },
+  "Dalian": {
+    "file": "/travel/dalian.jpg",
+    "author": "Fumihiko Ueno",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Xigang,_Dalian,_Liaoning,_China_-_panoramio_(18).jpg",
+    "city": "Dalian"
+  },
+  "敦煌": {
+    "file": "/travel/dunhuang.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mogao_Caves_(54376969262).jpg",
+    "city": "Dunhuang"
+  },
+  "Dunhuang": {
+    "file": "/travel/dunhuang.jpg",
+    "author": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mogao_Caves_(54376969262).jpg",
+    "city": "Dunhuang"
+  },
+  "兰州": {
+    "file": "/travel/lanzhou.jpg",
+    "author": "Megalizard29",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Skyline_Lanzhou_August_2025.jpg",
+    "city": "Lanzhou"
+  },
+  "Lanzhou": {
+    "file": "/travel/lanzhou.jpg",
+    "author": "Megalizard29",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Skyline_Lanzhou_August_2025.jpg",
+    "city": "Lanzhou"
+  },
+  "西宁": {
+    "file": "/travel/xining.jpg",
+    "author": "Andreas Gruschke",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kumbum_Monastery_in_Amdo.jpg",
+    "city": "Xining"
+  },
+  "Xining": {
+    "file": "/travel/xining.jpg",
+    "author": "Andreas Gruschke",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kumbum_Monastery_in_Amdo.jpg",
+    "city": "Xining"
+  },
+  "乌鲁木齐": {
+    "file": "/travel/urumqi.jpg",
+    "author": "Albertaont",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Urumqi_Skyline_July_2019.jpg",
+    "city": "Urumqi"
+  },
+  "Urumqi": {
+    "file": "/travel/urumqi.jpg",
+    "author": "Albertaont",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Urumqi_Skyline_July_2019.jpg",
+    "city": "Urumqi"
+  },
+  "长沙": {
+    "file": "/travel/changsha.jpg",
+    "author": "Lectern",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Yuelu-Academy-Gate.jpg",
+    "city": "Changsha"
+  },
+  "Changsha": {
+    "file": "/travel/changsha.jpg",
+    "author": "Lectern",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Yuelu-Academy-Gate.jpg",
+    "city": "Changsha"
+  },
+  "武汉": {
+    "file": "/travel/wuhan.jpg",
+    "author": "MonsieurRoi",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:CN_-_Hubei_-_Wuhan_-_Kranichpagode.jpg",
+    "city": "Wuhan"
+  },
+  "Wuhan": {
+    "file": "/travel/wuhan.jpg",
+    "author": "MonsieurRoi",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:CN_-_Hubei_-_Wuhan_-_Kranichpagode.jpg",
+    "city": "Wuhan"
+  },
+  "郑州": {
+    "file": "/travel/zhengzhou.jpg",
+    "author": "Windmemories",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:20210220_Henan_Museum_-_main_hall_01.jpg",
+    "city": "Zhengzhou"
+  },
+  "Zhengzhou": {
+    "file": "/travel/zhengzhou.jpg",
+    "author": "Windmemories",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:20210220_Henan_Museum_-_main_hall_01.jpg",
+    "city": "Zhengzhou"
+  },
+  "福州": {
+    "file": "/travel/fuzhou.jpg",
+    "author": "Listwiseafford",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Fuzhou_Taixi_CBD.jpg",
+    "city": "Fuzhou"
+  },
+  "Fuzhou": {
+    "file": "/travel/fuzhou.jpg",
+    "author": "Listwiseafford",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Fuzhou_Taixi_CBD.jpg",
+    "city": "Fuzhou"
+  },
+  "泉州": {
+    "file": "/travel/quanzhou.jpg",
+    "author": "Tom@HK",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Quanzhou_Kaiyuan_Temple-the_Hall_of_Mahavira.jpg",
+    "city": "Quanzhou"
+  },
+  "Quanzhou": {
+    "file": "/travel/quanzhou.jpg",
+    "author": "Tom@HK",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Quanzhou_Kaiyuan_Temple-the_Hall_of_Mahavira.jpg",
+    "city": "Quanzhou"
+  },
+  "三亚": {
+    "file": "/travel/sanya.jpg",
+    "author": "Anna Frodesiak",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:SuperStar_Aquarius_at_Phoenix_Island,_Sanya_Bay_-_01.jpg",
+    "city": "Sanya"
+  },
+  "Sanya": {
+    "file": "/travel/sanya.jpg",
+    "author": "Anna Frodesiak",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:SuperStar_Aquarius_at_Phoenix_Island,_Sanya_Bay_-_01.jpg",
+    "city": "Sanya"
+  },
+  "海口": {
+    "file": "/travel/haikou.jpg",
+    "author": "Yolanda Yao",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Altstadt_von_Haikou_(Hainan).jpg",
+    "city": "Haikou"
+  },
+  "Haikou": {
+    "file": "/travel/haikou.jpg",
+    "author": "Yolanda Yao",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Altstadt_von_Haikou_(Hainan).jpg",
+    "city": "Haikou"
+  },
+  "武夷山": {
+    "file": "/travel/wuyishan.jpg",
+    "author": "老过",
+    "license": "CC BY 2.5 cn",
+    "source": "https://commons.wikimedia.org/wiki/File:Wuyi_Mountains_Sea_of_clouds_4.jpg",
+    "city": "Wuyishan"
+  },
+  "Wuyishan": {
+    "file": "/travel/wuyishan.jpg",
+    "author": "老过",
+    "license": "CC BY 2.5 cn",
+    "source": "https://commons.wikimedia.org/wiki/File:Wuyi_Mountains_Sea_of_clouds_4.jpg",
+    "city": "Wuyishan"
+  },
+  "景德镇": {
+    "file": "/travel/jingdezhen.jpg",
+    "author": "JHH755",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E6%99%AF%E5%BE%B7%E9%95%87%E5%B8%82%E6%98%8C%E6%B1%9F%E4%B8%9C%E5%B2%B8.JPG",
+    "city": "Jingdezhen"
+  },
+  "Jingdezhen": {
+    "file": "/travel/jingdezhen.jpg",
+    "author": "JHH755",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E6%99%AF%E5%BE%B7%E9%95%87%E5%B8%82%E6%98%8C%E6%B1%9F%E4%B8%9C%E5%B2%B8.JPG",
+    "city": "Jingdezhen"
+  }
+}

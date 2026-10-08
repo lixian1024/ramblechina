@@ -1,0 +1,131 @@
+{
+  "day": {
+    "name": "Palace courtyards. A hilltop ending.",
+    "assumptions": [
+      "One full sightseeing day in Beijing; hotel transfers are not yet planned.",
+      "A morning Palace Museum reservation is required for this sample. Suggested windows are not bookings.",
+      "No train, hotel, guide or attraction ticket is included."
+    ],
+    "stops": {
+      "arrive": {
+        "window": "Before your booked session",
+        "title": "Find the right gate",
+        "duration": "Allow an arrival buffer",
+        "action": "Start early enough for the walk to Wumen, security and identity checks. Your hotel and departure point are unknown, so no transfer time is invented."
+      },
+      "palace": {
+        "window": "Morning · booked session",
+        "title": "A south-to-north palace visit",
+        "duration": "3–4 hours · suggested",
+        "action": "Enter at Wumen. Follow the signed visitor route through the palace courtyards and gardens towards Shenwumen. Respect the Taihemen works diversion; this is not a guaranteed uninterrupted central-axis walk."
+      },
+      "lunch": {
+        "window": "After the palace",
+        "title": "A proper lunch break",
+        "duration": "45–60 minutes · suggested",
+        "action": "Eat after exiting, before the hill climb. Choose a nearby open place that fits your dietary needs; live search results are ideas, not restaurant endorsements."
+      },
+      "crossing": {
+        "window": "After lunch",
+        "title": "Shenwumen → Jingshan south gate",
+        "duration": "Reserve 15–25 minutes · buffer",
+        "action": "Use the signed pedestrian crossing facilities. The buffer is an editorial allowance, not a measured walk. You can check this outdoor leg with Amap below."
+      },
+      "jingshan": {
+        "window": "Afternoon · flexible",
+        "title": "Look back at the city",
+        "duration": "60–90 minutes · suggested",
+        "action": "Enter Jingshan at the south gate. If conditions suit, climb to Wanchun Pavilion; otherwise keep to the lower paths. Leave the evening open."
+      }
+    }
+  },
+  "places": {
+    "bj-palace": {
+      "name": "The Forbidden City",
+      "reservation": "Book through the Palace Museum official channels. Passport booking is supported. Carry the original document used for the booking. The current summary releases tickets seven days ahead at 20:00 Beijing time; check your date and session.",
+      "access": "Enter at Wumen (south). Visit northwards and leave at Shenwumen for Jingshan. Normally closed Mondays except statutory holidays; check dated notices. Taihemen has a works notice: follow the on-site diversion.",
+      "photography": "Courtyards and roof details reward an unhurried look. Follow gallery photography signs; do not assume flash or tripods are permitted."
+    },
+    "bj-jingshan": {
+      "name": "Jingshan Park",
+      "reservation": "The newer official FAQ permits on-site purchase, including at the south gate. Online tickets are also available through Changyou Gongyuan. Carry your passport and check date-specific notices.",
+      "access": "Approach the south gate after leaving the Palace Museum at Shenwumen. Use the signed pedestrian crossing. The hilltop viewpoint involves stairs.",
+      "photography": "Wanchun Pavilion looks south over the palace roofs. Clear weather matters; use lower park paths if steps or poor visibility make the climb unsuitable."
+    }
+  },
+  "cards": {
+    "card-wumen": {
+      "title": "The way in",
+      "caution": "Ask for walking directions. Vehicles do not drive to this gate. Confirm a legal drop-off separately."
+    },
+    "card-shenwumen": {
+      "title": "The way out",
+      "caution": "Exit only. Do not use this gate to start a Palace Museum visit."
+    },
+    "card-jingshan": {
+      "title": "Across to the hill",
+      "caution": "Use the signed pedestrian crossing. The park address does not identify a legal taxi stopping point."
+    }
+  },
+  "checklist": {
+    "reservation": {
+      "title": "Palace morning session booked",
+      "detail": "Use the official channel and confirm the date and named traveller. This checkbox records your confirmation, not a booking by us."
+    },
+    "passport": {
+      "title": "Original passport ready",
+      "detail": "Bring the document used for the reservation. Do not upload its number here."
+    },
+    "approach": {
+      "title": "Hotel-to-Wumen approach checked",
+      "detail": "Confirm walking access and a legal drop-off if using a car. Museum address ≠ vehicle entrance."
+    },
+    "notice": {
+      "title": "Current closure notices checked",
+      "detail": "Check Monday exceptions, Taihemen works and date-specific controls before departure."
+    },
+    "offline": {
+      "title": "Cards and daybook saved on my phone",
+      "detail": "Open the downloaded files in flight mode. Saving a checkbox does not download the files."
+    }
+  },
+  "budget": {
+    "admission": {
+      "label": "Admission allowance",
+      "note": "Planning allowance for the two sites; not current ticket prices. Extra exhibitions excluded."
+    },
+    "food": {
+      "label": "Lunch, water & a snack",
+      "note": "A casual meal and refreshment allowance, not restaurant quotes."
+    },
+    "local": {
+      "label": "Local transport allowance",
+      "note": "Hotel location is unknown; replace this with your actual transfer plan."
+    }
+  },
+  "planB": {
+    "0": {
+      "title": "Palace sold out or closed",
+      "body": "Do not travel to Wumen expecting walk-up entry. Switch to a separately checked Jingshan / nearby neighbourhood day, or move the palace visit to a date you can book. This is a replacement day, not the same itinerary."
+    },
+    "1": {
+      "title": "Rain, haze or tired legs",
+      "body": "Skip the hilltop climb. Take a longer meal break or choose lower park paths if conditions allow. Do not add an unverified museum booking as a guaranteed fallback."
+    },
+    "2": {
+      "title": "A gate or crossing is controlled",
+      "body": "Follow staff directions. Recheck the outdoor route, allow more time and drop the optional hill climb before rushing. An Amap route does not override on-site controls."
+    }
+  },
+  "entrances": {
+    "bj-palace-wumen": {
+      "name": "Wumen · entrance"
+    },
+    "bj-palace-shenwumen": {
+      "name": "Shenwumen · exit"
+    },
+    "bj-jingshan-south": {
+      "name": "Jingshan · south entrance"
+    }
+  }
+}
