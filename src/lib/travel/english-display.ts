@@ -35,7 +35,7 @@ export function hotelLabel(day: VerifiedDay, zh: boolean): string {
 }
 
 export function placeAddress(stop: VerifiedStop, day: VerifiedDay, zh: boolean): string {
-  if (!stop.place) return zh ? '高德地点待匹配' : 'Amap place to confirm';
+  if (!stop.place) return zh ? 'Google地点待匹配' : 'Google place to confirm';
   if (zh) return [stop.place.name, stop.place.address].filter(Boolean).join(' · ');
   const address = stop.place.address;
   if (address && !hasChinese(address)) return address;

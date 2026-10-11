@@ -1,76 +1,51 @@
-# Ramble China
+# China Travel × Codex Product Discovery Infrastructure
 
-Independent illustrated China travel website. All work lives in this project; the sibling travelagent project is untouched.
+这是一个为“面向海外游客的中国旅行规划产品”准备的 Codex 开发基础设施。
 
-## Run
+它的目标不是让 Codex 更快堆功能，而是强制每一轮开发都回答：
 
-```sh
-npm ci
-npm run dev -- --port 3001
-```
+> 我们正在验证哪个用户问题？结果有没有让产品假设变得更清楚？
 
-Open http://localhost:3001 (redirects to a published language), or choose `/en`, `/ko` or `/zh` directly. Korean and Simplified Chinese currently cover the homepage and Beijing daybook; other pages use the English edition. No API keys are needed for destination browsing, itinerary generation or preview PDFs.
+从 [`START_HERE.md`](START_HERE.md) 开始。
 
-## Language architecture
+核心文件：
 
-A single `[locale]` route tree and shared components serve English, Korean and the Simplified Chinese pilot. Stable place IDs, Chinese on-site cards and verified facts are shared; English, Korean and Chinese editorial copy live separately in `src/content/locales/`. `src/content/resolve-beijing.ts` feeds the same localized view to the Beijing page and PDF. Language publication is explicit: `src/i18n/publication.ts` and `src/content/publication-manifest.json`. The eleven planned languages are listed in `src/i18n/locales.ts`; `en`, `ko` and `zh` are public for the homepage and Beijing sample. Chinese PDF is deferred and the Chinese page offers PNG pocket cards only. Run `npm run test:i18n` after content changes; `npm run build` enforces its fact-fingerprint check. See `docs/multilingual-architecture.md` for the full design and rollout.
+- `AGENTS.md` — Codex 长期工作协议
+- `PRODUCT.md` — 当前产品认知与假设
+- `DECISIONS.md` — 轻量决策记录
+- `TASKS.md` — Now / Next / Later 可验收任务
+- `EVALS.md` — 产品行为评测集
+- `docs/roles/` — Product / Design / Engineering / Critic 四角色
+- `docs/workflows/product-loop.md` — 标准产品探索循环
+- `docs/experiments/001-core-trip-loop.md` — 第一轮上海核心体验实验
+- `evals/cases.json` — 机器可读 Eval 索引
 
-## Implemented
+## Loop Engine
 
-- Responsive editorial homepage, searchable/filterable 42-city directory, detail pages and browser-local saved places. Each city now includes 8 sights/areas, 3 food introductions, 2 accommodation areas, arrival/local/excursion transport notes, route groupings and source links.
-- 86 licensed photographs (42 destination images and 44 sight images), attribution and license links.
-- An English Before China guide with 11 practical chapters and seven printable Chinese toolkit cards. Three richer city field editions (Beijing, Shanghai and Xi’an) share one content schema and renderer; the other 39 cities retain the earlier guide. See `docs/editorial/english-pilot-2026-09-27.md`.
-- Server-validated itinerary builder: days, people, CNY group budget, date window, city order, preferences and selected sights. Dedicated intercity days and full-day excursions, pacing and budget warnings. This is a curated rules-based planner, not an LLM integration or live booking service.
-- Server-generated illustrated PDF: expanded three-city guide sample, complete 42-city editorial draft, and an itinerary booklet. Noto Sans CJK Chinese place labels, linked contents, map links and photo credits.
-- Stripe-hosted Checkout and payment-verified downloads, browser-bound buyer token, price/product verification and refund rejection. Sales default OFF.
+本 starter kit 已包含可执行的双循环：
 
-## Checks and editorial exports
+- `Product Loop`：Human Gate 控制产品方向；
+- `Engineering Loop`：`TASKS + EVALS + Codex` 自动实现、验证、批评和重试。
 
-```sh
-npm run build
-npm run lint
-npm test                 # requires local server on port 3001 (or TEST_ORIGIN)
-npm run export:sample
-npm run export:pdf
-```
+从 `START_HERE.md` 和 `LOOP.md` 开始。
 
-Exports are under output/pdf. These local editorial exports are not public download routes. Public /api/pdf only returns samples; /api/download requires verified payment.
 
-## Payments and release readiness
+### Google Maps migration
 
-Copy .env.example to .env.local and configure a supported Stripe merchant account, one-time Price IDs, and the exact NEXT_PUBLIC_APP_URL origin. Prices are read from Stripe. CONTENT_REVIEWED must remain false until the content, fulfillment and checkout have been reviewed. A configured test account is still required for payment success/refund end-to-end testing.
+Planner and destinations now use Google Maps. Places, nearby dining, photos, walking/driving and static previews use Google server APIs; only Amap weather and transit remain. Configure **both** the website-restricted `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` and a separate `GOOGLE_MAPS_SERVER_API_KEY` for Places API (New), Routes API and Maps Static API. Keep the Amap Web Service key for the two retained services. [Configuration, migration differences and pending live checks](docs/workflows/google-maps-migration.md).
 
-Current entitlement delivery is synchronous, same-browser download verification. Before commercial launch, add durable order records, signed webhook processing, email recovery/download access across browsers, and policies for refunds and customer support. STRIPE_WEBHOOK_SECRET is reserved; no webhook handler is implemented yet. Do not turn on sales solely because API keys exist.
+Run `npm run test:map-providers` for controlled provider/coordinate/failure contracts; run `node --import tsx scripts/check-google-access.ts` for a small live permission probe. Neither substitutes for the existing product Evals.
 
-## Editorial status
 
-English working version. Other requested languages and native iOS are not implemented. The three English field editions are deeper editorial drafts; the other 39 cities remain introductions, not a professionally researched replacement for a comprehensive guidebook. Opening hours, prices, station-to-station timing and reservation availability are not live data. The full PDF needs deeper editorial content and location-specific route maps before sale. Current planner follows the user's city order; it does not optimize a rail/flight network.
+## 1.0.0 版本快照（2026-10-11）
 
-See docs/product-direction.md and docs/qa/verification.md. The visual reference is docs/design/travel-home-concept.png; the old brand in that concept was updated to Ramble China; the project directory remains `china-unfold`.
+用户指定将当前代码归档为 1.0；包版本为 `1.0.0`，Git 标签为 `v1.0.0`。此编号标记代码快照，产品仍处于 MVP 探索阶段，既有 Human Gate 与待验证事项保留。包含英文网站、目的地与行前准备、行程工作区、Google/高德混合地图、地点身份与照片筛选、Supabase 账户/行程保存，以及本地导游咨询。
 
-## Assets
+本轮验证：生产构建、ESLint 与 21 项受控检查通过，包含 TypeScript、账户/RLS/持久保存、供应商、地点身份、照片筛选、日历、六组上海回归及评测基础设施。未重复付费实时旅行生成或真实账户登录验收。
 
-Photo source/license records: src/lib/travel/photos.json and public/travel/*.json. Each image retains its individual license. Images are cropped for web/PDF display. Font source: https://github.com/notofonts/noto-cjk (Noto Sans CJK SC, SIL Open Font License, public/fonts/OFL.txt). Do not run seed-travel.py over edited content without reviewing the resulting changes.
+已知检查失败（保留原断言）：
 
-## Expanded city guides
+- `python3 scripts/test_loop_engine.py`：27 个测试中 2 个报错，原因是 `EVALS.md` 已有 E-016，而 `evals/cases.json` 尚未收录；自动 Loop 的校验门槛未通过。
+- `python3 scripts/validate-eval-cases.py`：旧校验器要求 `name/type/priority/hard_constraints`，当前索引使用 `title/mode/tags`，两者格式未同步。
 
-`src/lib/travel/guides.json` contains original English planning notes for all 42 destinations. Each chapter supplies five additional sights (eight total with the original selection), three food notes, two accommodation areas, three transport sections, and two route groupings. `scripts/expand-city-guides.py` is the explicit editorial source generator; it does not automatically publish scraped content.
-
-The information structure draws on TravelChinaGuide's city / attractions / dining / transport sections and the first-visit questions raised by The Historian Traveller. Per-city references and access dates are shown on the website and in the PDF. Raw research is retained under `docs/research/`; it is not imported by the application. Referenced pages are secondary sources, not a venue-by-venue operational verification. Do not market this collection as exhaustive or fully verified.
-
-Photographs are independently sourced from Wikimedia with author and licence records. Additional chapter photographs are mapped to actual subjects in `data.ts`; unsuitable or ambiguous candidates were excluded. The PDF uses measured text blocks and automatic continuation pages, with live page-number links in its contents.
-
-## 当前开发基础：四模块多语言网站（2026-10-07）
-
-Ramble China 包含 Destinations、Travel essentials、Plan a trip 和 Daybook；多语言贯穿四模块。先读 [PRODUCT.md](PRODUCT.md)、[DECISIONS.md](DECISIONS.md)、[TASKS.md](TASKS.md)、[EVALS.md](EVALS.md) 与 [模块语言矩阵](docs/product/locale-matrix.md)。每轮使用 [探索记录模板](docs/product/iteration-template.md)，按一个完整用户任务迭代。
-
-```sh
-npm run check:product      # 六组现有本地工程/内容/模拟服务检查
-npm run eval:validate      # 产品场景定义检查
-npm run test:eval-infra    # 报告门槛自身测试
-npm run eval:init -- /tmp/ramble-run.json
-# 按场景实际操作，填写逐项结果及语言/模块 coverage 证据
-npm run eval:gate -- /tmp/ramble-run.json
-```
-
-报告门槛不自动操作浏览器或证明证据真实，真实用户体验仍需执行。en/ko/zh 是当前语言前缀，模块发布范围不同，其他八种语言仍在规划中。用户给出的本地地址使用 3000；开发命令可用 `npm run dev -- --port 3000`，服务器测试对应 `TEST_ORIGIN=http://localhost:3000 npm test`。
+环境密钥、私有运行状态与新增 `output/` 验证产物保留在本地；已有跟踪的 PDF 样本保留历史。使用前按 `.env.example` 配置环境，按现有 Supabase 迁移说明准备数据库。下一步优先同步机器索引与校验器并重新验证 Loop，再完成真实账户和旅行核心闭环验收。

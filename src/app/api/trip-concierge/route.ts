@@ -1,4 +1,5 @@
 import { answerTravelQuestion, classifyTripIntent, outOfScopeReply, planTrip, routeConversation, validateMessages } from '@/lib/travel/concierge';
+import { TripRequirementsError } from '@/lib/travel/trip-requirements';
 import type { ConciergeEvent } from '@/lib/travel/concierge-types';
 
 export const runtime = 'nodejs';
@@ -38,8 +39,14 @@ export async function POST(request: Request) {
       } catch (error) {
         const detail = error instanceof Error ? error.message : '';
         const message = zh
-          ? /key|credential|service URL|base|HTTPS/i.test(detail)
+          ? error instanceof TripRequirementsError
+            ? '行程未满足你要求的天数或日期，已有行程未改变。请重试；目前支持 1–10 天，请确认出发日期有效。'
+            : /key|credential|service URL|base|HTTPS/i.test(detail)
             ? '旅行助手服务暂未就绪，请检查服务配置后重试。'
+            : /itinerary model took too long/i.test(detail)
+              ? '行程模型响应超时，已有行程未改变，请稍后重试。'
+            : /connection to the itinerary model/i.test(detail)
+              ? '行程模型连接中断，已有行程未改变，请稍后重试。'
             : /usable sources|web research|travel research|travel sources/i.test(detail)
               ? '暂时无法获取可用的旅行资料，请稍后重试。'
               : /usable itinerary|valid itinerary|empty plan/i.test(detail)

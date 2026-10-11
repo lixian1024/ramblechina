@@ -10,24 +10,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 30px;
+  gap: 24px;
+  margin-bottom: 20px;
   flex-shrink: 0;
-}
-
-.eyebrow {
-  color: var(--muted);
-  font-size: 9px;
-  letter-spacing: 1.8px;
-}
-
-.intro h1 {
-  margin-top: 7px;
-  font-size: clamp(30px, 2.7vw, 40px);
-}
-
-.intro p {
-  margin-top: 8px;
-  font-size: 12px;
 }
 
 .search {
@@ -35,12 +20,14 @@
   align-items: center;
   gap: 10px;
   width: 335px;
+  height: 48px;
   flex-shrink: 0;
   background: #fffdf8;
   border: 1px solid var(--line);
   border-radius: 3px;
   padding: 12px 13px;
   color: var(--muted);
+  margin-left: auto;
 }
 
 .search:focus-within {
@@ -56,7 +43,7 @@
   background: none;
   outline: 0;
   color: var(--ink);
-  font-size: 12px;
+  font-size: var(--font-ui);
 }
 
 .search input::-webkit-search-cancel-button {
@@ -76,20 +63,22 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  margin: 20px 0 17px;
-  padding: 2px 2px 4px;
+  margin: 0;
+  padding: 2px 0;
+  flex: 1;
+  min-width: 0;
   overflow-x: auto;
   scrollbar-width: thin;
-  flex-shrink: 0;
 }
 
 .filters button {
+  min-height: 48px;
   padding: 6px 13px;
   border: 1px solid transparent;
   background: transparent;
   border-radius: 3px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: var(--font-caption);
   line-height: 1.6;
   white-space: nowrap;
   transition: background .15s, color .15s;
@@ -134,7 +123,7 @@
 }
 
 .listHeading h2 {
-  font: 12px/1.4 Arial, Helvetica, sans-serif;
+  font: var(--font-ui)/1.4 Arial, Helvetica, sans-serif;
   color: var(--ink);
   letter-spacing: 0;
 }
@@ -144,7 +133,7 @@
   border: 0;
   background: transparent;
   color: var(--muted);
-  font-size: 10px;
+  font-size: var(--font-caption);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -226,16 +215,6 @@
   height: 14px;
 }
 
-.photoCredit {
-  display: inline-block;
-  margin-top: 4px;
-  font-size: 8px;
-  line-height: 1.4;
-  color: #798173;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
 .cardCopy {
   display: flex;
   flex-direction: column;
@@ -246,7 +225,7 @@
 .province {
   display: block;
   color: #75806f;
-  font-size: 8px;
+  font-size: var(--font-caption);
   text-transform: uppercase;
   letter-spacing: 1.1px;
   line-height: 1.5;
@@ -270,21 +249,21 @@
 }
 
 .cardCopy h3 span {
-  font: 11px/1.5 Arial, Helvetica, sans-serif;
+  font: var(--font-caption)/1.5 Arial, Helvetica, sans-serif;
   color: #7e8a76;
   letter-spacing: 0;
 }
 
 .cardCopy p {
   margin: 10px 0;
-  font-size: 13px;
+  font-size: var(--font-ui);
   line-height: 1.6;
   color: #67705f;
 }
 
 .cityMeta {
   display: block;
-  font-size: 11px;
+  font-size: var(--font-caption);
   color: #7d8478;
 }
 
@@ -304,7 +283,7 @@
   justify-content: center;
   gap: 4px;
   color: var(--ink);
-  font-size: 12px;
+  font-size: var(--font-ui);
   line-height: 1.5;
   white-space: nowrap;
 }
@@ -352,7 +331,7 @@
 }
 
 .empty p {
-  font-size: 12px;
+  font-size: var(--font-ui);
   margin-top: 12px;
 }
 
@@ -363,7 +342,7 @@
   border-radius: 3px;
   background: var(--ink);
   color: white;
-  font-size: 11px;
+  font-size: var(--font-caption);
 }
 
 @media (max-width: 1100px) {
@@ -390,33 +369,21 @@
   }
 
   .toolbar {
-    display: block;
-  }
-
-  .intro h1 {
-    font-size: 31px;
-    margin-top: 5px;
-  }
-
-  .intro p {
-    font-size: 11px;
-    line-height: 1.5;
-    margin-top: 7px;
-  }
-
-  .eyebrow {
-    font-size: 8px;
-    letter-spacing: 1.5px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 12px;
   }
 
   .search {
-    margin-top: 16px;
     width: 100%;
     padding: 10px 12px;
+    margin-left: 0;
   }
 
   .filters {
-    margin: 12px -2px 11px;
+    margin: 0;
+    flex: none;
     gap: 5px;
   }
 
@@ -445,7 +412,7 @@
     border-radius: 2px;
     background: transparent;
     color: var(--muted);
-    font-size: 11px;
+    font-size: var(--font-caption);
     line-height: 1.5;
   }
 
@@ -456,7 +423,7 @@
   }
 
   .mobileSwitch span {
-    font-size: 9px;
+    font-size: var(--font-caption);
     opacity: .7;
   }
 
@@ -499,19 +466,15 @@
   .cityImage { height: 123px; aspect-ratio: auto; }
   .cardCopy { display: block; }
   .cardCopy h3 { font-size: 23px; }
-  .cardCopy p { font-size: 12px; margin: 8px 0; }
-  .cityMeta { font-size: 10px; }
+  .cardCopy p { font-size: var(--font-ui); margin: 8px 0; }
+  .cityMeta { font-size: var(--font-caption); }
   .cardActions { gap: 8px 12px; margin-top: 12px; padding-top: 0; }
-  .cardActions button, .cardActions a { font-size: 10px; }
+  .cardActions button, .cardActions a { font-size: var(--font-caption); }
 }
 
 @media (max-width: 380px) {
   .explorer {
     padding-inline: 11px;
-  }
-
-  .intro h1 {
-    font-size: 28px;
   }
 
   .cityCard {
@@ -524,3 +487,6 @@
     font-size: 22px;
   }
 }
+
+.intro p,.cardCopy p,.empty p,.search input { font-size:var(--font-body); }
+.filters button,.mobileSwitch button,.cardActions button,.cardActions a,.empty button { font-size:var(--font-ui); }

@@ -7,8 +7,8 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ q
   return (
     <DestinationExplorer
       initial={q || ''}
-      amapJsKey={process.env.AMAP_JS_API_KEY?.trim() || ''}
-      amapEnglishEnabled={process.env.AMAP_JS_ENGLISH_ENABLED === 'true'}
+      googleMapsKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY?.trim() || ''}
+      englishEnabled={true}
     />
   );
 }

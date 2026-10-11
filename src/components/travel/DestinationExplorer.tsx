@@ -11,11 +11,11 @@ import styles from './DestinationExplorer.module.css';
 
 type Props = {
   initial?: string;
-  amapJsKey: string;
-  amapEnglishEnabled: boolean;
+  googleMapsKey: string;
+  englishEnabled: boolean;
 };
 
-export default function DestinationExplorer({ initial = '', amapJsKey, amapEnglishEnabled }: Props) {
+export default function DestinationExplorer({ initial = '', googleMapsKey, englishEnabled }: Props) {
   const [query, setQuery] = useState(initial);
   const [region, setRegion] = useState('All');
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
@@ -57,11 +57,19 @@ export default function DestinationExplorer({ initial = '', amapJsKey, amapEngli
 
   return (
     <section className={styles.explorer} aria-labelledby="destination-explorer-title">
+      <h1 id="destination-explorer-title" className="sr-only">Destinations</h1>
       <div className={styles.toolbar}>
-        <div className={styles.intro}>
-          <span className={styles.eyebrow}>THE DESTINATION COLLECTION</span>
-          <h1 id="destination-explorer-title">Find your kind of China.</h1>
-          <p>{cities.length} cities, countless ways to explore. Find a place that speaks to you.</p>
+        <div className={styles.filters} role="group" aria-label="Filter by region">
+          {regions.map(item => (
+            <button
+              type="button"
+              key={item}
+              aria-pressed={region === item}
+              onClick={() => { setRegion(item); resetList(); }}
+            >
+              {item === 'All' ? 'All regions' : item}
+            </button>
+          ))}
         </div>
         <label className={styles.search}>
           <Search size={18} aria-hidden="true" />
@@ -78,19 +86,6 @@ export default function DestinationExplorer({ initial = '', amapJsKey, amapEngli
             </button>
           )}
         </label>
-      </div>
-
-      <div className={styles.filters} role="group" aria-label="Filter by region">
-        {regions.map(item => (
-          <button
-            type="button"
-            key={item}
-            aria-pressed={region === item}
-            onClick={() => { setRegion(item); resetList(); }}
-          >
-            {item === 'All' ? 'All regions' : item}
-          </button>
-        ))}
       </div>
 
       <div className={styles.mobileSwitch} role="group" aria-label="Destination view">
@@ -132,11 +127,6 @@ export default function DestinationExplorer({ initial = '', amapJsKey, amapEngli
                       ) : <span className={styles.noPhoto}>{city.chinese}</span>}
                     </Link>
                     <SaveButton slug={city.slug} />
-                    {photo && (
-                      <a className={styles.photoCredit} href={photo.source} target="_blank" rel="noreferrer" title={`${photo.author} · ${photo.license}`}>
-                        Photo credit
-                      </a>
-                    )}
                   </div>
                   <div className={styles.cardCopy}>
                     <span className={styles.province}>{city.province}</span>
@@ -179,8 +169,8 @@ export default function DestinationExplorer({ initial = '', amapJsKey, amapEngli
             cities={results}
             selectedSlug={selectedSlug}
             onSelect={setSelectedSlug}
-            apiKey={amapJsKey}
-            englishEnabled={amapEnglishEnabled}
+            apiKey={googleMapsKey}
+            englishEnabled={englishEnabled}
           />
         </div>
       </div>

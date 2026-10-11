@@ -1,13 +1,43 @@
 'use client';
 import Link from '@/i18n/context';
-import {useLocale} from '@/i18n/context';
 import {usePathname} from 'next/navigation';
 import {useState} from 'react';
-import {Menu,X,Bookmark,ArrowUpRight} from 'lucide-react';
+import {Menu,X,ArrowUpRight} from 'lucide-react';
+import Image from 'next/image';
+import whatsappCode from '../../../images/whatsapp.png';
 import {getMessages} from '@/i18n/messages';
-import {languageNames,localizePath,type Locale} from '@/i18n/locales';
-import {publishedFor} from '@/i18n/publication';
-function EnglishEdition({locale,path}:{locale:Locale;path?:string}){return locale!=='en'&&(!path||!publishedFor(locale,path))?<small className="edition-badge" aria-label={locale==='zh'?'英文资料':'영어 자료'}>EN</small>:null}
-function LanguageSwitch(){const locale=useLocale(),pathname=usePathname();const bare=pathname.replace(/^\/(en|ko|zh)(?=\/|$)/,'')||'/';return <label className="language-switch"><span className="sr-only">{locale==='zh'?'语言':locale==='ko'?'언어':'Language'}</span><select aria-label={locale==='zh'?'语言':locale==='ko'?'언어':'Language'} value={locale} onChange={e=>{const target=e.target.value as Locale;const destination=publishedFor(target,bare)?bare:'/';window.location.assign(localizePath(destination,target));}}>{Object.entries(languageNames).map(([id,name])=><option key={id} value={id}>{name}</option>)}</select></label>}
-export function Header(){const [open,setOpen]=useState(false),pathname=usePathname(),locale=useLocale(),m=getMessages(locale).nav;return <header className="site-header"><Link href="/" className="brand">Ramble China<span>{m.tagline}</span></Link><nav aria-label={locale==='zh'?'主导航':locale==='ko'?'주 메뉴':'Main navigation'} className={open?'nav open':'nav'}><Link aria-current={pathname.endsWith('/destinations')?'page':undefined} onClick={()=>setOpen(false)} href="/destinations">{m.destinations}<EnglishEdition locale={locale}/></Link><Link onClick={()=>setOpen(false)} href="/essentials">{m.essentials}<EnglishEdition locale={locale}/></Link><Link onClick={()=>setOpen(false)} href="/plan">{m.plan}<EnglishEdition locale={locale} path="/plan"/></Link><Link onClick={()=>setOpen(false)} href="/journeys/beijing-imperial-day">{m.daybook}</Link><Link className="mobile-saved" onClick={()=>setOpen(false)} href="/saved">{m.saved}<EnglishEdition locale={locale}/></Link>{locale==='zh'&&<Link className="mobile-saved" onClick={()=>setOpen(false)} href="/guide">{m.guide}<EnglishEdition locale={locale}/></Link>}</nav><div className="header-actions"><LanguageSwitch/><Link className="saved-link" href="/saved"><Bookmark size={17}/> {m.saved}</Link><Link className="button small" href="/guide">{m.guide}<EnglishEdition locale={locale}/> <ArrowUpRight size={15}/></Link><button className="menu-button" aria-label={open?m.closeMenu:m.openMenu} aria-expanded={open} onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button></div></header>}
-export function Footer(){const locale=useLocale(),m=getMessages(locale).nav;return <footer className="footer wrap"><div><Link href="/" className="brand">Ramble China</Link><p>{m.footerLine}</p></div><div><Link href="/destinations">{m.explore}<EnglishEdition locale={locale}/></Link><Link href="/plan">{m.design}<EnglishEdition locale={locale} path="/plan"/></Link><Link href="/credits">{m.credits}<EnglishEdition locale={locale}/></Link></div><p className="fine">{m.editorial}<br/>{m.preview}</p></footer>}
+import BrandLogo from './BrandLogo';
+import footerStyles from './Footer.module.css';
+import {useAuth} from '@/components/account/AuthProvider';
+export function Header() {
+  const {user}=useAuth();
+  const [open, setOpen] = useState(false), pathname = usePathname(), m = getMessages('en').nav;
+  const path = pathname.replace(/^\/(en|ko|zh)(?=\/|$)/, '') || '/';
+  const current = (target: string) => path === target || path.startsWith(target + '/') ? 'page' as const : undefined;
+  return <header className="site-header">
+    <Link href="/" className="brand"><BrandLogo /></Link>
+    <nav id="site-navigation" aria-label="Main navigation" className={open ? 'nav open' : 'nav'}>
+      <Link aria-current={current('/destinations')} onClick={() => setOpen(false)} href="/destinations">{m.destinations}</Link>
+      <Link aria-current={current('/essentials')} onClick={() => setOpen(false)} href="/essentials">{m.essentials}</Link>
+      <Link aria-current={current('/plan')} onClick={() => setOpen(false)} href="/plan">{m.plan}</Link>
+      <Link aria-current={current('/local-guide')} onClick={() => setOpen(false)} href="/local-guide">Need local guide</Link>
+    </nav>
+    <div className="header-actions">
+      <select className="site-language" aria-label="Website language" defaultValue="en"><option value="en">English</option></select>
+      <button className="menu-button" aria-label={open ? m.closeMenu : m.openMenu} aria-controls="site-navigation" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
+      <Link aria-current={current(user?'/account':'/login')} className="button small account-button" onClick={() => setOpen(false)} href={user?'/account':'/login'}>{user?'My account':'Sign in'} <ArrowUpRight size={15} /></Link>
+    </div>
+  </header>;
+}
+export function Footer(){return <footer className={`site-footer ${footerStyles.footer}`}><div className={footerStyles.inner}>
+  <div className={footerStyles.top}><div className={footerStyles.brand}><Link href="/" className="brand"><BrandLogo /></Link><p>{getMessages('en').nav.footerLine}</p></div>
+  <div className={footerStyles.columns}>
+    <section className={footerStyles.column} aria-labelledby="footer-product"><h2 id="footer-product">Product</h2>
+      <nav className={footerStyles.links} aria-label="Footer product"><Link href="/plan">Plan a trip</Link><Link href="/destinations">Destinations</Link><Link href="/essentials">Travel essentials</Link><Link href="/local-guide">Need local guide</Link></nav>
+    </section>
+    <section className={footerStyles.column} aria-labelledby="footer-support"><h2 id="footer-support">Support</h2>
+      <nav className={footerStyles.links} aria-label="Footer support"><Link href="/about">About us</Link><a href="mailto:service@fewerpoints.com">Email</a><a href="https://x.com/ramblecn" target="_blank" rel="noopener noreferrer">X <ArrowUpRight size={14}/></a></nav>
+    </section>
+    <figure className={footerStyles.whatsapp}><Image src={whatsappCode} alt="Scan to contact Ramble China on WhatsApp" unoptimized/><figcaption>WhatsApp</figcaption></figure>
+  </div></div><div className={footerStyles.bottom}><span>© {new Date().getFullYear()} Ramble China</span><Link href="/credits">Image credits</Link></div>
+</div></footer>}

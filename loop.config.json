@@ -1,15 +1,61 @@
 {
-  "schema_version": 1,
-  "require_clean_tree": true,
-  "max_attempts": 2,
-  "timeout_seconds": 180,
-  "group_tasks": ["R001"],
-  "task_modes": {"R001": "read-only"},
-  "verification_commands": [
-    ["npm", "run", "check:product"],
-    ["npm", "run", "eval:validate"],
-    ["npm", "run", "test:eval-infra"],
-    ["python3", "scripts/test_loop_engine.py"]
-  ],
-  "product_report": "evals/ramble-china/runs/current.json"
+  "version": 1,
+  "safety": {
+    "require_git_clean": true,
+    "allow_dirty_with_flag": true,
+    "forbid_product_scope_changes": true
+  },
+  "codex": {
+    "command": "codex",
+    "model": null,
+    "sandbox": "workspace-write",
+    "approval_policy": "never",
+    "reasoning_effort": "high",
+    "timeout_seconds": 1800
+  },
+  "engineering_loop": {
+    "max_attempts_per_task": 5,
+    "same_failure_limit": 3,
+    "critic_enabled": true
+  },
+  "verification": {
+    "auto_discover_project_tests": false,
+    "commands": [
+      "python3 scripts/test_loop_engine.py",
+      "node --import tsx scripts/verify-i18n.ts",
+      "node --import tsx scripts/verify-editorial.ts",
+      "node --import tsx scripts/verify-daybook.ts",
+      "node --import tsx scripts/verify-map-providers.ts",
+      "node --import tsx scripts/verify-place-identity.ts",
+      "node --import tsx scripts/verify-photo-screening.ts",
+      "node --import tsx scripts/verify-planner-workbench.ts",
+      "npm run test:accounts",
+      "node --import tsx scripts/verify-concierge.ts",
+      "node --import tsx scripts/verify-trip-routing.ts",
+      "node --import tsx scripts/verify-trip-calendar.ts",
+      "node --import tsx scripts/verify-shanghai-generation.ts",
+      "node --import tsx scripts/verify-shanghai-quality.ts",
+      "node --import tsx scripts/verify-shanghai-bounded-repair.ts",
+      "node --import tsx scripts/verify-shanghai-attempt-three.ts",
+      "node --import tsx scripts/verify-shanghai-dining.ts",
+      "node --import tsx scripts/verify-shanghai-meal-categories.ts",
+      "npm run test:eval-infra",
+      "./node_modules/.bin/tsc --noEmit"
+    ],
+    "task_commands": {
+      "T-001": [
+        "node --import tsx scripts/verify-core-trip.ts --task T-001"
+      ],
+      "T-002": [
+        "node --import tsx scripts/verify-core-trip.ts --task T-002"
+      ],
+      "T-003": [
+        "node --import tsx scripts/verify-core-trip.ts --task T-003"
+      ],
+      "T-004": [
+        "node --import tsx scripts/verify-core-trip.ts --task T-004"
+      ]
+    },
+    "require_at_least_one_project_check": true
+  }
 }

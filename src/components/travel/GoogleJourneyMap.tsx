@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { importLibrary, setOptions } from '@googlemaps/js-api-loader';
+import { loadGoogleMaps } from '@/lib/travel/google-browser';
 import { LocateFixed, WifiOff } from 'lucide-react';
 import { findCity } from '@/lib/travel/data';
 import { dayColors, placeById, type Point } from '@/lib/travel/workbench';
@@ -10,16 +10,7 @@ import styles from './Planner.module.css';
 
 type Props = JourneyMapProps & { apiKey: string; onUseBackup: () => void };
 type Layer = { setMap: (map: google.maps.Map | null) => void };
-let configured = false;
 const latLng = ([lat, lng]: Point): google.maps.LatLngLiteral => ({ lat, lng });
-
-function loadMapLibrary(apiKey: string) {
-  if (!configured) {
-    setOptions({ key: apiKey, v: 'quarterly', language: 'en' });
-    configured = true;
-  }
-  return importLibrary('maps');
-}
 
 // DOM overlays keep the existing numbered, keyboard-accessible pins without
 // requiring a separate Cloud Map ID or the deprecated google.maps.Marker API.
@@ -88,7 +79,7 @@ export default function GoogleJourneyMap(props: Props) {
       if (!disposed) setError('Google Maps is taking too long to load. You can keep planning with the backup map.');
     }, 20000);
 
-    void loadMapLibrary(props.apiKey).then(({ Map }) => {
+    void loadGoogleMaps().then(({ Map }) => {
       if (disposed) return;
       window.clearTimeout(timeout);
       const current = latest.current;

@@ -71,7 +71,7 @@ export async function makePdf({kind,plan,preview=true}:{kind:'guide'|'itinerary'
   await photograph(fieldPage,visual,M,535,505,155);
   text(fieldPage,'SHOW OR SEARCH THIS NAME',M,512,8,bold);
   text(fieldPage,f.mapQuery||f.chinese,M,478,22,chinese);
-  if(f.mapQuery)link(fieldPage,'Open Chinese place search in Amap','https://uri.amap.com/search?keyword='+encodeURIComponent(f.mapQuery)+'&src=chinatravelagent&callnative=0',M,452,9);
+  if(f.mapQuery)link(fieldPage,'Open Chinese place search in Google Maps','https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(f.mapQuery),M,452,9);
   else text(fieldPage,'Confirm the exact station or hotel from your booking.',M,452,9,sans,muted);
   let fy=421;
   for(const [label,body] of [['ACCESS',f.access],['RESERVATION',f.booking],['TRAVEL TIME',f.travelTime],['LUGGAGE',f.luggage],['PLAN B',f.planB]]){

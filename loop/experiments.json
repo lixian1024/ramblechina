@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "experiments": {
+    "001-core-trip-loop": {
+      "document": "docs/experiments/001-core-trip-loop.md",
+      "hypothesis": "海外游客如果能得到真实可执行的上海三日行程，并能用自然语言局部修改且看懂路线，会愿意继续使用产品完成旅行决策。",
+      "tasks": [
+        "T-001",
+        "T-002",
+        "T-003",
+        "T-004"
+      ],
+      "human_path": [
+        "输入：First time in Shanghai. 3 days. I love food and architecture.",
+        "检查三日行程是否像真正可以执行的计划，而不是景点列表。",
+        "输入：No museums on day 2.",
+        "确认只有必要部分被修改，Day 1 / Day 3 保持稳定。",
+        "打开 Day 2，确认无需专业知识也能理解地点顺序、移动成本、开放时间风险和安排理由。"
+      ],
+      "success_questions": [
+        "第一次看到结果，我是否愿意继续修改，而不是去 Google/小红书重新找攻略？",
+        "局部修改后，我是否感觉系统理解并保留了我的偏好？",
+        "我是否敢按这个计划真的出门？"
+      ]
+    }
+  }
+}

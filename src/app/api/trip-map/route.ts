@@ -1,4 +1,4 @@
-import { staticAmap } from '@/lib/travel/concierge-amap';
+import { staticGoogle } from '@/lib/travel/google-maps';
 import type { MapPoint } from '@/lib/travel/concierge-types';
 
 export const runtime = 'nodejs';
@@ -18,5 +18,5 @@ export async function GET(request: Request) {
   const points = raw ? raw.split(';').map(coordinate) : [];
   if (points.length > 10 || points.some(point => !point)) return new Response('Invalid map points', { status: 400 });
   const center = coordinate(query.get('center') || '') || { lng: 121.4737, lat: 31.2304 };
-  return staticAmap(points as MapPoint[], center);
+  return staticGoogle(points as MapPoint[], center);
 }

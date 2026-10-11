@@ -1,3 +1,4 @@
+import { googleFixtureFetch } from './fixtures/google-provider';
 import assert from 'node:assert/strict';
 import { POST } from '../src/app/api/trip-concierge/route';
 import { routeConversation } from '../src/lib/travel/concierge';
@@ -7,6 +8,7 @@ process.env.DASHSCOPE_API_KEY = 'sk-paygo-test';
 process.env.DASHSCOPE_BASE_URL = 'https://model.example/compatible-mode/v1';
 process.env.QWEN_MODEL = 'qwen-plus';
 process.env.AMAMP_API_KEY = 'test-only';
+process.env.GOOGLE_MAPS_SERVER_API_KEY = 'controlled-test-only';
 
 const calls: string[] = [];
 const draft = {
@@ -15,7 +17,7 @@ const draft = {
   ],
 };
 
-globalThis.fetch = async (input, init) => {
+globalThis.fetch = googleFixtureFetch(async (input, init) => {
   const url = new URL(String(input));
   calls.push(url.pathname);
   if (url.pathname.endsWith('/chat/completions')) {
@@ -40,7 +42,7 @@ globalThis.fetch = async (input, init) => {
     } });
   }
   if (url.pathname.endsWith('/v5/place/text')) {
-    if (url.searchParams.get('keywords') === 'Grand Central Hotel Shanghai') return Response.json({ status: '1', pois: [{ id: 'HOTEL', name: '上海大酒店', address: '九江路505号', location: '121.481423,31.235092', adcode: '310101', citycode: '021', type: '住宿服务;宾馆酒店;五星级宾馆' }] });
+    if (url.searchParams.get('keywords') === 'Grand Central Hotel Shanghai') return Response.json({ status: '1', pois: [{ id: 'HOTEL', name: 'Grand Central Hotel Shanghai', address: '九江路505号', location: '121.481423,31.235092', adcode: '310101', citycode: '021', type: '住宿服务;宾馆酒店;五星级宾馆' }] });
     return Response.json({ status: '1', pois: [{ id: 'YU', name: '豫园', address: '豫园路', location: '121.492497,31.227714', adcode: '310101', citycode: '021', type: '风景名胜;风景名胜;国家级景点' }] });
   }
   if (url.pathname.endsWith('/v5/place/around')) return Response.json({ status: '1', pois: [
@@ -48,7 +50,7 @@ globalThis.fetch = async (input, init) => {
     { id: 'DINNER2', name: '囍火锅(U479商场店)', address: '南京东路479号', location: '121.481900,31.235200', distance: '55', type: '餐饮服务;中餐厅;火锅店' },
   ] });
   throw new Error(`Unexpected request: ${url.pathname}`);
-};
+});
 
 async function ask(text: string, currentPlan?: unknown, previous: TripMessage[] = [], locale = 'en'): Promise<ConciergeEvent[]> {
   const response = await POST(new Request('http://localhost/api/trip-concierge', {
@@ -72,7 +74,7 @@ async function main() {
   const searchesBeforeDinner = calls.filter(path => path.endsWith('/api/v1/services/aigc/text-generation/generation')).length;
   const dinner = await ask('这家酒店名是Grand Central Hotel Shanghai，用高德地点数据核对酒店和附近餐厅', savedPlan);
   assert.equal(dinner.find(event => event.type === 'intent')?.intent, 'travel-assistant');
-  assert(dinner.some(event => event.type === 'answer' && event.reply.includes('上海大酒店') && event.reply.includes('宝粤轩') && event.sources?.length === 2));
+  assert(dinner.some(event => event.type === 'answer' && event.reply.includes('Grand Central Hotel Shanghai') && event.reply.includes('宝粤轩') && event.sources?.length === 2));
   assert(!dinner.some(event => event.type === 'result'));
   assert.equal(calls.filter(path => path.endsWith('/api/v1/services/aigc/text-generation/generation')).length, searchesBeforeDinner);
   assert.equal(JSON.stringify(savedPlan), before);

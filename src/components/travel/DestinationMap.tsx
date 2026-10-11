@@ -31,7 +31,7 @@ export default function DestinationMap(props: DestinationMapProps) {
       <MapSurface {...props} />
       <div className={styles.caption}>
         <span><i aria-hidden="true" />Select a city on the map or in the list.</span>
-        <span>AMap · 高德地图</span>
+        <span>Google Maps</span>
       </div>
     </section>
   );

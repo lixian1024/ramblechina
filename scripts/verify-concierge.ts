@@ -1,3 +1,4 @@
+import { googleFixtureFetch, testPlaceId } from './fixtures/google-provider';
 import assert from 'node:assert/strict';
 import { planTrip } from '../src/lib/travel/concierge';
 import { findAmapPlace } from '../src/lib/travel/concierge-amap';
@@ -6,16 +7,19 @@ process.env.DASHSCOPE_API_KEY = 'sk-paygo-test';
 process.env.DASHSCOPE_BASE_URL = 'https://model.example/compatible-mode/v1';
 process.env.QWEN_MODEL = 'qwen3.6-plus';
 process.env.AMAMP_API_KEY = 'test-only';
+process.env.GOOGLE_MAPS_SERVER_API_KEY = 'controlled-test-only';
 
 const first = {
   title: 'Shanghai with parents', summary: 'An easy three-day route.', startDate: '2026-10-01', travelStyle: 'easy with parents',
   days: [{ city: '上海', date: '2026-10-01', title: 'Old City and Bund', hotel: '和平饭店', stops: [
     { name: 'Yu Garden', search: '上海豫园', nameChinese: '豫园', nameEnglish: 'Yu Garden', pinyin: 'Yùyuán', category: 'culture', bestTime: 'Morning, before the busiest hours', admission: { text: 'Test-only ¥40 reference', sourceUrl: 'https://example.com/official-guide' }, at: '10:00', durationMinutes: 90, booked: true, bookingNote: 'Ticket at 10:00' },
     { name: 'The Bund', search: '外滩', category: 'invented-category', admission: { text: 'Unsubstantiated free entry', sourceUrl: 'https://invented.example/price' }, at: '16:00', durationMinutes: 45, booked: false },
-  ] }], questions: [],
+  ] },
+  { city: '上海', date: '2026-10-02', title: 'Local food', stops: [{ name: '绿波廊', search: '绿波廊', at: '12:00', durationMinutes: 60 }] },
+  { city: '上海', date: '2026-10-03', title: 'A quieter culture day', stops: [{ name: '上海博物馆', search: '上海博物馆', at: '10:00', durationMinutes: 90 }] }], questions: [],
 };
 const revision = {
-  ...first, days: [{ ...first.days[0], title: 'A gentler afternoon', stops: [first.days[0].stops[1]] }],
+  ...first, days: [{ ...first.days[0], title: 'A gentler afternoon', stops: [first.days[0].stops[1]] }, ...first.days.slice(1)],
 };
 const intercity = {
   title: 'Shanghai to Hangzhou', summary: 'A slower city change.', startDate: '2026-10-01', travelStyle: 'easy with parents',
@@ -47,7 +51,7 @@ const pois: Record<string, { id: string; name: string; location: string }> = {
   杭州君悦酒店: { id: 'HH', name: '杭州君悦酒店', location: '120.151500,30.251800' },
   西湖景区: { id: 'L', name: '西湖景区', location: '120.142000,30.250000' },
 };
-globalThis.fetch = async (input, init) => {
+globalThis.fetch = googleFixtureFetch(async (input, init) => {
   const url = new URL(String(input));
   calls.push(url.pathname);
   if (url.pathname.endsWith('/api/v1/services/aigc/text-generation/generation')) {
@@ -85,15 +89,16 @@ globalThis.fetch = async (input, init) => {
   if (url.pathname.endsWith('/v5/direction/transit/integrated')) return Response.json({ status: '1', route: { transits: [{ distance: url.searchParams.get('city1') !== url.searchParams.get('city2') ? '180000' : '1900', cost: { duration: url.searchParams.get('city1') !== url.searchParams.get('city2') ? '7200' : '1000' }, segments: [] }] } });
   if (url.pathname.endsWith('/v3/weather/weatherInfo')) return Response.json({ status: '1', forecasts: [{ reporttime: '2026-10-01 08:00:00', casts: [{ date: '2026-10-01', dayweather: '多云', nightweather: '晴', daytemp: '24', nighttemp: '18' }] }] });
   throw new Error(`Unexpected request to ${url.pathname}`);
-};
+});
 
 async function main() {
-  assert.equal((await findAmapPlace('豫园', '上海'))?.id, 'Y');
-  assert.equal((await findAmapPlace('绿波廊(豫园路店)', '上海'))?.id, 'R');
+  assert.equal((await findAmapPlace('豫园', '上海'))?.id, testPlaceId('Y'));
+  assert.equal((await findAmapPlace('绿波廊(豫园路店)', '上海'))?.id, testPlaceId('R'));
   const phases: string[] = [];
   const initial = await planTrip([{ role: 'user', text: 'Three days in Shanghai with parents. Yu Garden booked at 10:00.' }], null, phase => phases.push(phase));
   assert.deepEqual(phases, ['understanding', 'research', 'drafting', 'places', 'routes', 'weather', 'review']);
   assert.equal(initial.plan.research?.sources[0]?.url, 'https://example.com/official-guide');
+  assert.equal(initial.plan.days.length, 3);
   assert.equal(initial.plan.days[0].stops[0].booked, true);
   assert.equal(initial.plan.days[0].stops[0].nameChinese, '豫园');
   assert.equal(initial.plan.days[0].stops[0].nameEnglish, 'Yu Garden');
@@ -112,6 +117,7 @@ async function main() {
 
   const updated = await planTrip([{ role: 'user', text: 'Make Day 1 easier while keeping my tickets.' }], initial.plan, () => {});
   assert(updated.plan.days[0].stops.some(stop => stop.name === 'Yu Garden' && stop.booked && stop.at === '10:00'));
+  assert.equal(updated.plan.days.length, 3, 'A Day 1 edit must retain the full trip length');
   const crossCity = await planTrip([{ role: 'user', text: 'Two easy days between Shanghai and Hangzhou.' }], null, () => {});
   const secondDay = crossCity.plan.days[1];
   assert.equal(secondDay.intercityMode, 'rail');
@@ -159,10 +165,33 @@ async function main() {
   assert(chineseChecks.some(check => check.includes('天气预报')));
   assert(chineseChecks.every(check => !/[A-Za-z]/.test(check)), 'Chinese checks must not leak hard-coded English');
   assert.equal(chinese.plan.checks[0], '请补充：住哪家酒店？');
-  assert.match(chinese.plan.days[1].transfer!.leg.note!, /高德/);
+  assert.match(chinese.plan.days[1].transfer!.leg.note!, /起终点交通估时/);
   assert(chinese.plan.days.every(day => day.legs.every(leg => /[\u3400-\u9fff]/u.test(leg.note || ''))));
   assert.equal(chinese.plan.days[0].stops[1].scheduledAt, '10:30', 'Chinese locale must preserve booked times');
   draftOverride = undefined;
+
+  // Transport failures must not look like an empty model plan or disclose raw errors.
+  const healthyFetch = globalThis.fetch;
+  const originalLog = console.error;
+  const diagnostics: unknown[][] = [];
+  console.error = (...values: unknown[]) => { diagnostics.push(values); };
+  try {
+    let failure: () => Promise<Response> = async () => { throw new DOMException('test timeout', 'TimeoutError'); };
+    globalThis.fetch = async (input, init) => String(input).endsWith('/chat/completions') ? failure() : healthyFetch(input, init);
+    const request = () => planTrip([{ role: 'user', text: 'Plan Shanghai and Hangzhou.' }], null, () => {});
+    await assert.rejects(request(), /model took too long.*existing trip is unchanged/);
+    failure = async () => { throw new TypeError('Bearer secret-test-key; private request', { cause: { code: 'ECONNRESET' } }); };
+    await assert.rejects(request(), /connection.*interrupted.*existing trip is unchanged/i);
+    failure = async () => new Response(new ReadableStream({ start(controller) { controller.error(new DOMException('body timeout', 'TimeoutError')); } }));
+    await assert.rejects(request(), /model took too long/);
+    failure = async () => new Response('not json');
+    await assert.rejects(request(), /valid itinerary data/);
+    assert.equal(diagnostics.length, 3);
+    assert.equal((diagnostics[0][1] as { kind: string }).kind, 'timeout');
+    assert.equal((diagnostics[1][1] as { code: string }).code, 'ECONNRESET');
+    assert(!JSON.stringify(diagnostics).includes('secret-test-key'));
+    assert(!JSON.stringify(diagnostics).includes('private request'));
+  } finally { globalThis.fetch = healthyFetch; console.error = originalLog; }
 
   researchAvailable = false;
   const modelCallsBeforeMissingResearch = modelCalls;
@@ -175,6 +204,6 @@ async function main() {
   process.env.DASHSCOPE_BASE_URL = 'https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1';
   await assert.rejects(planTrip([{ role: 'user', text: 'Plan a trip.' }], null, () => {}), /Token\/Coding Plan credential/);
   assert.equal(modelRequests.length, requestsBeforeRestricted);
-  console.log('Route Concierge: forced web research on every plan, source display data, Amap checks, Chinese output and scheduling checks, intercity transfer and Token Plan guard verified.');
+  console.log('Route Concierge: forced web research on every plan, source display data, Google places/roads and Amap transit/weather checks, Chinese output and scheduling checks, intercity transfer and Token Plan guard verified.');
 }
 void main().catch(error => { console.error(error); process.exitCode = 1; });

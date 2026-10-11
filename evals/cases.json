@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "source": "EVALS.md",
+  "cases": [
+    {
+      "id": "E-001",
+      "title": "上海 3 天：美食 + 建筑",
+      "mode": "product",
+      "tags": [
+        "shanghai",
+        "generation",
+        "preferences",
+        "geography"
+      ]
+    },
+    {
+      "id": "E-002",
+      "title": "上海一天：只喜欢现代建筑",
+      "mode": "product",
+      "tags": [
+        "shanghai",
+        "constraints",
+        "preferences"
+      ]
+    },
+    {
+      "id": "E-003",
+      "title": "局部修改：第二天不要博物馆",
+      "mode": "product",
+      "tags": [
+        "replan",
+        "stability",
+        "constraints"
+      ]
+    },
+    {
+      "id": "E-004",
+      "title": "删除一个景点后的重排",
+      "mode": "product",
+      "tags": [
+        "replan",
+        "pacing"
+      ]
+    },
+    {
+      "id": "E-005",
+      "title": "周一闭馆冲突",
+      "mode": "live-data",
+      "tags": [
+        "opening-hours",
+        "truthfulness"
+      ]
+    },
+    {
+      "id": "E-006",
+      "title": "北京 3 天：第一次来 + 经典景点",
+      "mode": "product",
+      "tags": [
+        "beijing",
+        "feasibility",
+        "pacing"
+      ]
+    },
+    {
+      "id": "E-007",
+      "title": "数据缺失：开放时间无法验证",
+      "mode": "deterministic",
+      "tags": [
+        "fallback",
+        "truthfulness"
+      ]
+    },
+    {
+      "id": "E-008",
+      "title": "数据源冲突",
+      "mode": "deterministic",
+      "tags": [
+        "conflict",
+        "truthfulness"
+      ]
+    },
+    {
+      "id": "E-009",
+      "title": "偏好记忆：修改后仍喜欢建筑",
+      "mode": "product",
+      "tags": [
+        "memory",
+        "preferences",
+        "replan"
+      ]
+    },
+    {
+      "id": "E-010",
+      "title": "重庆：避免地理 / 高差误判",
+      "mode": "product",
+      "tags": [
+        "chongqing",
+        "geography",
+        "pacing"
+      ]
+    },
+    {
+      "id": "E-011",
+      "title": "成都：带两个儿童",
+      "mode": "product",
+      "tags": [
+        "chengdu",
+        "children",
+        "pacing"
+      ]
+    },
+    {
+      "id": "E-012",
+      "title": "北京：老人同行",
+      "mode": "product",
+      "tags": [
+        "beijing",
+        "elderly",
+        "pacing"
+      ]
+    },
+    {
+      "id": "E-013",
+      "title": "上海：雨天临时重规划",
+      "mode": "product",
+      "tags": [
+        "shanghai",
+        "weather",
+        "replan"
+      ]
+    },
+    {
+      "id": "E-014",
+      "title": "明显跨城错误防护",
+      "mode": "deterministic",
+      "tags": [
+        "geography",
+        "guardrail"
+      ]
+    },
+    {
+      "id": "E-015",
+      "title": "约束冲突：想去太多地方但要求轻松",
+      "mode": "product",
+      "tags": [
+        "constraints",
+        "feasibility",
+        "tradeoff"
+      ]
+    }
+  ]
+}

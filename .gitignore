@@ -6,9 +6,13 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+.data/
 
 # Local Loop runtime and evidence
 .loop/
 STATE.json
 STATE.json.tmp
 __pycache__/
+
+# Local generated QA artifacts (existing tracked PDF samples remain versioned)
+output/

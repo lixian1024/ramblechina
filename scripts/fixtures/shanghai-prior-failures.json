@@ -1,0 +1,491 @@
+{
+  "mode": "controlled-regression-fixture",
+  "provenance": ".loop/product-evals/2026-10-09T08-36-27-080Z-T-001",
+  "limits": "Sanitized saved prior API failures. Replayed provider fixtures are NOT new live product/Eval evidence.",
+  "modern": {
+    "title": "Shanghai Modern Architecture Day",
+    "summary": "A focused one-day itinerary exploring Shanghai's 21st-century architectural identity. The day moves from the Art Deco modernism of the former French Concession to the iconic Lujiazui skyline in Pudong, concluding with the contemporary industrial renewal of the West Bund. All stops are exterior-focused or public plaza experiences, strictly excluding museums and theme parks.",
+    "travelStyle": "Architecture & Urban Design",
+    "days": [
+      {
+        "city": "上海",
+        "cityEnglish": "Shanghai",
+        "title": "Modernist Layers: From Art Deco to Supertalls",
+        "note": "Lunch 12:00–13:00 near Wukang Road/Xuhui district; Dinner 18:30–19:30 near West Bund or Lujiazui. This route minimizes backtracking by moving west-to-east then south along the river. Weather in October is generally mild, suitable for extensive walking.",
+        "stops": [
+          {
+            "name": "Wukang Building",
+            "search": "武康大楼",
+            "nameChinese": "武康大楼",
+            "nameEnglish": "Wukang Building",
+            "pinyin": "Wǔkāng Dàlóu",
+            "category": "sight",
+            "bestTime": "09:00–10:30 for soft morning light on the façade and fewer pedestrians.",
+            "at": "09:00",
+            "durationMinutes": 60,
+            "booked": false,
+            "why": "Starts the day with early 20th-century modernist architecture (Art Deco/Beaux-Arts), providing a historical baseline for Shanghai's architectural evolution before seeing the super-modern skyscrapers.",
+            "description": "An iconic ship-shaped apartment building designed by László Hudec in 1924. Its wedge-like structure and French Renaissance detailing represent a key era of Shanghai's modernist development, distinct from the later glass-and-steel towers.",
+            "visitTip": "Stand at the intersection of Wukang Road and Huaihai Middle Road for the best photographic angle of the building's prow. The ground floor has commercial shops, but the architectural value is entirely external.",
+            "id": "day-1-stop-1",
+            "placeStatus": "matched",
+            "place": {
+              "id": "B0M26A8V10",
+              "name": "武康大楼-井盖(打卡点)",
+              "address": "淮海中路1850号武康大楼",
+              "point": {
+                "lng": 121.437851,
+                "lat": 31.204055
+              },
+              "adcode": "310105",
+              "citycode": "021",
+              "category": "风景名胜;风景名胜;观景点",
+              "checkedAt": "2026-10-09T08:38:35.975Z"
+            },
+            "scheduledAt": "09:00"
+          },
+          {
+            "name": "The Bund South Promenade",
+            "search": "外滩观景平台",
+            "nameChinese": "外滩观景平台",
+            "nameEnglish": "The Bund Observation Platform",
+            "pinyin": "Wàitān Guānjǐng Píngtái",
+            "category": "sight",
+            "bestTime": "11:30–12:30 for clear daylight views across the Huangpu River to Pudong.",
+            "at": "11:30",
+            "durationMinutes": 45,
+            "booked": false,
+            "why": "Provides the essential contextual view of the Lujiazui skyline from across the river, allowing you to appreciate the scale and silhouette of the modern towers before visiting them up close.",
+            "description": "The waterfront promenade offers the canonical framed view of Pudong’s modern skyline, including the Shanghai Tower and Oriental Pearl. This vantage point highlights the dramatic juxtaposition between the historic Puxi bank and the futuristic Pudong side.",
+            "visitTip": "Walk towards the southern end near the Ferry Terminal for a less crowded perspective. This is a transit and viewing space, not a destination for lingering if weather is poor.",
+            "id": "day-1-stop-2",
+            "placeStatus": "matched",
+            "place": {
+              "id": "B0FFFR6GDS",
+              "name": "外滩-观景平台",
+              "address": "中山东一路49号外滩内(北侧)",
+              "point": {
+                "lng": 121.490926,
+                "lat": 31.240821
+              },
+              "adcode": "310101",
+              "citycode": "021",
+              "category": "风景名胜;风景名胜相关;旅游景点",
+              "openingHours": "24小时营业",
+              "checkedAt": "2026-10-09T08:38:36.152Z"
+            },
+            "scheduledAt": "11:30"
+          },
+          {
+            "name": "Lujiazui Central Green & Skyline Plaza",
+            "search": "陆家嘴中心绿地",
+            "nameChinese": "陆家嘴中心绿地",
+            "nameEnglish": "Lujiazui Central Green",
+            "pinyin": "Lùjiāzuǐ Zhōngxīn Lǜdì",
+            "category": "sight",
+            "bestTime": "14:00–15:30 for afternoon light and direct proximity to the three major towers.",
+            "at": "14:00",
+            "durationMinutes": 90,
+            "booked": false,
+            "why": "Places you at the foot of the 'Big Three' skyscrapers (Shanghai Tower, SWFC, Jin Mao), allowing for detailed study of their base structures, materials, and urban planning layout without entering paid observation decks.",
+            "description": "A public park surrounded by the Oriental Pearl Tower, Jin Mao Tower, Shanghai World Financial Center, and Shanghai Tower. Walking through the green space provides unique low-angle perspectives of these supertall structures and their distinctive architectural forms.",
+            "visitTip": "Circle the park to see each tower's unique base design. The Shanghai Tower's twisting form and the SWFC's trapezoidal aperture are best appreciated from ground level here. No ticket is needed for the park itself.",
+            "id": "day-1-stop-3",
+            "placeStatus": "matched",
+            "place": {
+              "id": "B00155L3X0",
+              "name": "陆家嘴中心绿地",
+              "address": "陆家嘴环路717号",
+              "point": {
+                "lng": 121.506251,
+                "lat": 31.237985
+              },
+              "adcode": "310115",
+              "citycode": "021",
+              "category": "风景名胜;公园广场;公园广场",
+              "openingHours": "05:00-22:00",
+              "checkedAt": "2026-10-09T08:38:35.975Z"
+            },
+            "scheduledAt": "14:00"
+          },
+          {
+            "name": "West Bund Cultural Corridor",
+            "search": "西岸滨江",
+            "nameChinese": "西岸滨江",
+            "nameEnglish": "West Bund Riverside",
+            "pinyin": "Xī'àn Bīnjiāng",
+            "category": "sight",
+            "bestTime": "16:30–17:30 for late afternoon light on the industrial-modern facades and sunset views.",
+            "at": "16:30",
+            "durationMinutes": 90,
+            "booked": false,
+            "why": "Showcases contemporary adaptive reuse and new-build modern architecture along a repurposed industrial waterfront, offering a different modern aesthetic than the financial district.",
+            "description": "A revitalized waterfront zone featuring the external architecture of the Long Museum West Bund and other contemporary cultural structures. The area blends preserved industrial remnants with sleek, modern concrete and glass interventions, ideal for architectural photography.",
+            "visitTip": "Focus on the exterior massing of the Long Museum (cantilevered concrete) and the surrounding public art installations. The area is open and walkable, with no entry required for the outdoor architectural experience.",
+            "id": "day-1-stop-4",
+            "placeStatus": "unresolved",
+            "scheduledAt": "16:30"
+          }
+        ],
+        "id": "day-1",
+        "checks": [
+          "西岸滨江: exact map location needs confirmation.",
+          "Wukang Building: opening hours are unverified. Confirm current hours, reservations and access with the venue before departure; suggested visit times are not opening hours.",
+          "West Bund Riverside: opening hours are unverified. Confirm current hours, reservations and access with the venue before departure; suggested visit times are not opening hours.",
+          "Lujiazui Central Green & Skyline Plaza → West Bund Cultural Corridor: travel time is unverified."
+        ],
+        "legs": [
+          {
+            "from": "day-1-stop-1",
+            "to": "day-1-stop-2",
+            "mode": "transit",
+            "minutes": 46,
+            "metres": 9084,
+            "walkingMetres": 1394,
+            "checkedAt": "2026-10-09T08:38:36.485Z",
+            "note": "Amap route estimate; recheck on your travel day."
+          },
+          {
+            "from": "day-1-stop-2",
+            "to": "day-1-stop-3",
+            "mode": "walk",
+            "minutes": 46,
+            "metres": 3376,
+            "checkedAt": "2026-10-09T08:38:36.239Z",
+            "note": "Amap route estimate; recheck on your travel day."
+          },
+          {
+            "from": "day-1-stop-3",
+            "to": "day-1-stop-4",
+            "mode": "unverified",
+            "note": "Route and travel time need a live check."
+          }
+        ],
+        "weather": {
+          "status": "date-needed"
+        }
+      }
+    ],
+    "questions": [
+      "Do you have a preferred hotel location in Shanghai to optimize the start/end of this day?",
+      "Would you like to include a specific modern architectural restaurant or bar for dinner (e.g., with a skyline view), or keep dining options flexible in the notes?"
+    ],
+    "checks": [
+      "Need your input: Do you have a preferred hotel location in Shanghai to optimize the start/end of this day?",
+      "Need your input: Would you like to include a specific modern architectural restaurant or bar for dinner (e.g., with a skyline view), or keep dining options flexible in the notes?"
+    ],
+    "createdAt": "2026-10-09T08:38:35.970Z",
+    "provider": "Amap"
+  },
+  "three": {
+    "title": "Shanghai Architecture & Food Discovery: 3 Days",
+    "summary": "A curated 3-day itinerary for a first-time visitor to Shanghai, focusing on the city's architectural contrasts and culinary heritage. Day 1 explores the historic Bund waterfront and Lujiazui's modern skyline. Day 2 dives into Old City charm at Yuyuan Garden and Shikumen lanes in Xintiandi. Day 3 features contemporary culture and architecture along the West Bund.",
+    "travelStyle": "Leisurely exploration with a focus on photography, architecture, and local cuisine.",
+    "days": [
+      {
+        "city": "上海",
+        "cityEnglish": "Shanghai",
+        "title": "The Bund & Lujiazui: Historic vs. Modern Skyline",
+        "note": "Lunch 12:00–13:00 near The Bund (e.g., Nanjing East Road area); Dinner 18:00–19:00 in Lujiazui or back across the river. Use the ferry for a scenic crossing between Puxi and Pudong.",
+        "stops": [
+          {
+            "name": "The Bund",
+            "search": "外滩",
+            "nameChinese": "外滩",
+            "nameEnglish": "The Bund",
+            "pinyin": "Wài Tān",
+            "category": "sight",
+            "bestTime": "Morning or late afternoon for best light on the colonial buildings and river views.",
+            "at": "09:00",
+            "durationMinutes": 120,
+            "booked": false,
+            "why": "Iconic starting point to understand Shanghai's history as a global port, featuring a unique collection of Western-style architecture.",
+            "description": "Walk along the Huangpu River promenade to view the 'Museum of Buildings,' showcasing Neoclassical, Gothic, and Art Deco styles from the early 20th century. Across the river, observe the dramatic contrast of Lujiazui's futuristic skyscrapers.",
+            "visitTip": "The promenade can be crowded; arrive early for clearer photos of the architecture without large crowds.",
+            "id": "day-1-stop-1",
+            "placeStatus": "matched",
+            "place": {
+              "id": "B00155FXB3",
+              "name": "外滩",
+              "address": "中山东一路",
+              "point": {
+                "lng": 121.492127,
+                "lat": 31.233516
+              },
+              "adcode": "310101",
+              "citycode": "021",
+              "category": "风景名胜;风景名胜;风景名胜",
+              "openingHours": "24小时营业",
+              "checkedAt": "2026-10-09T08:37:39.216Z"
+            },
+            "scheduledAt": "09:00"
+          },
+          {
+            "name": "Jinling Road Ferry Terminal",
+            "search": "金陵东路渡口",
+            "nameChinese": "金陵东路渡口",
+            "nameEnglish": "Jinling Road Ferry Terminal",
+            "pinyin": "Jīnlíng Dōng Lù Dùkǒu",
+            "category": "other",
+            "bestTime": "Mid-morning for a quick, authentic river crossing experience.",
+            "at": "11:30",
+            "durationMinutes": 30,
+            "booked": false,
+            "why": "Provides a classic, low-cost perspective of the skyline from the water, connecting the historic Puxi side to modern Pudong.",
+            "description": "Take the public ferry across the Huangpu River. This short ride offers excellent photo opportunities of both the Bund's historic facades and Lujiazui's towers from the water level.",
+            "visitTip": "Check the current schedule upon arrival; ferries run frequently but times may vary slightly by season.",
+            "id": "day-1-stop-2",
+            "placeStatus": "matched",
+            "place": {
+              "id": "B00155QLBI",
+              "name": "上海金陵东路渡口轮渡售票处",
+              "address": "中山东二路75号金陵东路渡口内",
+              "point": {
+                "lng": 121.493048,
+                "lat": 31.232405
+              },
+              "adcode": "310101",
+              "citycode": "021",
+              "category": "生活服务;售票处;售票处",
+              "openingHours": "09:00-17:30",
+              "checkedAt": "2026-10-09T08:37:39.366Z"
+            },
+            "scheduledAt": "11:30"
+          },
+          {
+            "name": "Lujiazui Central Green & Skyline View",
+            "search": "陆家嘴中心绿地",
+            "nameChinese": "陆家嘴中心绿地",
+            "nameEnglish": "Lujiazui Central Green",
+            "pinyin": "Lùjiāzuǐ Zhōngxīn Lǜdì",
+            "category": "sight",
+            "bestTime": "Afternoon for close-up views of the three major towers.",
+            "at": "14:00",
+            "durationMinutes": 90,
+            "booked": false,
+            "why": "Allows for ground-level appreciation of the scale and design of Shanghai's most famous modern skyscrapers.",
+            "description": "Stroll through the central park to see the Oriental Pearl Tower, Jin Mao Tower, and Shanghai Tower up close. This area highlights the rapid urban development and architectural ambition of modern Shanghai.",
+            "visitTip": "This is a great spot for photos looking up at the towers; if you wish to go up one, check ticket availability on-site as it was not specified in research.",
+            "id": "day-1-stop-3",
+            "placeStatus": "matched",
+            "place": {
+              "id": "B00155L3X0",
+              "name": "陆家嘴中心绿地",
+              "address": "陆家嘴环路717号",
+              "point": {
+                "lng": 121.506251,
+                "lat": 31.237985
+              },
+              "adcode": "310115",
+              "citycode": "021",
+              "category": "风景名胜;公园广场;公园广场",
+              "openingHours": "05:00-22:00",
+              "checkedAt": "2026-10-09T08:37:39.355Z"
+            },
+            "scheduledAt": "14:00"
+          }
+        ],
+        "id": "day-1",
+        "checks": [],
+        "legs": [
+          {
+            "from": "day-1-stop-1",
+            "to": "day-1-stop-2",
+            "mode": "walk",
+            "minutes": 4,
+            "metres": 228,
+            "checkedAt": "2026-10-09T08:37:39.551Z",
+            "note": "Amap route estimate; recheck on your travel day."
+          },
+          {
+            "from": "day-1-stop-2",
+            "to": "day-1-stop-3",
+            "mode": "walk",
+            "minutes": 32,
+            "metres": 2400,
+            "checkedAt": "2026-10-09T08:37:39.555Z",
+            "note": "Amap route estimate; recheck on your travel day."
+          }
+        ],
+        "weather": {
+          "status": "date-needed"
+        }
+      },
+      {
+        "city": "上海",
+        "cityEnglish": "Shanghai",
+        "title": "Old City Charm & Shikumen Lanes",
+        "note": "Lunch 12:00–13:00 in the Yuyuan bazaar area (try local snacks); Dinner 18:00–19:00 in Xintiandi (upscale dining in historic lanes).",
+        "stops": [
+          {
+            "name": "Yuyuan Garden",
+            "search": "豫园",
+            "nameChinese": "豫园",
+            "nameEnglish": "Yuyuan Garden",
+            "pinyin": "Yùyuán Yuán",
+            "category": "culture",
+            "bestTime": "Morning to avoid peak tour group crowds.",
+            "at": "09:30",
+            "durationMinutes": 120,
+            "booked": false,
+            "why": "A classic Jiangnan garden that provides a stark contrast to the modern city, showcasing traditional Chinese landscape design.",
+            "description": "Explore the intricate pavilions, rockeries, and lotus ponds of this Ming-dynasty garden. It represents the traditional aesthetic of Shanghai before its modernization, offering a peaceful retreat with detailed architectural elements.",
+            "visitTip": "The surrounding bazaar is busy; focus on the garden interior for a quieter experience. Entry tickets may need to be purchased at the gate.",
+            "id": "day-2-stop-1",
+            "placeStatus": "matched",
+            "place": {
+              "id": "B00155MF55",
+              "name": "上海豫园",
+              "address": "福佑路168号",
+              "point": {
+                "lng": 121.492497,
+                "lat": 31.227714
+              },
+              "adcode": "310101",
+              "citycode": "021",
+              "category": "风景名胜;风景名胜;国家级景点",
+              "openingHours": "09:00-16:30",
+              "checkedAt": "2026-10-09T08:37:39.216Z"
+            },
+            "scheduledAt": "09:30"
+          },
+          {
+            "name": "Xintiandi",
+            "search": "新天地",
+            "nameChinese": "新天地",
+            "nameEnglish": "Xintiandi",
+            "pinyin": "Xīn Tiāndì",
+            "category": "neighborhood",
+            "bestTime": "Late afternoon to evening for atmosphere and dining.",
+            "at": "16:00",
+            "durationMinutes": 120,
+            "booked": false,
+            "why": "Showcases the adaptive reuse of Shikumen (stone-gate) architecture, blending historic residential structures with modern commercial spaces.",
+            "description": "Walk through the restored Shikumen lane houses, which now host boutiques, cafes, and restaurants. This area illustrates how Shanghai preserves its architectural heritage while integrating contemporary lifestyle elements.",
+            "visitTip": "Great for people-watching and photography of the brick-and-stone facades. Many dining options are available here for dinner.",
+            "id": "day-2-stop-2",
+            "placeStatus": "matched",
+            "place": {
+              "id": "B00155HPFQ",
+              "name": "新天地广场",
+              "address": "淮海中路333号(一大会址·黄陂南路地铁站2号口步行70米)",
+              "point": {
+                "lng": 121.474123,
+                "lat": 31.222482
+              },
+              "adcode": "310101",
+              "citycode": "021",
+              "category": "购物服务;商场;普通商场",
+              "openingHours": "10:00-22:00",
+              "checkedAt": "2026-10-09T08:37:39.218Z"
+            },
+            "scheduledAt": "16:00"
+          }
+        ],
+        "id": "day-2",
+        "checks": [],
+        "legs": [
+          {
+            "from": "day-2-stop-1",
+            "to": "day-2-stop-2",
+            "mode": "walk",
+            "minutes": 27,
+            "metres": 2013,
+            "checkedAt": "2026-10-09T08:37:39.551Z",
+            "note": "Amap route estimate; recheck on your travel day."
+          }
+        ],
+        "weather": {
+          "status": "date-needed"
+        }
+      },
+      {
+        "city": "上海",
+        "cityEnglish": "Shanghai",
+        "title": "West Bund: Contemporary Art & Architecture",
+        "note": "Lunch 12:00–13:00 near West Bund cultural corridor; Dinner 18:00–19:00 in the Xuhui Riverside area. Check for any specific exhibition bookings if entering museums.",
+        "stops": [
+          {
+            "name": "Long Museum (West Bund)",
+            "search": "龙美术馆(西岸馆)",
+            "nameChinese": "龙美术馆(西岸馆)",
+            "nameEnglish": "Long Museum (West Bund)",
+            "pinyin": "Lóng Měishùguǎn (Xī'àn Guǎn)",
+            "category": "culture",
+            "bestTime": "Afternoon for natural light in the gallery spaces.",
+            "at": "14:00",
+            "durationMinutes": 120,
+            "booked": false,
+            "why": "A prime example of contemporary industrial-chic architecture, housed in a former coal hopper unloading bridge.",
+            "description": "Visit this striking museum known for its unique concrete structure and large-scale contemporary art exhibitions. The building itself is an architectural landmark, repurposing industrial heritage into a modern cultural space.",
+            "visitTip": "Even if not entering an exhibition, the exterior architecture and riverside location are worth seeing. Check if specific exhibitions require advance booking.",
+            "id": "day-3-stop-1",
+            "placeStatus": "matched",
+            "place": {
+              "id": "B0FFF2YL75",
+              "name": "龙美术馆(西岸馆)",
+              "address": "龙腾大道3398号",
+              "point": {
+                "lng": 121.464761,
+                "lat": 31.183954
+              },
+              "adcode": "310104",
+              "citycode": "021",
+              "category": "科教文化服务;美术馆;美术馆",
+              "openingHours": "1月至3月,11月至12月 周二至周四 10:00-17:30 最晚进入16:30；1月至3月,11月至12月 周五至周日 10:00-20:00 最晚进入19:00；4月至10月 周二至周四 10:00-18:00 最晚进入17:00；4月至10月 周五至周日 10:00-21:00 最晚进入20:00；节假日周一正常开馆。逢特殊情况需调整开放时间，具体营业状态以当天开放情况为准。 01-01至10-04 周一 全天关闭；10-05至10-05 周一 10:00-18:00 最晚进入17:00；10-06至12-31 周一 全天关闭；节假日周一正常开馆。逢特殊情况需调整开放时间，具体营业状态以当天开放情况为准。",
+              "checkedAt": "2026-10-09T08:37:39.356Z"
+            },
+            "scheduledAt": "14:00"
+          },
+          {
+            "name": "West Bund Waterfront Promenade",
+            "search": "西岸滨江",
+            "nameChinese": "西岸滨江",
+            "nameEnglish": "West Bund Waterfront",
+            "pinyin": "Xī'àn Bīnjiāng",
+            "category": "nature",
+            "bestTime": "Late afternoon for sunset views over the Huangpu River.",
+            "at": "16:30",
+            "durationMinutes": 90,
+            "booked": false,
+            "why": "Offers a relaxed, modern public space with views of the river and contemporary sculptures, contrasting with the busy Bund.",
+            "description": "Stroll along the wide, landscaped riverside path. This area features modern public art installations and open spaces, representing Shanghai's recent focus on creating high-quality public waterfronts.",
+            "visitTip": "A perfect spot for a relaxing end to the trip, with plenty of space to walk and enjoy the river breeze.",
+            "id": "day-3-stop-2",
+            "placeStatus": "unresolved",
+            "scheduledAt": "16:30"
+          }
+        ],
+        "id": "day-3",
+        "checks": [
+          "西岸滨江: exact map location needs confirmation.",
+          "West Bund Waterfront: opening hours are unverified. Confirm current hours, reservations and access with the venue before departure; suggested visit times are not opening hours.",
+          "Long Museum (West Bund) → West Bund Waterfront Promenade: travel time is unverified."
+        ],
+        "legs": [
+          {
+            "from": "day-3-stop-1",
+            "to": "day-3-stop-2",
+            "mode": "unverified",
+            "note": "Route and travel time need a live check."
+          }
+        ],
+        "weather": {
+          "status": "date-needed"
+        }
+      }
+    ],
+    "questions": [
+      "Do you have specific dietary restrictions or preferences (e.g., vegetarian, spicy, seafood) to refine restaurant suggestions?",
+      "Would you like to include an observation deck visit (e.g., Shanghai Tower) for panoramic views, or prefer ground-level architecture exploration?",
+      "Do you have a preferred hotel area (e.g., near The Bund, People's Square, or Jing'an) to help finalize logistics?"
+    ],
+    "checks": [
+      "Need your input: Do you have specific dietary restrictions or preferences (e.g., vegetarian, spicy, seafood) to refine restaurant suggestions?",
+      "Need your input: Would you like to include an observation deck visit (e.g., Shanghai Tower) for panoramic views, or prefer ground-level architecture exploration?",
+      "Need your input: Do you have a preferred hotel area (e.g., near The Bund, People's Square, or Jing'an) to help finalize logistics?"
+    ],
+    "createdAt": "2026-10-09T08:37:39.210Z",
+    "provider": "Amap"
+  }
+}

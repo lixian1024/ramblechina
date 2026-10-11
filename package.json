@@ -1,6 +1,6 @@
 {
   "name": "chinatravelagent",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -22,28 +22,40 @@
     "test:eval-infra": "node --test scripts/product-evals.test.mjs",
     "test:concierge": "tsx scripts/verify-concierge.ts",
     "test:trip-routing": "tsx scripts/verify-trip-routing.ts",
-    "check:product": "npm run test:i18n && npm run test:editorial && npm run test:daybook && npm run test:planner && npm run test:concierge && npm run test:trip-routing"
+    "test:trip-calendar": "node --import tsx scripts/verify-trip-calendar.ts",
+    "check:product": "npm run test:i18n && npm run test:editorial && npm run test:daybook && npm run test:planner && npm run test:concierge && npm run test:trip-routing && npm run test:trip-calendar && npm run test:place-identity && npm run test:accounts",
+    "test:place-identity": "node --import tsx scripts/verify-place-identity.ts && node --import tsx scripts/verify-photo-screening.ts",
+    "test:map-providers": "node --import tsx scripts/verify-map-providers.ts",
+    "test:guide-requests": "node --import tsx scripts/verify-guide-requests.ts",
+    "test:accounts": "node --import tsx scripts/verify-auth-flows.ts && node --import tsx scripts/verify-accounts.ts && node --import tsx scripts/verify-trip-persistence.ts"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^2.1.3",
+    "@modelcontextprotocol/sdk": "^1.32.1",
     "@pdf-lib/fontkit": "^1.1.1",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.117.3",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.18.0",
     "next": "^16.2.9",
     "pdf-lib": "^1.17.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "stripe": "^22.6.2"
+    "stripe": "^22.6.2",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
     "@tailwindcss/postcss": "^4",
     "@types/google.maps": "^3.66.4",
     "@types/leaflet": "^1.9.22",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-test-renderer": "^19.3.0",
     "eslint": "^9",
     "eslint-config-next": "^16.2.9",
+    "react-test-renderer": "^19.2.4",
     "tailwindcss": "^4",
     "tsx": "^4.23.15",
     "typescript": "^5"

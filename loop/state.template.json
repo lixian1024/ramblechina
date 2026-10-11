@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "product_loop": {
+    "status": "ready",
+    "active_experiment": "001-core-trip-loop",
+    "human_gate": {"status": "not_ready", "decision": null, "note": null, "updated_at": null}
+  },
+  "engineering_loop": {
+    "status": "idle", "current_task": null, "attempt": 0,
+    "last_failure_fingerprint": null, "same_failure_count": 0,
+    "last_verification": null, "last_critic": null, "baseline": null
+  },
+  "tasks": {
+    "T-001": {"status": "pending", "attempts": 0, "last_result": null},
+    "T-002": {"status": "pending", "attempts": 0, "last_result": null},
+    "T-003": {"status": "pending", "attempts": 0, "last_result": null},
+    "T-004": {"status": "pending", "attempts": 0, "last_result": null}
+  },
+  "human_feedback": [],
+  "history": []
+}

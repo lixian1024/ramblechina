@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" fill="none" role="img" aria-label="Ramble China">
+  <g transform="translate(0 7.5)">
+    <rect width="33" height="33" rx="9" fill="#234F40"/>
+    <text x="16.5" y="23" text-anchor="middle" fill="white" font-family="Georgia, serif" font-size="19">R</text>
+  </g>
+  <text x="45" y="32" fill="#203D33" font-family="Georgia, 'Times New Roman', serif" font-size="26" letter-spacing="-.8">Ramble China</text>
+</svg>

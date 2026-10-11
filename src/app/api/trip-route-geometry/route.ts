@@ -15,7 +15,7 @@ function place(value: unknown): Place | null {
   const adcode = typeof source.adcode === 'string' ? source.adcode : '';
   if (!Number.isFinite(lng) || lng < 73 || lng > 135 || !Number.isFinite(lat) || lat < 18 || lat > 54) return null;
   if (!/^[0-9]{0,6}$/.test(citycode) || !/^[0-9]{0,6}$/.test(adcode)) return null;
-  return { id: '', name: '', address: '', point: { lng, lat }, citycode, adcode, checkedAt: '' };
+  return { id: '', name: '', address: '', point: { lng, lat, system: point?.system === 'GCJ-02' ? 'GCJ-02' : 'WGS84' }, provider: source.provider === 'Amap' ? 'Amap' : 'Google', citycode, adcode, checkedAt: '' };
 }
 
 export async function POST(request: Request) {

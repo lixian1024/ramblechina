@@ -1,0 +1,24 @@
+.footer { background: #edf1ea; border-top: 1px solid #d4ddd1; }
+.inner { max-width: 1320px; width: calc(100% - 96px); margin: 0 auto; padding: 40px 0 24px; }
+.top { display: grid; grid-template-columns: minmax(220px,1fr) auto; align-items: start; gap: 48px; }
+.brand :global(.brand-wordmark strong) { font-size: 24px; }
+.brand p { margin: 16px 0 0; font-size: 14px; line-height: 1.6; color: #657161; }
+.columns { display: grid; grid-template-columns: max-content max-content 144px; align-items: start; justify-self: end; gap: 56px; }
+.column { min-width: 0; text-align: left; }
+.column h2 { margin: 0 0 20px; font-family: inherit; font-size: 16px; font-weight: 600; line-height: 1.4; color: var(--ink); }
+.links { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; font-size: 14px; line-height: 1.6; color: var(--ink); }
+.links a { display: inline-flex; align-items: center; gap: 8px; max-width: 100%; overflow-wrap: anywhere; }
+.links svg { flex-shrink: 0; }
+.links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.whatsapp { flex-shrink: 0; width: 144px; margin: 0; text-align: center; }
+.whatsapp img { display: block; width: 144px; height: auto; background: white; border-radius: 4px; }
+.whatsapp figcaption { margin-top: 8px; font-size: 12px; color: #657161; }
+.bottom { display:flex; justify-content:space-between; gap:16px; margin-top: 28px; padding-top: 18px; border-top: 1px solid #d4ddd1; font-size: 12px; color: #657161; }
+.bottom a:hover { text-decoration:underline; text-underline-offset:3px; }
+@media (max-width: 1050px) { .inner { width: calc(100% - 48px); } .top { gap: 32px; } .columns { gap: 32px; } }
+@media (max-width: 760px) {
+  .inner { width: calc(100% - 32px); padding-top: 28px; }
+  .top { grid-template-columns: 1fr; gap: 28px; }
+  .columns { grid-template-columns: minmax(0,1fr) minmax(0,1fr) 144px; width: 100%; gap: 24px; }
+}
+@media (max-width: 560px) { .columns { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 24px 16px; } .whatsapp { grid-column: 2; justify-self: end; } .column h2 { margin-bottom: 16px; } .bottom { flex-wrap: wrap; } }

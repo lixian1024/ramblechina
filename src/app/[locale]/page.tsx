@@ -1,8 +1,15 @@
-import Image from 'next/image';
-import Link from '@/i18n/context';
-import {notFound} from 'next/navigation';
-import {Search,ArrowRight,FileText,TrainFront,Compass,CalendarDays} from 'lucide-react';
-import Directory from '@/components/travel/Directory';
-import {getMessages} from '@/i18n/messages';
-import {isLocale,localizePath} from '@/i18n/locales';
-export default async function Home({params}:{params:Promise<{locale:string}>}){const {locale}=await params;if(!isLocale(locale))notFound();const m=getMessages(locale).home;return <><section className="hero"><Image src="/travel/guilin.jpg" alt={locale==='zh'?'桂林漓江沿岸的喀斯特山峰':'Limestone peaks rising above the Li River near Guilin'} fill priority sizes="100vw"/><div className="hero-shade"/><div className="hero-content wrap"><h1>{m.heroOne}<br/>{m.heroTwo}</h1><p>{m.intro}</p>{locale==='en'&&<form className="hero-search" action={localizePath('/destinations',locale)}><Search size={21}/><input name="q" aria-label="Search China destinations" placeholder={m.search}/><button type="submit">{m.explore} <ArrowRight size={18}/></button></form>}</div><Link className="hero-caption" href="/destinations/guilin">{locale==='zh'?'桂林 · 广西':'GUILIN, GUANGXI'}<br/>{m.guilin} <ArrowRight size={16}/></Link></section><section className="os-pilot-promo wrap"><div><span className="eyebrow">{m.feature}</span><h2>{m.featureTitle}</h2><p>{m.featureText}</p></div><Link href="/journeys/beijing-imperial-day" className="button">{m.featureButton} <ArrowRight size={17}/></Link></section>{locale==='en'?<><div className="chapter-links wrap">{[['01','Explore','PLACES WITH A DEEPER STORY','/destinations'],['02','Get ready','PRACTICAL GUIDANCE, CLEARER CHOICES','/essentials'],['03','Make it yours','A JOURNEY AT YOUR OWN PACE','/plan']].map(([n,title,sub,url])=><Link href={url} key={n}><span>{n}</span><h3>{title}</h3><small>{sub}</small><ArrowRight size={18}/></Link>)}</div><Directory compact/></>:<section className="wrap ko-editorial"><span className="eyebrow">{locale==='zh'?'中文版样板':'한국어 편집판'}</span><h2>{locale==='zh'?'北京一日旅行参考现已可用。':'현재 베이징 하루 여행 수첩을 이용할 수 있습니다.'}</h2><p>{locale==='zh'?'其他城市与完整指南目前转至英文版；中文内容将逐步补充。中文版 PDF 尚未提供。':'다른 도시 안내와 전체 가이드북은 영어 편집판으로 연결됩니다. 준비된 한국어 자료를 순차적으로 늘려가겠습니다.'}</p><Link className="text-link" href="/journeys/beijing-imperial-day">{locale==='zh'?'查看北京一日样板 →':'베이징 하루 살펴보기 →'}</Link></section>}<section className="essentials-section wrap"><h2>{m.essentialTitle}</h2><p>{m.essentialBody}</p>{locale==='en'&&<div className="essentials-grid">{[[FileText,'Before you go','The small things that make arrival easier.','before-you-go'],[TrainFront,'Getting around','Railways, stations and the last mile.','getting-around'],[Compass,'Local culture','Everyday customs and useful words.','local-culture'],[CalendarDays,'Plan your trip','Fewer rushed days. More room to explore.','plan-your-trip']].map(([Icon,title,desc,slug])=>{const I=Icon as typeof FileText;return <Link href={'/essentials#'+slug} key={String(slug)}><I size={27} strokeWidth={1.3}/><h3>{String(title)}</h3><p>{String(desc)}</p><ArrowRight size={18}/></Link>})}</div>}</section><section className="guide-band"><div className="wrap guide-band-inner"><div className="guide-art"><Image src="/travel/guilin.jpg" alt={locale==='zh'?'旅行指南中的漓江山水':'Li River landscape in the Ramble China guide'} fill sizes="50vw"/><div><span>RAMBLE CHINA</span><h2>{locale==='zh'?<>展开<br/>中国。</>:locale==='ko'?<>더 깊은<br/>여행.</>:<>A deeper<br/>journey.</>}</h2></div></div><div className="guide-copy"><span className="eyebrow">RAMBLE CHINA</span><h2>{m.guideTitle}</h2><p>{m.guideBody}</p><Link href="/guide" className="button light">{m.guideButton} <ArrowRight size={17}/></Link></div></div></section></>}
+import { notFound } from 'next/navigation';
+import { CinematicHome } from '@/components/travel/HomeConcepts';
+import { publishedFor } from '@/i18n/publication';
+import { isLocale } from '@/i18n/locales';
+
+export const metadata = {
+  title: 'Your China journey',
+  description: 'Explore China, prepare for your visit and plan a trip around your interests.',
+};
+
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (!isLocale(locale) || !publishedFor(locale, '/')) notFound();
+  return <CinematicHome />;
+}
