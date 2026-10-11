@@ -17,9 +17,9 @@ export function Header() {
   return <header className="site-header">
     <Link href="/" className="brand"><BrandLogo /></Link>
     <nav id="site-navigation" aria-label="Main navigation" className={open ? 'nav open' : 'nav'}>
+      <Link aria-current={current('/plan')} onClick={() => setOpen(false)} href="/plan">{m.plan}</Link>
       <Link aria-current={current('/destinations')} onClick={() => setOpen(false)} href="/destinations">{m.destinations}</Link>
       <Link aria-current={current('/essentials')} onClick={() => setOpen(false)} href="/essentials">{m.essentials}</Link>
-      <Link aria-current={current('/plan')} onClick={() => setOpen(false)} href="/plan">{m.plan}</Link>
       <Link aria-current={current('/local-guide')} onClick={() => setOpen(false)} href="/local-guide">Need local guide</Link>
     </nav>
     <div className="header-actions">

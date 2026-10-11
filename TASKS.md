@@ -254,3 +254,6 @@ Itinerary 栏头简化：移除右侧天数标签，保留日期导航与总览�
 
 
 2026-10-11 D-028用户已找到验证码（垃圾邮件）：该封实际收件确认，后续转为收件箱投递质量。公开SPF有记录、DMARC无TXT，DKIM及邮件Authentication-Results待核对；验证码验证/登录尚未报告。证据output/auth-checks/signup-spam-delivery.json，不把单次收件作为所有注册闭环通过。
+
+
+2026-10-11 顶部导航Plan a trip移到Destinations前面，桌面和手机菜单同步。实际手机入口跳转/关闭、桌面顺序及组件ESLint通过，证据见D-027导航跟进。实际使用反馈待观察。
