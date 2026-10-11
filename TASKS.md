@@ -260,3 +260,6 @@ Itinerary 栏头简化：移除右侧天数标签，保留日期导航与总览�
 
 
 2026-10-11 联系信息更新：共享页脚及 About us 邮箱改为 service@ramblechina.com，删除 About us 公司归属句，PRODUCT／D-024同步记录。四个实际本地页面的邮箱链接／旧文案移除、TypeScript／相关ESLint／i18n／editorial检查通过。邮箱实际收件仍未知；本次不改变旅行Evals标准。
+
+
+2026-10-12 网站根目录文件发布：按用户要求，将 ea059ee5f6bcb7f7642daa3fbefa88fb.txt 原字节复制到 public/ 对应文件。临时本地生产服务的同名根路径 HTTP200、无语言／登录跳转，40字节内容与原文件一致；发布沿用 GitHub main → Vercel Production，正式域名响应待部署后核对。仅增加静态文件，不改变旅行逻辑、Evals标准或Human Gate；第三方平台是否认可文件仍由该平台核验。
