@@ -32,8 +32,7 @@ export default function About() {
         <Mail size={27} strokeWidth={1.4} />
         <h2 id="about-contact-title">Get in touch</h2>
         <p>Have a question about the website, spotted something that needs correcting, or want to share a suggestion? Email us.</p>
-        <a className={styles.email} href="mailto:service@fewerpoints.com">service@fewerpoints.com <ArrowUpRight size={15} /></a>
-        <p>Ramble China is part of Fewerpoints Inc.</p>
+        <a className={styles.email} href="mailto:service@ramblechina.com">service@ramblechina.com <ArrowUpRight size={15} /></a>
         <p className={styles.contactNote}>For help finding a local guide, <Link href="/local-guide">submit a guide request</Link> with your destinations, dates and preferred language.</p>
       </aside>
     </div>

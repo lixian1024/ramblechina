@@ -257,3 +257,6 @@ Itinerary 栏头简化：移除右侧天数标签，保留日期导航与总览�
 
 
 2026-10-11 顶部导航Plan a trip移到Destinations前面，桌面和手机菜单同步。实际手机入口跳转/关闭、桌面顺序及组件ESLint通过，证据见D-027导航跟进。实际使用反馈待观察。
+
+
+2026-10-11 联系信息更新：共享页脚及 About us 邮箱改为 service@ramblechina.com，删除 About us 公司归属句，PRODUCT／D-024同步记录。四个实际本地页面的邮箱链接／旧文案移除、TypeScript／相关ESLint／i18n／editorial检查通过。邮箱实际收件仍未知；本次不改变旅行Evals标准。

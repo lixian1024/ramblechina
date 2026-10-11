@@ -569,3 +569,6 @@ D-028 实际收件与垃圾邮件跟进（2026-10-11）：用户确认验证码�
 
 
 D-027 导航顺序跟进（2026-10-11）：按用户要求，将顶部共享导航调整为Plan a trip → Destinations → Travel essentials → Need local guide；此用户指定顺序替代此前Need local guide紧随Plan a trip的展示安排。桌面/手机共用相同DOM，手机点击规划链接后菜单关闭并打开/en/plan，1440px桌面顺序确认；组件ESLint通过。证据output/browser-checks/navigation-plan-first.png。入口易发现的实际改善待使用反馈，本轮不改旅行逻辑或Evals标准。
+
+
+D-024 联系信息最新更正（2026-10-11）：按用户要求，网站共享页脚和 About us 的邮箱文字／mailto 统一为 service@ramblechina.com，删除 About us 的 Ramble China is part of Fewerpoints Inc. 归属句。此记录替代 D-024 此前邮箱和归属展示选择；历史记录保留。PRODUCT 当前说明同步。实际本地首页、About us、目的地和行前准备均 HTTP200，邮件链接分别为1/2/1/1个，旧邮箱和归属句未出现在响应页面；TypeScript、相关组件ESLint、i18n/editorial及diff检查通过。仅验证展示与链接，邮箱收件未验证；旅行逻辑、Evals标准及Human Gate不变。

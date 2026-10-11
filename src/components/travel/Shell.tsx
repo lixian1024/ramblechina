@@ -36,7 +36,7 @@ export function Footer(){return <footer className={`site-footer ${footerStyles.f
       <nav className={footerStyles.links} aria-label="Footer product"><Link href="/plan">Plan a trip</Link><Link href="/destinations">Destinations</Link><Link href="/essentials">Travel essentials</Link><Link href="/local-guide">Need local guide</Link></nav>
     </section>
     <section className={footerStyles.column} aria-labelledby="footer-support"><h2 id="footer-support">Support</h2>
-      <nav className={footerStyles.links} aria-label="Footer support"><Link href="/about">About us</Link><a href="mailto:service@fewerpoints.com">Email</a><a href="https://x.com/ramblecn" target="_blank" rel="noopener noreferrer">X <ArrowUpRight size={14}/></a></nav>
+      <nav className={footerStyles.links} aria-label="Footer support"><Link href="/about">About us</Link><a href="mailto:service@ramblechina.com">Email</a><a href="https://x.com/ramblecn" target="_blank" rel="noopener noreferrer">X <ArrowUpRight size={14}/></a></nav>
     </section>
     <figure className={footerStyles.whatsapp}><Image src={whatsappCode} alt="Scan to contact Ramble China on WhatsApp" unoptimized/><figcaption>WhatsApp</figcaption></figure>
   </div></div><div className={footerStyles.bottom}><span>© {new Date().getFullYear()} Ramble China</span><Link href="/credits">Image credits</Link></div>
