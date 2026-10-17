@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import React, { act } from 'react';
 import { create, type ReactTestRenderer } from 'react-test-renderer';
 import { useTripPersistence } from '../src/components/account/useTripPersistence';
+import type {Locale} from '../src/i18n/locales';
 import type { TripMessage } from '../src/lib/travel/concierge-types';
 
 async function main(){
@@ -11,7 +12,7 @@ async function main(){
   let reply=(call:typeof calls[number])=>Promise.resolve(Response.json({id:call.body.id,version:Number(call.body.version)+1,updated_at:new Date().toISOString()}));
   const originalFetch=globalThis.fetch;
   globalThis.fetch=async(url,options)=>{const call={url:String(url),method:options?.method||'GET',body:options?.body?JSON.parse(String(options.body)):{} };calls.push(call);return reply(call);};
-  function Harness({id,busy=false,enabled=true}:{id?:string;busy?:boolean;enabled?:boolean}){current=useTripPersistence(id,busy,enabled);return React.createElement('p',null,current.saveState);}
+  function Harness({id,busy=false,enabled=true,locale='en'}:{id?:string;busy?:boolean;enabled?:boolean;locale?:Locale}){current=useTripPersistence(id,busy,enabled,locale);return React.createElement('p',null,current.saveState);}
   const tick=()=>new Promise(resolve=>setTimeout(resolve,5));
   async function change(messages:TripMessage[]){await act(async()=>{current.setMessages(messages);});}
   async function save(){await act(async()=>{await current.saveNow();});}
@@ -49,6 +50,12 @@ async function main(){
     await act(async()=>{renderer=create(React.createElement(Harness,{id:firstId}));});await act(async()=>{await tick();await tick();});assert.equal(current!.messages[0].text,'A saved conversation');assert.equal(current!.dirty,false);
     await act(async()=>renderer.unmount());
     reply=()=>Promise.resolve(Response.json({error:'Trip not found in your account.'},{status:404}));await act(async()=>{renderer=create(React.createElement(Harness,{id:firstId}));});await act(async()=>{await tick();await tick();});assert.equal(current!.ready,false);assert.match(current!.loadError,/not found/);assert.equal(current!.messages.length,0);
+    await act(async()=>renderer.unmount());
+    reply=call=>Promise.resolve(Response.json({id:call.body.id,version:Number(call.body.version)+1}));
+    await act(async()=>{renderer=create(React.createElement(Harness,{locale:'zh'}));});await act(tick);
+    await change([{role:'user',text:'上海三天，少走路'}]);await save();
+    assert.match(paths.at(-1)!,/^\/zh\/plan\?trip=/,'Chinese saves retain the locale');
+    await act(async()=>current.reset());assert.equal(paths.at(-1),'/zh/plan','Chinese New trip retains the locale');
     await act(async()=>renderer.unmount());
     console.log('PASS: guest workspaces never read or write private trips; production save hook creates/reopens authenticated trips, serializes in-flight edits, preserves input after database failure, retries without version drift, blocks stale overwrite, resets to a separate trip, and never saves an empty draft over a load failure. No browser cache is used.');
   }finally{globalThis.fetch=originalFetch;}

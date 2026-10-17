@@ -1,5 +1,20 @@
 # TASKS.md
 
+## 用户新增：Travel Stories 瀑布流（D-030，2026-10-13）
+
+- [x] 新增英文独立页面、顶部导航与Product页脚入口，保留既有栏目相对顺序。
+- [x] 使用官方Data API读取选定国际旅行博主的近期视频，核对频道、发布日期、播放量与可嵌入状态。
+- [x] 两年期限、精确降序、去重、100条上限与YouTube查看更多；其他国家搜索误入、缺数据/供应商失败恢复。
+- [x] 变高度瀑布流、按需官方播放器、单播放器切换/关闭和每条YouTube恢复入口。
+- [x] 真实服务器页面100条/日期/排序/超限提示/Key隔离；受控故障、几何布局、TypeScript/ESLint/CSS与相关原回归。
+- [ ] 实际浏览器桌面/手机视觉与播放复验（本轮浏览器工具URL协议拦截）；逐条内容审看及流量/配额监测。
+
+本轮没有发布到生产或提交到GitHub；实际视频观看/进入规划的用户价值待验证，原旅行Evals与Human Gate保留。说明 `docs/workflows/travel-stories.md`。
+
+2026-10-13展示反馈：桌面两列、手机一列；标题14px单行省略及完整title提示；每卡删除重复观看/作者链接，保留标题原视频跳转与作者普通文字。100张真实服务器卡片链接结构/降序、几何布局和相关静态/故障回归通过。实际浏览器与舒适度待复验，见D-030跟进。
+
+同日再次精简：去掉卡片作者名字、页内TRAVEL STORIES、Last two years、Most viewed first、数量和正常检查说明，保留真实刷新失败提示。100张服务器卡片与整页可见文字、标题链接/降序、TypeScript/ESLint/CSS通过；证据 `output/playwright/travel-stories/minimal-copy-check.json`。浏览器与用户阅读验证仍待完成。
+
 ## 用户新增：首页三种风格（D-026，2026-10-11）
 
 - [x] 识别首屏/四项服务/导游推广重复，三个候选均收敛信息分工。
@@ -263,3 +278,15 @@ Itinerary 栏头简化：移除右侧天数标签，保留日期导航与总览�
 
 
 2026-10-12 网站根目录文件发布：按用户要求，将 ea059ee5f6bcb7f7642daa3fbefa88fb.txt 原字节复制到 public/ 对应文件。临时本地生产服务的同名根路径 HTTP200、无语言／登录跳转，40字节内容与原文件一致；发布沿用 GitHub main → Vercel Production，正式域名响应待部署后核对。仅增加静态文件，不改变旅行逻辑、Evals标准或Human Gate；第三方平台是否认可文件仍由该平台核验。
+
+
+2026-10-13 用户界面跟进（D-027/D-030）：Travel Stories 介绍文案下增加分隔线；首页Start your journey直接打开/en/plan，访客New trip登录要求保留。实际三页HTTP200、链接/访客引导与CSS、TypeScript、组件ESLint和diff检查通过；浏览器视觉与真实转化尚未验证。证据output/playwright/travel-stories/divider-plan-entry-check.json。
+
+
+## 用户新增：简体中文网站（D-031，2026-10-13）
+
+复用原语言架构开放en/zh，补齐主要网站页面和账户/导游/规划界面，42中文概览与3完整城市指南、11行前准备章和7工具卡；语种/国家/预算仅改标签，稳定ID和数据值共用。语言切换与登录/保存返回保留上下文，未保存保护、明确英文内容回退、metadata/sitemap/源指纹回归已实现。
+
+验证：全部42中文目的地与主要页面HTTP200，原英文首页保留；语言协商、回退与100URL站点地图通过。TypeScript、相关Lint、CSS/diff、test:chinese及原i18n/editorial/planner/accounts/guide-request/travel-stories通过，中文SDKnext与生产保存/新行程URL、422日期错误及切换保护受控通过。没有降低原数据缺失、隔离、冲突和日历断言。
+
+待体验：浏览器视觉/地图/视频、真实中文登录保存、中文阅读和转化。保留39城中文概览与英文详细笔记、PDF中文未提供的明确范围，不能宣称所有长文/导出全部翻译；旅行Evals与Human Gate保持。证据output/zh-website/route-check.json、coverage-check.json。

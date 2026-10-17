@@ -1,7 +1,7 @@
 export const plannedLocales=['en','ko','zh','ru','ms','vi','th','es','fr','de','ja'] as const;
 export type PlannedLocale=(typeof plannedLocales)[number];
 export const contentLocales=['en','ko','zh'] as const;
-export const publishedLocales=['en'] as const;
+export const publishedLocales=['en','zh'] as const;
 export type Locale=(typeof contentLocales)[number];
 export const defaultLocale:Locale='en';
 export const languageNames:Record<Locale,string>={en:'English',ko:'한국어',zh:'简体中文'};

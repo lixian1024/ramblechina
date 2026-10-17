@@ -213,3 +213,12 @@ src/
 ### 2026-09-27 · 中文网站样板落地
 
 产品决定增加简体中文网站语言代码 `zh`。已发布路由为 `/zh` 和 `/zh/journeys/beijing-imperial-day`，语言切换器及浏览器语言协商均识别中文。中文译文放在 `src/i18n/messages.ts`、`src/i18n/daybook-ui.ts` 和 `src/content/locales/zh/beijing-day.ts`；内容事实与路线数据继续共享。其余中文 URL 回退到对应英文页面并显示 EN 标记。PDF 多语言暂缓，`/api/journey/pdf` 明确不接受 `zh`。上文关于“仅英韩发布”和“是否推出中文界面”的描述属于原方案记录，以本节当前状态为准。
+
+
+### 2026-10-13 · 当前网站恢复简体中文（D-031）
+
+按用户要求，更新D-020的仅英文范围：当前en/zh发布，ko归档。真实route locale进入HTML/Context，中文操作通过原共享模板、website短文案和editorial/zh内容解析提供。42城有中文概览；北京/上海/西安完整11章版复用原体验/路线/来源；39城详细长文明确英文入口，PDF与旧付款/设计页明确未提供中文，不静默假装已翻译。
+
+语言切换保留实体、搜索/筛选、trip与锚点，登录next/PKCE回调/保存重开保留语言；未保存保护保留。语种/国家/预算只换标签，存储值兼容。新增源指纹门槛、中文lang/canonical/hreflang与100URL公开sitemap。原北京factFingerprint保持，译文来源日期不升级为事实重新核查日期。
+
+页面/共享内容/账户返回路径/故障受控验证通过，实际浏览器视觉和真实账号/地图/视频未复验，不宣称人工外部审校或旅行价值已成立。范围和维护详见docs/product/locale-matrix.md、docs/workflows/chinese-website.md。上文旧发布范围为历史实施记录，以本节为准。

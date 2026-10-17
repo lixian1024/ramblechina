@@ -1,5 +1,17 @@
 # EVALS.md
 
+## 2026-10-13 Travel Stories（D-030，不改变旅行案例标准）
+
+`test:travel-stories` 覆盖Asia/Shanghai两年日历/闰日边界、未来/非法日期、去重、100条上限、精确整数播放量降序、跨国搜索误入、频道归属、禁嵌入/非公开/年龄/直播/缺失字段、短长视频、API分页和50条元数据分批、Key不进URL、并发缓存、故障保留原检查时间、24小时到期/缺Key空状态，以及不同高度100张卡片在桌面/平板/390/320px内容宽度下无重叠、无越界、排序位置单调。
+
+真实官方API和本地HTTP200页面输出100条，日期与全序列降序、超限YouTube提示、Key未进入HTML通过；TypeScript/相关ESLint/CSS、i18n/editorial/planner-workbench通过。证据 `output/playwright/travel-stories/ssr-check.json`。浏览器工具因URL协议限制拒绝访问，未绕过，几何检查不视为浏览器视觉或实际播放通过。全量视频审看/地区播放与游客价值尚未知。本轮不改变旅行生成、推荐排序、路线、时间或事实回退，不重复付费旅行生成，不修改案例标准、历史失败或Loop/Human Gate。
+
+生产React播放器组件的受控点击/切换/加载故障检查通过：点击前不加载iframe，同时最多一个播放器，失败有外部恢复入口，保留referrer。此为组件证据，仍不替代实际播放验收。
+
+D-030两列跟进：原100张变高度几何与排序/故障回归保留，桌面两列/手机单列计算通过；实际HTTP200的100张卡片均只保留标题原视频链接，无重复观看/作者链接，完整标题提示与降序保留。TypeScript/相关ESLint/CSS通过，证据 `output/playwright/travel-stories/two-column-check.json`。只修改展示，不重复旅行生成Evals；浏览器视觉限制和Human Gate不变。
+
+D-030再次精简：作者行、页内栏目标签/筛选与数量工具栏/正常检查说明从服务器页面可见内容移除，100张卡片标题链接和降序保留；异常说明仅在实际partial/stale显示。TypeScript/组件ESLint/CSS通过，证据 `output/playwright/travel-stories/minimal-copy-check.json`。展示改动不触及数据规则或旅行Evals，不新增镜像静态测试；原视觉限制及Human Gate不变。
+
 ## 2026-10-11 B 首页落地与访客规划（D-027，不修改旅行案例标准）
 
 B 正式首页精简文案、桌面与390/320px手机布局、菜单顺序、Start your journey/New trip 访客直接登录和返回规划路径通过。访客可见空白规划工作区，未展示私人草稿或伪造样例。生产保存 hook 的受控故障/权限案例新增匿名带私人行程 ID 也不读取、手动/自动保存均不写入；既有授权保存、版本冲突、失败恢复与加载失败门槛未降低。静态图片下署名移到 Image credits，Google 必要作者归属留在图内；地点身份与照片故障回归继续保留归属及不确定照片拒绝。
@@ -397,3 +409,11 @@ Google 地点/道路 + 高德天气/公交的受控回归继续检查地理、�
 2026-10-11 D-028域名配置复验：用户保存设置后四项公开回调探测全通过，Google authorize返回正确项目callback的302。此为入口/配置检查，未执行真实账号登录或邮件投递，不替代账户数据闭环或旅行Evals；证据output/auth-checks/redirects-after-config.json。没有代码修改，本轮不重复受控测试。
 
 2026-10-11 个人资料控件验证（D-025，不改案例标准）：国家／地区下拉生产组件的空值/标准值/历史自填值渲染、选择更新、空值恢复及原API长度兼容通过；TypeScript/组件ESLint通过。实际账户页未登录，未向Supabase写测试资料，真实保存重开未验收。本轮只修改输入展示，不改变旅行生成/排序/路线/回退，未重复付费旅行Evals或新增镜像测试。
+
+
+2026-10-13 D-027/D-030展示与入口验证：介绍区底部分隔线样式、首页Start your journey目标/en/plan、匿名规划页HTTP200及New trip入口确认；现有requestNew访客登录保护未改。TypeScript、组件ESLint、CSS解析和diff检查通过，证据output/playwright/travel-stories/divider-plan-entry-check.json。未更改生成/推荐/路线/事实回退，不重复付费旅行Evals，不改变案例标准和Human Gate；浏览器视觉仍待复验。
+
+
+2026-10-13 双语展示/入口验证（D-031，不改变旅行案例标准）：新增test:chinese覆盖42中文概览/3完整城市指南/11准备章/7现场卡的源指纹、稳定地点/路线/照片/来源/日期，URL与next/trip/锚点、语言协商、安全回退、metadata/sitemap和中文无配置/日期冲突/无效旅行输入。原账户英文测试保留并增加中文SDK与生产保存hook的URL，既有匿名/所有者隔离、版本冲突、十天与预约恢复断言保留；相关原回归及类型/Lint/CSS通过。
+
+真实42中文城市与主要页面HTTP200，英文首页不退化；受控生产组件的中文422失败、存储偏好值、中文访客next与未保存语言切换取消通过。证据output/zh-website/route-check.json、coverage-check.json；未调用真实模型生成，不把新增中文界面当成E-001～E-016全部产品通过。浏览器策略限制与真实账号/地图/播放边界仍保留，原旅行标准、历史失败和Loop/Human Gate不变。

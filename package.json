@@ -13,7 +13,7 @@
     "export:daybook": "tsx scripts/export-daybook.ts",
     "test:daybook": "tsx scripts/verify-daybook.ts",
     "test:i18n": "tsx scripts/verify-i18n.ts",
-    "prebuild": "npm run test:i18n && npm run test:editorial",
+    "prebuild": "npm run test:i18n && npm run test:editorial && npm run test:chinese",
     "test:editorial": "tsx scripts/verify-editorial.ts",
     "test:planner": "tsx scripts/verify-planner-workbench.ts",
     "eval:validate": "node scripts/product-evals.mjs validate",
@@ -27,7 +27,9 @@
     "test:place-identity": "node --import tsx scripts/verify-place-identity.ts && node --import tsx scripts/verify-photo-screening.ts",
     "test:map-providers": "node --import tsx scripts/verify-map-providers.ts",
     "test:guide-requests": "node --import tsx scripts/verify-guide-requests.ts",
-    "test:accounts": "node --import tsx scripts/verify-auth-flows.ts && node --import tsx scripts/verify-accounts.ts && node --import tsx scripts/verify-trip-persistence.ts"
+    "test:accounts": "node --import tsx scripts/verify-auth-flows.ts && node --import tsx scripts/verify-accounts.ts && node --import tsx scripts/verify-trip-persistence.ts",
+    "test:travel-stories": "node --import tsx scripts/verify-travel-stories.ts",
+    "test:chinese": "node --import tsx scripts/verify-chinese-website.ts"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^2.1.3",

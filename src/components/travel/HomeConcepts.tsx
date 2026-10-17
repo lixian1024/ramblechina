@@ -1,6 +1,9 @@
+import {siteTranslator} from '@/i18n/website';
+import type {Locale} from '@/i18n/locales';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, BookOpen, Check, Compass, MoveUpRight, Sparkles } from 'lucide-react';
 import Link from '@/i18n/context';
+import {cityView} from '@/content/editorial/zh/resolve';
 import { findCity, photoFor } from '@/lib/travel/data';
 import NotebookDestinations from './NotebookDestinations';
 import PlanEntryLink from '@/components/account/PlanEntryLink';
@@ -55,25 +58,26 @@ function Editorial() {
   </div>;
 }
 
-export function CinematicHome() {
+export function CinematicHome({locale='en'}:{locale?:Locale}) {
+  const t=siteTranslator(locale);
   return <div className={styles.cinematic}>
     <section className={styles.cinemaHero} aria-labelledby="concept-title">
-      <Photo slug="guilin" alt="The Li River winding through green limestone mountains near Guilin" className={styles.cinemaBackdrop} sizes="100vw" preload />
+      <Photo slug="guilin" alt={locale==='zh'?'桂林漓江穿过绿色喀斯特山峰':'The Li River winding through green limestone mountains near Guilin'} className={styles.cinemaBackdrop} sizes="100vw" preload />
       <div className={styles.cinemaShade} />
-      <div className={styles.cinemaTopline}><span><span className={styles.locationDot} /> GUILIN, CHINA</span></div>
-      <div className={styles.cinemaCopy}><h1 id="concept-title">A little further.<br />A lot more <em>China.</em></h1><p>Your interests. Your pace. Your China.</p><PlanEntryLink className={styles.cinemaCta}>Start your journey <ArrowUpRight size={20} /></PlanEntryLink></div>
+      <div className={styles.cinemaTopline}><span><span className={styles.locationDot} /> {t("GUILIN, CHINA")}</span></div>
+      <div className={styles.cinemaCopy}><h1 id="concept-title">{t("A little further.")}<br />{t("A lot more")} <em>{t("China.")}</em></h1><p>{t("Your interests. Your pace. Your China.")}</p><PlanEntryLink className={styles.cinemaCta}>{t("Start your journey")} <ArrowUpRight size={20} /></PlanEntryLink></div>
     </section>
     <section id="cinema-places" className={styles.cinemaPlaces} aria-labelledby="cinema-places-title">
-      <div className={styles.cinemaSectionHeading}><div><h2 id="cinema-places-title">What draws you in?</h2></div><Link href="/destinations">Explore all places <ArrowUpRight size={18} /></Link></div>
+      <div className={styles.cinemaSectionHeading}><div><h2 id="cinema-places-title">{t("What draws you in?")}</h2></div><Link href="/destinations">{t("Explore all places")} <ArrowUpRight size={18} /></Link></div>
       <div className={styles.cinemaPlaceGrid}>{[
-        { slug: 'shanghai', title: 'Old soul. New skyline.', category: 'ARCHITECTURE & CITY LIFE' },
-        { slug: 'beijing', title: 'Stories that stay.', category: 'HISTORY & CULTURE' },
-        { slug: 'chongqing', title: 'The city after dark.', category: 'RIVERS & CITY LIGHTS' },
+        { slug: 'shanghai', title: t("Old soul. New skyline."), category: t("ARCHITECTURE & CITY LIFE") },
+        { slug: 'beijing', title: t("Stories that stay."), category: t("HISTORY & CULTURE") },
+        { slug: 'chongqing', title: t("The city after dark."), category: t("RIVERS & CITY LIGHTS") },
       ].map(({ slug, title, category }, index) => <figure key={slug}>
-        <Link href={`/destinations/${slug}`} className={styles.cinemaPlaceLink}><Photo slug={slug} alt={photoFor(slug)!.description} sizes="(max-width: 760px) 90vw, 30vw" /><span className={styles.cinemaCardIndex}>0{index + 1}</span><div className={styles.cinemaCardCopy}><span>{category}</span><h3>{title}</h3><span>{findCity(slug)!.name} <ArrowUpRight size={19} /></span></div></Link>
+        <Link href={`/destinations/${slug}`} className={styles.cinemaPlaceLink}><Photo slug={slug} alt={photoFor(slug)!.description} sizes="(max-width: 760px) 90vw, 30vw" /><span className={styles.cinemaCardIndex}>0{index + 1}</span><div className={styles.cinemaCardCopy}><span>{t(category)}</span><h3>{t(title)}</h3><span>{cityView(findCity(slug)!,locale).name} <ArrowUpRight size={19} /></span></div></Link>
       </figure>)}</div>
     </section>
-    <section className={styles.cinemaSupport} aria-labelledby="cinema-support-title"><div><h2 id="cinema-support-title">The details matter.</h2></div><div className={styles.cinemaSupportLinks}><Link href="/essentials"><span><strong>Get China-ready.</strong><p>Entry, payments, mobile data and transport.</p></span><ArrowUpRight size={26} /></Link><Link href="/local-guide"><span><strong>A local perspective.</strong><p>Request a guide. Availability and price confirmed separately.</p></span><ArrowUpRight size={26} /></Link></div></section>
+    <section className={styles.cinemaSupport} aria-labelledby="cinema-support-title"><div><h2 id="cinema-support-title">{t("The details matter.")}</h2></div><div className={styles.cinemaSupportLinks}><Link href="/essentials"><span><strong>{t("Get China-ready.")}</strong><p>{t("Entry, payments, mobile data and transport.")}</p></span><ArrowUpRight size={26} /></Link><Link href="/local-guide"><span><strong>{t("A local perspective.")}</strong><p>{t("Request a guide. Availability and price confirmed separately.")}</p></span><ArrowUpRight size={26} /></Link></div></section>
   </div>;
 }
 

@@ -30,6 +30,10 @@
 从 `START_HERE.md` 和 `LOOP.md` 开始。
 
 
+### Travel Stories
+
+`/en/travel-stories` shows up to 100 recent China journeys from selected international YouTube creators, sorted by official view counts. Set server-only `YOUTUBE_DATA_API_KEY` with YouTube Data API v3 enabled. Data refreshes on access after a six-hour in-process cache; outages retain explicitly dated data for at most 24 hours. Playback uses the official embedded player on click. Run `npm run test:travel-stories`; configuration, editorial scope, quota and verification limits: [Travel Stories workflow](docs/workflows/travel-stories.md).
+
 ### Google Maps migration
 
 Planner and destinations now use Google Maps. Places, nearby dining, photos, walking/driving and static previews use Google server APIs; only Amap weather and transit remain. Configure **both** the website-restricted `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` and a separate `GOOGLE_MAPS_SERVER_API_KEY` for Places API (New), Routes API and Maps Static API. Keep the Amap Web Service key for the two retained services. [Configuration, migration differences and pending live checks](docs/workflows/google-maps-migration.md).
@@ -49,3 +53,5 @@ Run `npm run test:map-providers` for controlled provider/coordinate/failure cont
 - `python3 scripts/validate-eval-cases.py`：旧校验器要求 `name/type/priority/hard_constraints`，当前索引使用 `title/mode/tags`，两者格式未同步。
 
 环境密钥、私有运行状态与新增 `output/` 验证产物保留在本地；已有跟踪的 PDF 样本保留历史。使用前按 `.env.example` 配置环境，按现有 Supabase 迁移说明准备数据库。下一步优先同步机器索引与校验器并重新验证 Loop，再完成真实账户和旅行核心闭环验收。
+
+简体中文网站：本地访问 `/zh`，顶部可在 English / 简体中文切换。主要页面与账户/规划界面中文，42城中文概览、北京/上海/西安详细指南、11章行前准备；旧完整PDF仍仅英文。运行 `npm run test:chinese` 检查共享事实与语言路径，已加入prebuild。范围、源快照和验证限制见 `docs/workflows/chinese-website.md`。

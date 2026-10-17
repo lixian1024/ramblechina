@@ -1,10 +1,11 @@
 'use client';
+import type {Locale} from '@/i18n/locales';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { TripMessage, VerifiedTrip } from '@/lib/travel/concierge-types';
 import { storedMessages, storedTrip } from '@/lib/travel/trip-storage';
 import type { SavedTrip, TripSnapshot } from '@/lib/account/trips';
 
-export function useTripPersistence(tripId:string|undefined,busy:boolean,enabled=true) {
+export function useTripPersistence(tripId:string|undefined,busy:boolean,enabled=true,locale:Locale='en') {
   const [messages,setMessages]=useState<TripMessage[]>([]),[plan,setPlan]=useState<VerifiedTrip|null>(null);
   const [ready,setReady]=useState(false),[loadError,setLoadError]=useState(''),[saveError,setSaveError]=useState('');
   const [saveState,setSaveState]=useState<'idle'|'saving'|'saved'|'unsaved'>('idle'),[retry,setRetry]=useState(0);
@@ -43,11 +44,11 @@ export function useTripPersistence(tripId:string|undefined,busy:boolean,enabled=
       if(!response.ok){if(response.status===409){blocked.current=true;setConflict(true);}throw Error(data.error||'This trip could not be saved.');}
       if(!mounted.current||target.generation!==identity.current.generation)return;
       identity.current.version=data.version;committed.current=serialized;setSavedFingerprint(serialized);
-      window.history.replaceState(null,'',`/en/plan?trip=${target.id}`);
+      window.history.replaceState(null,'',`/${locale}/plan?trip=${target.id}`);
       setSaveState(JSON.stringify(latest.current)===serialized?'saved':'unsaved');
     }catch(error){if(mounted.current&&target.generation===identity.current.generation){setSaveState('unsaved');setSaveError(error instanceof Error?error.message:'Your changes could not be saved. Keep this page open and retry.');}}
     finally{flight.current=false;}
-  },[ready,busy,enabled]);
+  },[ready,busy,enabled,locale]);
   useEffect(()=>{
     if(!enabled||!ready||busy||saveError)return;
     const timer=setTimeout(()=>void flush(),700);return()=>clearTimeout(timer);
@@ -57,7 +58,7 @@ export function useTripPersistence(tripId:string|undefined,busy:boolean,enabled=
     const warn=(event:BeforeUnloadEvent)=>{if(JSON.stringify(latest.current)!==committed.current&&(latest.current.plan||latest.current.messages.length)){event.preventDefault();event.returnValue='';}};
     window.addEventListener('beforeunload',warn);return()=>window.removeEventListener('beforeunload',warn);
   },[enabled]);
-  function reset(){identity.current={id:'',version:0,generation:identity.current.generation+1};committed.current='';blocked.current=false;setConflict(false);setSavedFingerprint('');setMessages([]);setPlan(null);setLoadedPlan(null);setSaveState('idle');setSaveError('');window.history.replaceState(null,'','/en/plan');}
+  function reset(){identity.current={id:'',version:0,generation:identity.current.generation+1};committed.current='';blocked.current=false;setConflict(false);setSavedFingerprint('');setMessages([]);setPlan(null);setLoadedPlan(null);setSaveState('idle');setSaveError('');window.history.replaceState(null,'',`/${locale}/plan`);}
   function retrySave(){if(blocked.current)return;setSaveError('');setRetry(value=>value+1);}
   const dirty=enabled&&JSON.stringify(snapshot)!==savedFingerprint&&Boolean(snapshot.plan||snapshot.messages.length);
   return {messages,setMessages,plan,setPlan,ready:!enabled||ready,loadError,loadedPlan,saveState,saveError,retrySave,saveNow:flush,reset,conflict,dirty};

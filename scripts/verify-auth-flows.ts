@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import { authCallbackUrl, authErrorMessage } from '../src/lib/account/auth-flow';
 
 async function main() {
-  for (const origin of ['http://localhost:3001', 'http://127.0.0.1:3001', 'https://www.ramblechina.com']) {
+  for (const locale of ['en','zh']) for (const origin of ['http://localhost:3001', 'http://127.0.0.1:3001', 'https://www.ramblechina.com']) {
     const captured: { url: URL; body: Record<string, unknown> }[] = [];
     const client = createClient('https://auth-fixture.test', 'controlled-key', {
       auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false, flowType: 'pkce' },
@@ -12,7 +12,7 @@ async function main() {
         return Response.json({ id: 'controlled-user', email: 'qa@example.invalid', identities: [] });
       } },
     });
-    const next = '/en/plan?trip=controlled-return';
+    const next = `/${locale}/plan?trip=controlled-return`;
     const callback = authCallbackUrl(origin, next, true);
     const signup = await client.auth.signUp({ email: 'qa@example.invalid', password: 'controlled-password', options: { emailRedirectTo: callback } });
     assert.equal(signup.error, null);

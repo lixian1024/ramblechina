@@ -1,4 +1,5 @@
 'use client';
+import {useWebsiteText} from '@/i18n/context';
 
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
 import dynamic from 'next/dynamic';
@@ -10,7 +11,7 @@ import { cityLabel, readableEnglish } from '@/lib/travel/english-display';
 import ItineraryOverview from './ItineraryOverview';
 import MapPlaceCard from './MapPlaceCard';
 import { storedTrip } from '@/lib/travel/trip-storage';
-import { planSignInPath } from '@/components/account/PlanEntryLink';
+import { planSignInPathFor } from '@/components/account/PlanEntryLink';
 import {useAuth} from '@/components/account/AuthProvider';
 import {useTripPersistence} from '@/components/account/useTripPersistence';
 import Link from 'next/link';
@@ -32,6 +33,7 @@ export default function Planner({tripId}:{tripId?:string}) {
   return <PlannerWorkspace key={user?.id||'guest'} tripId={tripId}/>;
 }
 function PlannerWorkspace({tripId}:{tripId?:string}) {
+  const t=useWebsiteText();
   const {user,loading:authLoading,error:authError}=useAuth();
   const router=useRouter();
   const locale = useLocale();
@@ -39,7 +41,7 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
   const [phase, setPhase] = useState<Phase | null>(null);
   const [intent, setIntent] = useState<TripIntent | null>(null);
   const [busy, setBusy] = useState(false);
-  const {messages,setMessages,plan,setPlan,ready,loadedPlan,loadError,saveState,saveError,retrySave,saveNow,reset,conflict,dirty}=useTripPersistence(tripId,busy,Boolean(user));
+  const {messages,setMessages,plan,setPlan,ready,loadedPlan,loadError,saveState,saveError,retrySave,saveNow,reset,conflict,dirty}=useTripPersistence(tripId,busy,Boolean(user),locale);
   const [input, setInput] = useState('');
   const [editContext, setEditContext] = useState('');
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -64,6 +66,8 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
 
   useEffect(()=>{
     if(!dirty&&!busy)return;
+    const protectLanguage=(event:Event)=>{event.preventDefault();if(!busy)void saveNow();setError(t(busy?"Wait for the current request to finish before leaving.":"Your changes are being saved. Open the page once the save is confirmed."));};
+    document.addEventListener("ramble-language-change",protectLanguage);
     const protect=(event:MouseEvent)=>{
       const anchor=(event.target as Element)?.closest('a');
       if(!anchor||anchor.target==='_blank'||event.ctrlKey||event.metaKey||event.shiftKey||anchor.getAttribute('href')?.startsWith('#'))return;
@@ -71,10 +75,10 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
       if(new URL(anchor.href).origin!==window.location.origin)return;
       event.preventDefault();event.stopImmediatePropagation();
       if(!busy)void saveNow();
-      setError(busy?'Wait for the current request to finish before leaving.':'Your changes are being saved. Open the page once the save is confirmed.');
+      setError(busy?t("Wait for the current request to finish before leaving."):t("Your changes are being saved. Open the page once the save is confirmed."));
     };
-    document.addEventListener('click',protect,true);return()=>document.removeEventListener('click',protect,true);
-  },[dirty,busy,saveNow]);
+    document.addEventListener('click',protect,true);return()=>{document.removeEventListener('click',protect,true);document.removeEventListener("ramble-language-change",protectLanguage);};
+  },[dirty,busy,saveNow,t]);
 
   useEffect(() => {
     if (!dayToReveal || revealedDay.current === dayToReveal) return;
@@ -95,9 +99,9 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
     void fetch('/api/trip-refresh',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:loadedPlan,locale}),signal:controller.signal})
       .then(async response=>{const data=await response.json();if(!response.ok)throw Error(data.error);return data.plan as VerifiedTrip;})
       .then(fresh=>setPlan(current=>current===loadedPlan?fresh:current))
-      .catch(error=>{if(!controller.signal.aborted){setRestoreFailed(true);setError(error instanceof Error?error.message:'Map data could not be refreshed.');}});
+      .catch(error=>{if(!controller.signal.aborted){setRestoreFailed(true);setError(error instanceof Error?error.message:t("Map data could not be refreshed."));}});
     return()=>controller.abort();
-  },[loadedPlan,locale,setPlan]);
+  },[loadedPlan,locale,setPlan,t]);
   useEffect(() => { const feed = feedRef.current; if (feed) feed.scrollTo({ top: feed.scrollHeight, behavior: 'smooth' }); }, [messages, phase]);
   useEffect(() => {
     if (!ready || !plan || busy || geometryChecked.current === plan.createdAt) return;
@@ -165,7 +169,7 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
 
   async function send(value = input, reuse = false) {
     if(authLoading)return;
-    if(!user){router.push(planSignInPath);return;}
+    if(!user){router.push(planSignInPathFor(locale));return;}
     const requestText = value.trim();
     setRestoreFailed(false);
     if (!requestText || busy) return;
@@ -233,7 +237,7 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
   }
   function requestNew() {
     if(authLoading)return;
-    if(!user){router.push(planSignInPath);return;}
+    if(!user){router.push(planSignInPathFor(locale));return;}
     if(busy){setError('Wait for the current request to finish before starting a new trip.');return;}
     if(saveState==='saving'||saveError){setError('Save your current changes before starting a new trip.');return;}
     if(dirty){void saveNow();setError('Saving your current changes. Start the new trip once they are saved.');return;}
@@ -243,7 +247,7 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
   function chooseDay(index: number, focusMap = false) { setPopup(null); setDayIndex(index); setSelectedStop(0); setDayToReveal({ index }); if (focusMap) setAllDays(false); }
   function prepareEdit(request: string, context: string) {
     if(authLoading)return;
-    if(!user){router.push(planSignInPath);return;}
+    if(!user){router.push(planSignInPathFor(locale));return;}
     if (busy) return;
     setInput(request); setEditContext(context); setMobileView('chat');
     window.requestAnimationFrame(() => {
@@ -258,23 +262,23 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
   const popupStop = popupDay && popup ? popupDay.stops[popup.stopIndex] : undefined;
   const placeCard = popup && popupDay && popupStop ? <MapPlaceCard key={`${plan?.createdAt}:${popupDay.id}:${popupStop.id}`} day={popupDay} dayIndex={popup.dayIndex} stop={popupStop} stopIndex={popup.stopIndex} zh={zh} onClose={() => setPopup(null)} /> : null;
 
-  if(loadError)return <section className={styles.accountStatus} role="alert"><h2>Your trip could not be opened.</h2><p>{loadError}</p><button onClick={()=>window.location.reload()}>Retry</button> <Link href="/en/account">Back to my trips</Link></section>;
-  if(!ready)return <section className={styles.accountStatus} role="status">Loading your saved trip…</section>;
+  if(loadError)return <section className={styles.accountStatus} role="alert"><h2>{t("Your trip could not be opened.")}</h2><p>{t(loadError)}</p><button onClick={()=>window.location.reload()}>{t("Retry")}</button> <Link href={`/${locale}/account`}>{t("Back to my trips")}</Link></section>;
+  if(!ready)return <section className={styles.accountStatus} role="status">{t("Loading your saved trip…")}</section>;
   return <div className={styles.studio}>
-    <div className={styles.mobileTabs} role="group" aria-label={zh ? '切换视图' : 'Switch view'}>
-      <button type="button" aria-pressed={mobileView === 'chat'} onClick={() => setMobileView('chat')}>{zh ? '对话' : 'Assistant'}</button>
-      <button type="button" aria-pressed={mobileView === 'itinerary'} onClick={() => setMobileView('itinerary')}>{zh ? '行程' : 'Itinerary'}</button>
-      <button type="button" aria-pressed={mobileView === 'map'} onClick={() => setMobileView('map')}>{zh ? '地图' : 'Map'}</button>
+    <div className={styles.mobileTabs} role="group" aria-label={zh ? '切换视图' : t("Switch view")}>
+      <button type="button" aria-pressed={mobileView === 'chat'} onClick={() => setMobileView('chat')}>{zh ? '对话' : t("Assistant")}</button>
+      <button type="button" aria-pressed={mobileView === 'itinerary'} onClick={() => setMobileView('itinerary')}>{zh ? '行程' : t("Itinerary")}</button>
+      <button type="button" aria-pressed={mobileView === 'map'} onClick={() => setMobileView('map')}>{zh ? '地图' : t("Map")}</button>
     </div>
     <div className={styles.workspace}>
-      <section className={`${styles.chatPanel} ${mobileView !== 'chat' ? styles.hidePaneMobile : ''}`} aria-label={zh ? '旅行助手对话' : 'Travel Assistant conversation'}>
-        <div className={styles.chatHead}><h2 className={styles.assistantLabel}>{zh ? '旅行助手 · 路线管家' : 'Travel Assistant · Route Concierge'}</h2><span className={styles.liveBadge}><span /> {zh ? '按问题选择助手' : 'THE RIGHT HELP FOR EACH QUESTION'}</span><button type="button" className={styles.newTrip} onClick={requestNew} disabled={authLoading}><Plus size={13} /> {zh ? '新行程' : 'New trip'}</button></div>
-        <div className={styles.saveBar}><span role="status">{!user?'Start a new trip to plan your journey.':saveState==='saving'?'Saving to your account…':saveError?'Changes not saved':dirty?'Changes waiting to save':saveState==='saved'?'Saved to your account':'Your trips save to your account'}</span>{user?<Link href="/en/account" onClick={event=>{if(dirty||busy){event.preventDefault();void saveNow();setError('Wait until your changes are saved before opening My trips.');}}}>My trips →</Link>:tripId?<Link href={`/en/login?next=${encodeURIComponent(`/en/plan?trip=${tripId}`)}`}>Open saved trip →</Link>:null}</div>
-        {authError&&<p className={styles.error} role="alert">{authError}</p>}
-        {saveError&&<div className={styles.saveFailure} role="alert"><p>{saveError}</p>{conflict?<button onClick={()=>{if(window.confirm('Reopen the saved version? Unsaved changes in this tab will be discarded.'))window.location.reload();}}>Reopen saved trip</button>:<><button onClick={retrySave}>Retry saving</button> · <Link target="_blank" href="/en/login?next=/en/account">Check sign-in in a new tab</Link></>}</div>}
-        {resetConfirmation && <div className={styles.resetPrompt} role="group" aria-label={zh ? '确认开始新行程' : 'Confirm starting a new trip'}>
-          <p aria-live="polite">Start a new trip? Your saved trip will remain in My account.</p>
-          <div><button type="button" onClick={() => setResetConfirmation(false)}>{zh ? '取消' : 'Cancel'}</button><button type="button" onClick={startNew}>{zh ? '确认新行程' : 'Confirm new trip'}</button></div>
+      <section className={`${styles.chatPanel} ${mobileView !== 'chat' ? styles.hidePaneMobile : ''}`} aria-label={zh ? '旅行助手对话' : t("Travel Assistant conversation")}>
+        <div className={styles.chatHead}><h2 className={styles.assistantLabel}>{zh ? '旅行助手 · 路线管家' : 'Travel Assistant · Route Concierge'}</h2><span className={styles.liveBadge}><span /> {zh ? '按问题选择助手' : t("THE RIGHT HELP FOR EACH QUESTION")}</span><button type="button" className={styles.newTrip} onClick={requestNew} disabled={authLoading}><Plus size={13} /> {zh ? '新行程' : t("New trip")}</button></div>
+        <div className={styles.saveBar}><span role="status">{!user?t("Start a new trip to plan your journey."):saveState==='saving'?t("Saving to your account…"):saveError?t("Changes not saved"):dirty?t("Changes waiting to save"):saveState==='saved'?t("Saved to your account"):t("Your trips save to your account")}</span>{user?<Link href={`/${locale}/account`} onClick={event=>{if(dirty||busy){event.preventDefault();void saveNow();setError(t("Wait until your changes are saved before opening My trips."));}}}>{t("My trips →")}</Link>:tripId?<Link href={`/${locale}/login?next=${encodeURIComponent(`/${locale}/plan?trip=${tripId}`)}`}>{t("Open saved trip →")}</Link>:null}</div>
+        {authError&&<p className={styles.error} role="alert">{t(authError)}</p>}
+        {saveError&&<div className={styles.saveFailure} role="alert"><p>{t(saveError)}</p>{conflict?<button onClick={()=>{if(window.confirm(t("Reopen the saved version? Unsaved changes in this tab will be discarded.")))window.location.reload();}}>{t("Reopen saved trip")}</button>:<><button onClick={retrySave}>{t("Retry saving")}</button> · <Link target="_blank" href={`/${locale}/login?next=/${locale}/account`}>{t("Check sign-in in a new tab")}</Link></>}</div>}
+        {resetConfirmation && <div className={styles.resetPrompt} role="group" aria-label={zh ? '确认开始新行程' : t("Confirm starting a new trip")}>
+          <p aria-live="polite">{t("Start a new trip? Your saved trip will remain in My account.")}</p>
+          <div><button type="button" onClick={() => setResetConfirmation(false)}>{zh ? '取消' : t("Cancel")}</button><button type="button" onClick={startNew}>{zh ? '确认新行程' : t("Confirm new trip")}</button></div>
         </div>}
         <div className={styles.feed} ref={feedRef}>
 
@@ -288,7 +292,7 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
               {message.role === 'assistant' && <span className={styles.agentName}>{message.agent === 'travel-assistant' ? (zh ? '旅行助手' : 'Travel Assistant') : (zh ? '路线管家' : 'Route Concierge')}</span>}
               <p>{message.text}</p>
               {message.sources?.some(source => /google\.com\/maps/.test(source.url)) && <span className={styles.googleAttribution} translate="no">Google Maps</span>}{message.sources?.length ? <details className={styles.answerSources}><summary>{zh ? `查看来源 · ${message.sources.length}` : `View sources · ${message.sources.length}`}</summary><ol>{message.sources.map((source, sourceIndex) => <li key={`${source.url}-${sourceIndex}`}><a href={source.url} target="_blank" rel="noopener noreferrer">[{source.index || sourceIndex + 1}] {zh ? source.title : readableEnglish(source.title, `Source ${sourceIndex + 1}`)}</a></li>)}</ol></details> : null}
-              {plan && message.intent === 'travel-assistant' && <small className={styles.routeUnchanged}>{zh ? '这条回答未修改现有行程。' : 'Your existing route was not changed.'}</small>}
+              {plan && message.intent === 'travel-assistant' && <small className={styles.routeUnchanged}>{zh ? '这条回答未修改现有行程。' : t("Your existing route was not changed.")}</small>}
             </div>
           </div>)}
             </div>
@@ -297,18 +301,18 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
           {plan?.research && !busy && messages.at(-1)?.agent !== 'travel-assistant' && <details className={styles.researchCard}>
             <summary><Compass size={15} /> {zh ? `本次联网资料 · ${plan.research.sources.length} 个来源` : `Web research · ${plan.research.sources.length} sources`} <ChevronDown size={14} /></summary>
             <p>{zh ? plan.research.summary : readableEnglish(plan.research.summary, 'This saved research brief is in Chinese. Ask the concierge to refresh it in English.')}</p>
-            <ol>{plan.research.sources.map((source, index) => <li key={`${source.url}-${index}`}><a href={source.url} target="_blank" rel="noopener noreferrer">[{source.index || index + 1}] {zh ? source.title : readableEnglish(source.title, `Source ${index + 1}`)}</a>{source.site && <small> · {zh ? source.site : readableEnglish(source.site, 'Website')}</small>}</li>)}</ol>
+            <ol>{plan.research.sources.map((source, index) => <li key={`${source.url}-${index}`}><a href={source.url} target="_blank" rel="noopener noreferrer">[{source.index || index + 1}] {zh ? source.title : readableEnglish(source.title, `Source ${index + 1}`)}</a>{source.site && <small> · {zh ? source.site : readableEnglish(source.site, t("Website"))}</small>}</li>)}</ol>
             <small>{zh ? '搜索结果是规划参考；预约、票价和开放规则请以对应官方页面为准。' : 'Search results inform the plan; confirm bookings, prices and opening rules on the relevant official site.'}</small>
           </details>}
           {busy && <div className={styles.progressCard} role="status" aria-live="polite"><div className={styles.progressTitle}><span className={styles.spinner} /><strong>{intent === 'route-concierge' ? (zh ? '路线管家正在核对行程' : 'Route Concierge is checking your route') : intent === 'travel-assistant' ? (zh ? '旅行助手正在查找资料' : 'Travel Assistant is checking current sources') : (zh ? '正在理解你的问题' : 'Finding the right help for your question')}</strong></div>{intent === 'route-concierge' ? <ol>{phases.map((step, index) => { const current = phases.indexOf(phase || 'understanding'); return <li key={step} className={index < current ? styles.doneStep : index === current ? styles.currentStep : ''}><span>{index < current ? <Check size={12} /> : index + 1}</span>{messageForPhase(step, zh)}</li>; })}</ol> : <small>{intent === 'travel-assistant' ? (zh ? '会直接回答，不改动地图上的行程。' : 'Answering directly without changing your route.') : (zh ? '根据问题选择合适的助手。' : 'Choosing the right assistant for this question.')}</small>}</div>}
-          {error && <div className={styles.error} role="alert">{error}<button type="button" onClick={() => void (restoreFailed ? refreshSaved() : send(messages.at(-1)?.text || '', true))}>{zh ? '重试' : 'Retry'}</button></div>}
+          {error && <div className={styles.error} role="alert">{error}<button type="button" onClick={() => void (restoreFailed ? refreshSaved() : send(messages.at(-1)?.text || '', true))}>{zh ? '重试' : t("Retry")}</button></div>}
           {plan && !busy && <div className={styles.refine}><strong>{zh ? '继续调整这趟旅行' : 'Keep refining this trip'}</strong><button type="button" onClick={() => void send(zh ? '把第一天安排得更轻松，但保留所有已预约的票。' : 'Make Day 1 easier, but keep every booked ticket fixed.')}>{zh ? '少走一些路' : 'Less walking'}</button><button type="button" onClick={() => void send(zh ? '如果下雨，给我一套室内备选，并说明哪些地方需要重新确认。' : 'If it rains, suggest nearby indoor alternatives and tell me what needs checking.')}>{zh ? '准备雨天方案' : 'Rainy-day backup'}</button></div>}
         </div>
-        <form className={styles.composer} onSubmit={submit}><label htmlFor="trip-request" className={styles.srOnly}>{zh ? '描述行程或提出修改' : 'Describe your trip or request a change'}</label>{editContext && <div className={styles.editContext} role="status"><span><Sparkles size={13} />{editContext}</span><button type="button" onClick={() => { setInput(''); setEditContext(''); }} aria-label={zh ? '取消修改需求' : 'Cancel edit request'}>×</button><small>{zh ? '修改需求已填入，发送后由路线管家更新行程。' : 'Request ready. Send it to update your itinerary.'}</small></div>}<textarea ref={inputRef} id="trip-request" value={input} onChange={event => setInput(event.target.value)} onKeyDown={inputKey} rows={2} maxLength={2500} disabled={!user||authLoading} placeholder={!user?'Select New trip to start planning.':zh ? '告诉我你住哪里、和谁同行、预约了什么，或想改哪一天…' : 'Where are you staying? Who is coming? Any tickets booked? Or tell me what to change…'} /><button type={busy ? 'button' : 'submit'} onClick={busy ? () => abort.current?.abort() : undefined} aria-label={busy ? (zh ? '停止规划' : 'Stop planning') : (zh ? '发送需求' : 'Send request')} disabled={!user||authLoading||(!busy && !input.trim())}>{busy ? <Square size={17} fill="currentColor" /> : <Send size={17} />}</button><div className={styles.composeHint}><span>{zh ? '通过对话修改 · 保留已预约时间' : 'Edit by conversation · keep bookings fixed'}</span><span><CornerDownLeft size={12} /> {zh ? '回车发送' : 'Enter to send'}</span></div></form>
+        <form className={styles.composer} onSubmit={submit}><label htmlFor="trip-request" className={styles.srOnly}>{zh ? '描述行程或提出修改' : 'Describe your trip or request a change'}</label>{editContext && <div className={styles.editContext} role="status"><span><Sparkles size={13} />{editContext}</span><button type="button" onClick={() => { setInput(''); setEditContext(''); }} aria-label={zh ? '取消修改需求' : 'Cancel edit request'}>×</button><small>{zh ? '修改需求已填入，发送后由路线管家更新行程。' : 'Request ready. Send it to update your itinerary.'}</small></div>}<textarea ref={inputRef} id="trip-request" value={input} onChange={event => setInput(event.target.value)} onKeyDown={inputKey} rows={2} maxLength={2500} disabled={!user||authLoading} placeholder={!user?t("Select New trip to start planning."):zh ? '告诉我你住哪里、和谁同行、预约了什么，或想改哪一天…' : 'Where are you staying? Who is coming? Any tickets booked? Or tell me what to change…'} /><button type={busy ? 'button' : 'submit'} onClick={busy ? () => abort.current?.abort() : undefined} aria-label={busy ? (zh ? '停止规划' : 'Stop planning') : (zh ? '发送需求' : 'Send request')} disabled={!user||authLoading||(!busy && !input.trim())}>{busy ? <Square size={17} fill="currentColor" /> : <Send size={17} />}</button><div className={styles.composeHint}><span>{zh ? '通过对话修改 · 保留已预约时间' : 'Edit by conversation · keep bookings fixed'}</span><span><CornerDownLeft size={12} /> {zh ? '回车发送' : 'Enter to send'}</span></div></form>
       </section>
 
       <section className={`${styles.itineraryPanel} ${mobileView !== 'itinerary' ? styles.hidePaneMobile : ''}`} aria-label={zh ? '每日行程工作区' : 'Daily itinerary workspace'}>
-        <div className={styles.itineraryPanelHead}><div className={styles.itineraryPanelTitle}><h2>{zh ? '每日行程' : 'Itinerary'}</h2><h1>{plan ? (zh ? plan.title : readableEnglish(plan.title, 'Your China journey')) : (zh ? '你的中国旅行，从这里开始' : 'Your China journey starts here')}</h1></div></div>
+        <div className={styles.itineraryPanelHead}><div className={styles.itineraryPanelTitle}><h2>{zh ? '每日行程' : t("Itinerary")}</h2><h1>{plan ? (zh ? plan.title : readableEnglish(plan.title, t("Your China journey"))) : (zh ? '你的中国旅行，从这里开始' : t("Your China journey starts here"))}</h1></div></div>
         {plan && <div className={styles.dayRail} role="group" aria-label={zh ? '浏览行程日期' : 'Browse itinerary days'}><button type="button" aria-pressed={allDays} onClick={() => { setPopup(null); setDayToReveal(null); setAllDays(true); itineraryRef.current?.scrollTo({ top: 0, behavior: 'smooth' }); }}>{zh ? '总览' : 'Overview'}</button>{plan.days.map((item, index) => <button type="button" aria-pressed={!allDays && dayIndex === index} key={item.id} onClick={() => chooseDay(index, true)}>{zh ? `第 ${index + 1} 天` : `Day ${index + 1}`}</button>)}</div>}
         <div className={styles.itineraryFeed} ref={itineraryRef}>
           {plan && <ItineraryOverview plan={plan} zh={zh} dayIndex={dayIndex} selectedStop={selectedStop} allDays={allDays} busy={busy} onSelect={selectStop} onDay={index => { chooseDay(index, true); setMobileView('map'); }} onEdit={prepareEdit} onUndo={previousPlan ? () => { setPlan(previousPlan); setPopup(null); setDayToReveal(null); setPreviousPlan(null); setDayIndex(0); setSelectedStop(0); setAllDays(true); } : undefined} />}
@@ -318,7 +322,7 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
 
       <section className={`${styles.mapPanel} ${mobileView !== 'map' ? styles.hidePaneMobile : ''}`} aria-label={zh ? 'Google 行程地图' : 'Google itinerary map'}>
         <div className={styles.panelHead}><div><h2>{plan && allDays ? (zh ? '完整旅行路线' : 'Your whole trip') : day ? `${zh ? '第' : 'Day '}${dayIndex + 1}${zh ? '天' : ''} · ${cityLabel(day, zh)}` : (zh ? '从一个目的地开始' : 'Start with a place')}</h2></div><span className={styles.provider}>Google Maps</span></div>
-        {plan && <div className={styles.dayRail} role="tablist" aria-label={zh ? '行程日期' : 'Trip days'}><button type="button" role="tab" aria-selected={allDays} onClick={() => { setPopup(null); setDayToReveal(null); setAllDays(true); }}>{zh ? '全部行程' : 'Whole trip'}<small>{plan.days.length} {zh ? '天' : 'days'}</small></button>{plan.days.map((item, index) => <button type="button" role="tab" aria-selected={!allDays && dayIndex === index} key={item.id} onClick={() => chooseDay(index, true)}>{zh ? `第 ${index + 1} 天` : `Day ${index + 1}`}<small>{cityLabel(item, zh)}</small></button>)}</div>}
+        {plan && <div className={styles.dayRail} role="tablist" aria-label={zh ? '行程日期' : 'Trip days'}><button type="button" role="tab" aria-selected={allDays} onClick={() => { setPopup(null); setDayToReveal(null); setAllDays(true); }}>{zh ? '全部行程' : 'Whole trip'}<small>{plan.days.length} {zh ? '天' : t("days")}</small></button>{plan.days.map((item, index) => <button type="button" role="tab" aria-selected={!allDays && dayIndex === index} key={item.id} onClick={() => chooseDay(index, true)}>{zh ? `第 ${index + 1} 天` : `Day ${index + 1}`}<small>{cityLabel(item, zh)}</small></button>)}</div>}
         <div className={styles.mapFrame}>
           <ConciergeJourneyMap plan={plan} dayIndex={dayIndex} allDays={allDays} selectedStop={selectedStop} onSelect={(index, stop) => { setDayIndex(index); setSelectedStop(stop); setPopup({ dayIndex: index, stopIndex: stop }); }} popup={popup} placeCard={placeCard} onClose={() => setPopup(null)} zh={zh} />
           {!popup && <div className={styles.mapLegend}>{zh ? '实线：地图服务返回的路径 · 虚线：未返回路径的衔接段 · 滚轮缩放，拖动地图' : 'Solid: provider route geometry · dashed: schematic connection · scroll to zoom, drag to pan'}</div>}

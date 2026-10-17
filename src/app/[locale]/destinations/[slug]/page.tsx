@@ -1,3 +1,8 @@
+import type {Locale} from '@/i18n/locales';
+import {pageMetadata} from '@/i18n/metadata';
+import {cityView} from '@/content/editorial/zh/resolve';
+import {getChineseCityEdition} from '@/content/editorial/zh/cities';
+import CityIntroGuide from '@/components/travel/CityIntroGuide';
 import Image from 'next/image';
 import Link from '@/i18n/context';
 import { notFound } from 'next/navigation';
@@ -10,9 +15,9 @@ import {getCityEdition} from '@/content/editorial/en/cities';
 
 const chapters = [['overview','The introduction'],['sights','What to see'],['food','What to eat'],['stay','Where to stay'],['transport','Getting around'],['routes','Time well spent'],['sources','Sources & updates']] as const;
 export function generateStaticParams(){return cities.map(c=>({slug:c.slug}))}
-export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const c=findCity((await params).slug);const edition=c&&getCityEdition(c.slug);return {title:c?.name||'Destination',description:edition?.whyGo||c?.description}}
-export default async function Page({params}:{params:Promise<{slug:string}>}){
- const c=findCity((await params).slug);if(!c)notFound();const edition=getCityEdition(c.slug);if(edition)return <CityFieldGuide city={c} edition={edition}/>;const photo=photoFor(c.slug);
+export async function generateMetadata({params}:{params:Promise<{slug:string;locale:Locale}>}){const {slug,locale}=await params;const c=findCity(slug);if(!c)return {};const view=cityView(c,locale),edition=locale==='zh'?getChineseCityEdition(slug):getCityEdition(slug);return pageMetadata(locale,`/destinations/${slug}`,view.name,edition?.whyGo||view.description)}
+export default async function Page({params}:{params:Promise<{slug:string;locale:Locale}>}){
+ const {slug,locale}=await params;const c=findCity(slug);if(!c)notFound();const edition=locale==='zh'?getChineseCityEdition(c.slug):getCityEdition(c.slug);if(edition)return <CityFieldGuide city={cityView(c,locale)} edition={edition} locale={locale}/>;if(locale==='zh')return <CityIntroGuide city={c} locale={locale}/>;const photo=photoFor(c.slug);
  return <>
   <div className="wrap breadcrumb"><Link href="/destinations"><ArrowLeft size={15}/> All destinations</Link><span>{c.region} / {c.province}</span></div>
   <section className="city-heading wrap"><div><span className="eyebrow">{c.chinese} · {c.province.toUpperCase()}</span><h1>{c.name}</h1><p>{c.tagline}</p></div><SaveButton slug={c.slug} label/></section>
