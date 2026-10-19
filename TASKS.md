@@ -1,5 +1,18 @@
 # TASKS.md
 
+## 用户新增：Google Analytics 4（D-032，2026-10-19）
+
+- [x] 中英文共用 GA4 接入，首次与站内切页/后退浏览，重复渲染去重，生产配置与域名门槛。
+- [x] 私人查询参数与来源清理，保留受限推广来源；无配置或统计失败不影响网站。
+- [x] `test:analytics` 含实际 Next Script/Strict Mode/路由和脚本失败检查；生产构建、i18n/editorial/chinese、账户和工作区回归、ESLint通过。
+- [x] 配置、关闭自动增强型衡量、部署、实时验收及 Users/Sessions/Views/来源报表说明。
+- [x] 用户提供真实衡量 ID `G-QBCYPGN6SB`，作为公开默认值接入；环境变量可覆盖或显式空值停用，真实 ID 构建与双语产物验证通过。
+- [x] 关闭网站数据流的增强型衡量（2026-10-19 用户确认已关闭）。
+- [x] 发布 `6cfda4b` 到 GitHub main，Vercel Production 成功；正式站真实浏览确认正确标签、站内单份脚本、英文首页/目的地与中文页 `page_view` 请求和私人查询/锚点清理。
+- [x] 在用户实际 Chrome 的 GA 媒体资源中确认 Realtime 收到活跃用户、page_view、first_visit、session_start，以及中英文页面。首页初始化提示仍称无数据，首页历史范围不包含安装日；不将此提示当成采集失败，不修改已正常发送的代码。
+
+已生产部署并验证真实采集请求与 GA 后台实时收数；受控测试不发送假访问，线上验收浏览包含在当前统计中。证据 `output/analytics/production-check.json`、`realtime-confirmation.json`；详细操作见 `docs/workflows/google-analytics.md`。不以访问统计代替核心旅行 Evals 或 Product Human Gate。
+
 ## 用户新增：Travel Stories 瀑布流（D-030，2026-10-13）
 
 - [x] 新增英文独立页面、顶部导航与Product页脚入口，保留既有栏目相对顺序。

@@ -623,6 +623,27 @@ D-030 文案区分隔线跟进（2026-10-13）：按用户要求，Travel Storie
 
 Critic：功能与共享实体/故障恢复证据pass；浏览器URL策略拦截尚未解除，实际宽窄屏、播放、地图、真实中文登录/资料保存未验证，不能以SSR或夹具代替。译文基于既有编辑快照，未重新确认当前旅行政策/场所；阅读质量和核心旅行价值待用户。未调用付费模型、不改旅行生成/地点排序/路线/开放过滤或事实回退，旅行Evals标准、旧失败与Loop/Human Gate保持。维护与范围见docs/workflows/chinese-website.md。
 
+## D-032 — 用 GA4 标准报表观察网站访问
+
+**日期**：2026-10-19
+**状态**：用户确认增强型衡量已关闭；生产部署、真实 GA 采集请求与后台 Realtime 收数均已验证
+
+用户需要了解网站流量、用户数与访问数。采用 GA4 官方 gtag.js，通过现有中英文共享布局在水合后加载；由 pathname 变化发送页面浏览，GA 管理浏览器用户/会话。明确区分 Users、Sessions 与 Views，不先建设自有统计后台或 GA Data API 集成。
+
+手动页面浏览设置 `send_page_view: false`，并要求数据流关闭 Enhanced Measurement 总开关，避免其独立历史监听造成重复浏览或其他自动事件带出私人内容。首次/站内/中英文/后退均计浏览，重渲染、Strict Mode、同路径查询/锚点变化不增加浏览；不重复初始化会话。仅正式构建/正式部署且正式 HTTPS 域名初始化统计，空/错误 ID、开发、Vercel Preview 不启用。
+
+地址仅保留受限 slug 格式的 utm_source/medium/campaign；移除私人 trip、搜索输入、认证参数和锚点，外部 referrer 仅保留来源站点，站内使用上个干净路径。不上报登录身份、邮箱、聊天或表单，关闭 Google Signals 与广告个性化信号。来源归因因此不涵盖其他广告参数；不把浏览器去重用户解释为精确自然人数。广告拦截或 Google 不可达时允许少计且不能阻塞核心体验。
+
+验证：`test:analytics` 覆盖生产门槛、命令队列、首次/切页/后退/重复、隐私参数、来源、实际 Next Script/Strict Mode/路由组件与远端脚本错误；生产构建（临时测试 ID、未部署）、prebuild 的 i18n/editorial/chinese、账户/RLS/保存、规划工作区、全仓 ESLint 通过。用户明确回复尚无 GA4 ID，因此没有声称生产已收数。Critic：受控接入 pass；真实 GA 报告验收 blocked（缺媒体资源 ID 和部署）。真实媒体资源配置、环境变量、部署及实时收数步骤见 `docs/workflows/google-analytics.md`。本轮不修改旅行逻辑、Evals标准、历史失败或 Human Gate；流量变化不代表产品价值成立。
+
+D-032 真实 ID 配置跟进（2026-10-19）：用户随后提供 `G-QBCYPGN6SB`。将这个公开衡量标识作为网站生产默认值，替代上一轮“必须手动添加 Vercel 变量才启用”的方式；允许环境变量覆盖，显式空值停用。衡量 ID 不是 API 秘钥，可进入版本控制；开发/预览/非正式域名排除规则保持。统计组件测试覆盖默认/覆盖/空值，真实默认配置生产构建、i18n/editorial/chinese、TypeScript、相关 ESLint 和双语 HTML 正确 ID/无测试 ID 检查通过。用户回复增强型衡量尚未关闭，已告知管理→数据收集和修改→数据流→网站数据流的关闭路径；在确认关闭前不发布，防止重复浏览。真实 GA 收数仍待生产部署和报告验收，不能把构建通过等同于已启用。
+
+同日发布前跟进：用户确认“已经关闭增强型衡量”，解除本次部署的设置前置条件；沿用 GitHub main → Vercel Production 发布，仅在部署与正式页面验证后记录上线结果。
+
+同日生产验收：`6cfda4b` 已推送 main，Vercel 状态 success。真实浏览器首页→目的地→规划→中文切换可用，统计脚本始终一份；资源清单观察到发往 `www.google-analytics.com/g/collect` 且 tid 为真实 ID 的英文首页/目的地 page_view，以及英文规划的批量请求。额外直接打开带测试 trip 查询/锚点的中文规划页，真实 page_view 的 dl 只有干净路径。未出现浏览器控制台错误。资源清单不能读取批量 POST 内部事件，不以 URL 数量证明全部事件去重；去重契约仍由受控组件测试保证。当前 GA 浏览器会话只有 provision 欢迎页，无法读取该媒体资源，已请求用户确认实时报告；不宣称后台报表已验收。证据 `output/analytics/production-check.json`，不记录客户端/会话标识。
+
+同日后台收数验收：用户反馈首页“No data received”后，读取其实际 Chrome 的 GA 页面。首页初始化提示与已存在的实时活跃用户同时出现，且历史图表 Last 7 days 为10月12–18日，不含19日安装日。进入同一媒体资源 Realtime overview，直接确认活跃用户、page_view、first_visit、session_start 和英文首页/目的地/规划、中文规划页，因此采集及后台接收通过，无需修改统计代码。初始化提示不能覆盖实时收数证据；常规报表处理与长期来源归因仍待后续自然流量。当前计数含验收访问，不作为自然获客或产品价值证据。明细仅保存于本地 `output/analytics/realtime-confirmation.json`，不发布客户端、会话或账户标识；原旅行 Evals 和 Human Gate 不变。
+
 
 ## D-033 — 指定现有账户只读查看所有导游需求
 
