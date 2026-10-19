@@ -434,3 +434,8 @@ Google 地点/道路 + 高德天气/公交的受控回归继续检查地理、�
 新增verify-guide-admin.ts真实隔离PostgreSQL及生产SDK控制传输：迁移/重复、指定已验证UUID、两用户隔离、匿名拒绝、不可自提权/写删/读其他profile和trip、即时撤销、未验证拒绝、排序/25条与下一页/筛选/空结果/故障/异常JSON单条隔离。生产组件verify-guide-admin-ui.ts覆盖详情/异常提示、分页/筛选重置、错误后重试、晚到响应不覆盖和中文。纳入test:accounts，原账户/保存/导游回归保留。
 
 npm test、账户/导游/中文/i18n、TypeScript/相关ESLint/CSS通过；浏览器中文管理登录保护与返回路径、本地API401/private no-store检查通过。实际Supabase迁移、管理员/第二真实用户、真实数据和管理页宽窄屏尚待验证；受控组件不替代真人登录及视觉验收。文档和证据见D-033，不改旅行生成/路线/事实门槛，不运行付费旅行生成或完整Loop。
+
+
+## 2026-10-19 robots/llms静态发布检查
+
+原Googlebot专属组允许/api/admin/guide-requests的失败检查已复现；单一通用规则后11类爬虫对10个排除路径拒绝、12个公开/JS/图片/索引路径允许。llms中27个唯一正式页面链接均HTTP200；本地/robots.txt、/llms.txt直接200且UTF-8 text/plain、字节一致，sitemap无私人页面。检查脚本/记录在本地output/discovery，非旅行Evals案例，不改变生成/排序/事实门槛。正式域名检查与收录效果分别待部署和后续观察。

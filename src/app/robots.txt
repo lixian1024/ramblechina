@@ -1,0 +1,16 @@
+# Public pages are allowed for search and AI crawlers by default.
+# A single group ensures named crawlers inherit these exclusions too.
+User-agent: *
+Disallow: /api/
+Disallow: /auth/
+Disallow: /_AMapService/
+Disallow: /en/login
+Disallow: /zh/login
+Disallow: /en/account
+Disallow: /zh/account
+Disallow: /en/admin
+Disallow: /zh/admin
+Disallow: /en/checkout
+Disallow: /zh/checkout
+
+Sitemap: https://www.ramblechina.com/sitemap.xml

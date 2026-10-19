@@ -662,3 +662,17 @@ npm test、test:accounts、test:guide-requests、test:chinese、i18n、TypeScrip
 
 
 D-033 发布准备跟进（2026-10-19）：用户报告已执行Supabase授权SQL，并明确授权推送GitHub及Vercel生产发布。npm test、test:accounts及生产构建在本轮重新通过；实际管理员会话读取与线上页面待部署后核对。发现远端main已有三个GA4提交及D-032，因此将本功能决策编号定为D-033，保留既有GA4实现和记录；不通过强制推送覆盖远端。
+
+
+## D-034 — 正确发布公开抓取说明与网站索引入口
+
+**日期**：2026-10-19
+**状态**：文件及本地抓取/链接检查通过，沿用GitHub main → Vercel发布后再核对正式根路径。
+
+用户在项目根目录提供llms.txt、robots.txt，要求检查并发布。实际Next静态发布不读取任意项目根文件，故按已安装框架文档将robots放src/app/robots.txt元数据路由、llms放public/llms.txt，网站URL仍为/robots.txt与/llms.txt；不保留容易漂移的重复源文件，原始输入备份仅在本地output/discovery/originals。代理已排除带扩展名的路径，无需新增重写或认证绕过。
+
+原robots针对Googlebot及多类AI爬虫的专属Allow分组会覆盖通用Disallow而不继承，已通过解析复现API路径被允许。改为单个User-agent:*组：默认开放公开内容和JS/图片等资源，统一排除API、认证回调、高德代理、中英文登录/账户/管理员/checkout。保留正式www域名sitemap；这是抓取指引，认证/RLS与管理页noindex继续承担访问和索引边界，不以robots代替权限。用户原先对AI训练类爬虫的开放意图沿用，不增加禁止训练策略。
+
+llms保留42城、双语和现有服务入口，去掉“所有指南均已审核/实时核对”的无法证实暗示，说明来源/编辑日期不等于实时检查，明确生成保存与导游提交需要登录、部分长文/PDF仅英文、咨询不等于预订。云南三城分别指向各自页面；未生成虚构Markdown副本或地点信息。27个链接实查HTTP200，文件本地根路径200、UTF-8 text/plain且字节与审核文件一致，11类爬虫/10类排除/12类公开和资源路径检查通过，sitemap未列私人账户/管理页。
+
+llms.txt仍是帮助代理理解网站的提案，不能承诺搜索引擎收录或AI引用/获客增长。官方依据：[Next public](https://nextjs.org/docs/app/api-reference/file-conventions/public-folder)、[Google分组规则](https://developers.google.com/crawling/docs/robots-txt/robots-txt-spec)、[llms提案](https://llmstxt.org/)。证据output/discovery/local-check.json；正式发布响应和内容哈希待检查。旅行逻辑、Evals标准及Loop/Human Gate不改变。

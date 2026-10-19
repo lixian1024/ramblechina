@@ -1,0 +1,44 @@
+# Ramble China
+
+> Ramble China is an English and Simplified Chinese travel reference for international visitors to China. It covers 42 destinations across mainland China, Hong Kong and Macao, practical travel essentials, an AI itinerary planner, and requests for connecting with local guides.
+
+Key facts:
+- Audience: first-time and independent international travellers to China.
+- Languages: English (primary), Simplified Chinese. Some detailed guides and PDF previews are available only in English.
+- Guide pages link to sources and include source or editorial reference dates where available. These are not live checks of every venue or policy; confirm current entry rules, opening hours, booking requirements and transport with official providers.
+- Sign-in is required to generate and save itineraries and to submit local guide requests.
+- Local guide requests are free to submit. Availability, guide language, services and price still need confirmation; submitting a request does not make a booking or take payment.
+- Contact: service@ramblechina.com
+
+## Start here
+- [Home](https://www.ramblechina.com/en): overview of the site
+- [Travel essentials](https://www.ramblechina.com/en/essentials): entry, connectivity, payments, maps, trains, taxis, airports, language and safety
+- [Request a local guide](https://www.ramblechina.com/en/local-guide): share your cities, dates and interests after signing in
+- [Plan a trip](https://www.ramblechina.com/en/plan): explore the planning workspace; sign in to generate and save an itinerary
+- [All destinations](https://www.ramblechina.com/en/destinations): browse the destination collection
+
+## Major destination guides
+- [Beijing](https://www.ramblechina.com/en/destinations/beijing): imperial landmarks, hutongs and route notes
+- [Shanghai](https://www.ramblechina.com/en/destinations/shanghai): the Bund, old lanes, museums and route notes
+- [Xi'an](https://www.ramblechina.com/en/destinations/xian): city wall, Tang landmarks and the Terracotta Army
+- [Chengdu](https://www.ramblechina.com/en/destinations/chengdu): teahouses, food, pandas and temples
+- [Chongqing](https://www.ramblechina.com/en/destinations/chongqing): mountain-city routes, river views and hotpot
+- [Guilin & Yangshuo](https://www.ramblechina.com/en/destinations/guilin): Li River, karst landscapes and places to stay
+- [Zhangjiajie](https://www.ramblechina.com/en/destinations/zhangjiajie): scenic-area and route notes
+- [Hangzhou](https://www.ramblechina.com/en/destinations/hangzhou): West Lake and city guide
+- [Suzhou](https://www.ramblechina.com/en/destinations/suzhou): gardens and city guide
+- [Huangshan](https://www.ramblechina.com/en/destinations/huangshan): mountain and city guide
+- [Hong Kong](https://www.ramblechina.com/en/destinations/hong-kong): destination guide
+- [Macao](https://www.ramblechina.com/en/destinations/macao): destination guide
+- [Guangzhou](https://www.ramblechina.com/en/destinations/guangzhou): destination guide
+- [Shenzhen](https://www.ramblechina.com/en/destinations/shenzhen): destination guide
+- [Kunming](https://www.ramblechina.com/en/destinations/kunming): Yunnan destination guide
+- [Dali](https://www.ramblechina.com/en/destinations/dali): Yunnan destination guide
+- [Lijiang](https://www.ramblechina.com/en/destinations/lijiang): Yunnan destination guide
+- [Harbin](https://www.ramblechina.com/en/destinations/harbin): winter ice season and city guide
+
+## Optional
+- [Travel stories](https://www.ramblechina.com/en/travel-stories): selected YouTube journeys by international travellers
+- [Illustrated guide preview](https://www.ramblechina.com/en/guide): English preview page with a free PDF sample; the complete edition is in development
+- [About Ramble China](https://www.ramblechina.com/en/about): team and contact information
+- [Chinese version](https://www.ramblechina.com/zh): Simplified Chinese website
