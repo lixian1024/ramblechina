@@ -59,3 +59,5 @@ Sessions 与 Views 是不同指标：同一次访问可浏览多页。浏览器/
 运行 `npm run test:analytics` 检查首次/站内/中英文/返回浏览、重渲染去重、会话配置复用、推广参数、私人参数/来源清理、无配置/开发/预览门槛及统计失败隔离。测试只检查真实生产函数的命令队列，不向 Google 发送假访问。
 
 2026-10-19：用户确认增强型衡量已关闭，`6cfda4b` 已部署到 Production。真实浏览器观察到正确 ID 的中英文 `g/collect` 页面浏览请求、单份脚本和私人查询/锚点清理。证据 `output/analytics/production-check.json`。可用 GA 浏览器会话仅显示欢迎页，该媒体资源 Realtime 收数仍待用户确认；资源清单不暴露批量 POST 内部事件，不以请求 URL 个数证明全部事件计数。访问统计不改变现有旅行 Evals、Loop 或 Product Human Gate。
+
+同日最终验收：进入用户实际 Chrome 中的同一媒体资源 Realtime overview，已确认活跃用户、page_view、first_visit、session_start 及中英文页面。首页仍有“No data received”初始化提示，其 Last 7 days 历史图表也不包含安装当天；先以实时报告核实是否接收，不因首页提示重新安装标签。常规报表可能需要24–48小时处理，参见[官方收数确认说明](https://support.google.com/analytics/answer/9333790)。当前计数包含验收浏览，不是自然获客指标。最终证据 `output/analytics/realtime-confirmation.json`，仅本地保存；本轮没有因此修改统计代码。

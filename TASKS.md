@@ -9,9 +9,9 @@
 - [x] 用户提供真实衡量 ID `G-QBCYPGN6SB`，作为公开默认值接入；环境变量可覆盖或显式空值停用，真实 ID 构建与双语产物验证通过。
 - [x] 关闭网站数据流的增强型衡量（2026-10-19 用户确认已关闭）。
 - [x] 发布 `6cfda4b` 到 GitHub main，Vercel Production 成功；正式站真实浏览确认正确标签、站内单份脚本、英文首页/目的地与中文页 `page_view` 请求和私人查询/锚点清理。
-- [ ] 在创建该媒体资源的 GA 账号中确认 Realtime 报告收到访问；当前可用浏览器会话仅显示欢迎页，已请用户确认。浏览器资源清单无法读取批量 POST 内部事件，不声称已从线上网络证明全部事件计数。
+- [x] 在用户实际 Chrome 的 GA 媒体资源中确认 Realtime 收到活跃用户、page_view、first_visit、session_start，以及中英文页面。首页初始化提示仍称无数据，首页历史范围不包含安装日；不将此提示当成采集失败，不修改已正常发送的代码。
 
-已生产部署并验证真实采集请求，后台报表接收待确认；受控测试不发送假访问。证据 `output/analytics/production-check.json`；详细操作见 `docs/workflows/google-analytics.md`。不以访问统计代替核心旅行 Evals 或 Product Human Gate。
+已生产部署并验证真实采集请求与 GA 后台实时收数；受控测试不发送假访问，线上验收浏览包含在当前统计中。证据 `output/analytics/production-check.json`、`realtime-confirmation.json`；详细操作见 `docs/workflows/google-analytics.md`。不以访问统计代替核心旅行 Evals 或 Product Human Gate。
 
 ## 用户新增：Travel Stories 瀑布流（D-030，2026-10-13）
 

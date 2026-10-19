@@ -626,7 +626,7 @@ Critic：功能与共享实体/故障恢复证据pass；浏览器URL策略拦截
 ## D-032 — 用 GA4 标准报表观察网站访问
 
 **日期**：2026-10-19
-**状态**：用户确认增强型衡量已关闭；已生产部署并验证真实 GA 采集请求，后台 Realtime 报告待确认
+**状态**：用户确认增强型衡量已关闭；生产部署、真实 GA 采集请求与后台 Realtime 收数均已验证
 
 用户需要了解网站流量、用户数与访问数。采用 GA4 官方 gtag.js，通过现有中英文共享布局在水合后加载；由 pathname 变化发送页面浏览，GA 管理浏览器用户/会话。明确区分 Users、Sessions 与 Views，不先建设自有统计后台或 GA Data API 集成。
 
@@ -641,3 +641,5 @@ D-032 真实 ID 配置跟进（2026-10-19）：用户随后提供 `G-QBCYPGN6SB`
 同日发布前跟进：用户确认“已经关闭增强型衡量”，解除本次部署的设置前置条件；沿用 GitHub main → Vercel Production 发布，仅在部署与正式页面验证后记录上线结果。
 
 同日生产验收：`6cfda4b` 已推送 main，Vercel 状态 success。真实浏览器首页→目的地→规划→中文切换可用，统计脚本始终一份；资源清单观察到发往 `www.google-analytics.com/g/collect` 且 tid 为真实 ID 的英文首页/目的地 page_view，以及英文规划的批量请求。额外直接打开带测试 trip 查询/锚点的中文规划页，真实 page_view 的 dl 只有干净路径。未出现浏览器控制台错误。资源清单不能读取批量 POST 内部事件，不以 URL 数量证明全部事件去重；去重契约仍由受控组件测试保证。当前 GA 浏览器会话只有 provision 欢迎页，无法读取该媒体资源，已请求用户确认实时报告；不宣称后台报表已验收。证据 `output/analytics/production-check.json`，不记录客户端/会话标识。
+
+同日后台收数验收：用户反馈首页“No data received”后，读取其实际 Chrome 的 GA 页面。首页初始化提示与已存在的实时活跃用户同时出现，且历史图表 Last 7 days 为10月12–18日，不含19日安装日。进入同一媒体资源 Realtime overview，直接确认活跃用户、page_view、first_visit、session_start 和英文首页/目的地/规划、中文规划页，因此采集及后台接收通过，无需修改统计代码。初始化提示不能覆盖实时收数证据；常规报表处理与长期来源归因仍待后续自然流量。当前计数含验收访问，不作为自然获客或产品价值证据。明细仅保存于本地 `output/analytics/realtime-confirmation.json`，不发布客户端、会话或账户标识；原旅行 Evals 和 Human Gate 不变。

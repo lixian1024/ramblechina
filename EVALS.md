@@ -8,6 +8,8 @@
 
 生产跟进：`6cfda4b` 的 Vercel 部署 success；正式浏览器中单份 GA 脚本、英文首页/目的地与中文规划的真实 page_view 采集请求通过，中文页带测试 trip 查询/锚点时上报地址不含它们，无控制台错误。英文规划的批量请求存在，但资源清单不暴露 POST 内部事件，不声称已从线上网络证明全部去重；受控去重测试保持。当前 GA 会话无该媒体资源访问页面，Realtime 接收仍待用户确认。证据 `output/analytics/production-check.json`，未保存客户端/会话标识。
 
+后台跟进：用户反馈首页无数据提示后，实际 Chrome 的同一媒体资源 Realtime overview 已显示活跃用户与 page_view/first_visit/session_start，并列出中英文页面；后台接收验收通过。首页初始化提示未同步，历史图表范围不含当天安装日；无需更改代码或旅行 Evals。验收流量不等于自然流量，长期常规报表/归因仍待观察。明细 `output/analytics/realtime-confirmation.json` 仅本地保存。
+
 ## 2026-10-13 Travel Stories（D-030，不改变旅行案例标准）
 
 `test:travel-stories` 覆盖Asia/Shanghai两年日历/闰日边界、未来/非法日期、去重、100条上限、精确整数播放量降序、跨国搜索误入、频道归属、禁嵌入/非公开/年龄/直播/缺失字段、短长视频、API分页和50条元数据分批、Key不进URL、并发缓存、故障保留原检查时间、24小时到期/缺Key空状态，以及不同高度100张卡片在桌面/平板/390/320px内容宽度下无重叠、无越界、排序位置单调。
