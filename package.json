@@ -27,7 +27,7 @@
     "test:place-identity": "node --import tsx scripts/verify-place-identity.ts && node --import tsx scripts/verify-photo-screening.ts",
     "test:map-providers": "node --import tsx scripts/verify-map-providers.ts",
     "test:guide-requests": "node --import tsx scripts/verify-guide-requests.ts",
-    "test:accounts": "node --import tsx scripts/verify-auth-flows.ts && node --import tsx scripts/verify-accounts.ts && node --import tsx scripts/verify-trip-persistence.ts",
+    "test:accounts": "node --import tsx scripts/verify-auth-flows.ts && node --import tsx scripts/verify-accounts.ts && node --import tsx scripts/verify-trip-persistence.ts && node --import tsx scripts/verify-guide-admin.ts && node --import tsx scripts/verify-guide-admin-ui.ts",
     "test:travel-stories": "node --import tsx scripts/verify-travel-stories.ts",
     "test:chinese": "node --import tsx scripts/verify-chinese-website.ts"
   },

@@ -290,3 +290,15 @@ Itinerary 栏头简化：移除右侧天数标签，保留日期导航与总览�
 验证：全部42中文目的地与主要页面HTTP200，原英文首页保留；语言协商、回退与100URL站点地图通过。TypeScript、相关Lint、CSS/diff、test:chinese及原i18n/editorial/planner/accounts/guide-request/travel-stories通过，中文SDKnext与生产保存/新行程URL、422日期错误及切换保护受控通过。没有降低原数据缺失、隔离、冲突和日历断言。
 
 待体验：浏览器视觉/地图/视频、真实中文登录保存、中文阅读和转化。保留39城中文概览与英文详细笔记、PDF中文未提供的明确范围，不能宣称所有长文/导出全部翻译；旅行Evals与Human Gate保持。证据output/zh-website/route-check.json、coverage-check.json。
+
+
+## 2026-10-19 导游需求只读管理（D-033）
+
+- [x] 用户指定lisabob468@gmail.com为初始管理员；准备仅绑定已验证Auth UUID、可重复执行的SQL。
+- [x] 中英文管理页、账户入口、25条分页/状态筛选、详情、空状态与重试。
+- [x] 服务器及RLS校验，禁止普通用户读取他人、名单自提权、管理写删或其他个人资料/行程访问；异常单条隔离。
+- [x] 实际隔离PostgreSQL/SDK、生产组件故障回归、独立审查、npm test、账户/导游/中文/i18n及静态检查；本地未登录保护/401/private no-store。
+- [x] 用户报告已在Supabase执行20261019000100_guide_request_admin.sql（2026-10-19）；未由代理读取后台独立确认。
+- [ ] 用指定已验证账号查看真实请求与入口，并复验第二真实用户拒绝及宽窄屏。
+
+文档docs/workflows/guide-request-admin.md。线上授权尚未执行，人工跟进价值尚待使用反馈，旅行Evals和Human Gate不变。

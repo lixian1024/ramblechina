@@ -622,3 +622,22 @@ D-030 文案区分隔线跟进（2026-10-13）：按用户要求，Travel Storie
 全部42中文城市/主要中文页面HTTP200，英文首页原文保留；root协商/旧韩文与指南回退、实际100URL站点地图、canonical/hreflang通过。类型/Lint/CSS/diff、原i18n/editorial/planner/账户/导游/视频回归通过；原英文认证测试保留，增中文SDKnext与生产保存hook路径、无配置/422日期错误和可取消语言切换。数据缺失、版本冲突、匿名拒绝、两用户隔离、十天/预约保存门槛不变。证据output/zh-website/route-check.json、coverage-check.json。
 
 Critic：功能与共享实体/故障恢复证据pass；浏览器URL策略拦截尚未解除，实际宽窄屏、播放、地图、真实中文登录/资料保存未验证，不能以SSR或夹具代替。译文基于既有编辑快照，未重新确认当前旅行政策/场所；阅读质量和核心旅行价值待用户。未调用付费模型、不改旅行生成/地点排序/路线/开放过滤或事实回退，旅行Evals标准、旧失败与Loop/Human Gate保持。维护与范围见docs/workflows/chinese-website.md。
+
+
+## D-033 — 指定现有账户只读查看所有导游需求
+
+**日期**：2026-10-19
+**状态**：本地实现及受控验证通过；线上授权与真实账户查看待执行。
+
+用户要求查看用户提交的Need local guide请求，并指定lisabob468@gmail.com为管理员。复用现有登录，在/en/admin/guide-requests和/zh/admin/guide-requests提供按时间倒序、25条分页、状态筛选、详情展开及失败重试。账户页依据服务器查询到的权限显示入口；无公开导航/站点地图入口，页面noindex。原需求与状态只读，不发消息、不确认预订、不迁移无账户历史JSON。
+
+更新D-025由工作人员使用Table Editor查看的安排：新增私有guide_admins UUID名单及仅SELECT的RLS策略；普通用户保留所有者访问。SECURITY DEFINER函数空search_path、全限定表名、仅返回当前UID是否为已验证管理员；名单schema/table无客户端权限，不依赖可编辑metadata/客户端email、不引入service-role Key。授权SQL只在恰好一个指定已验证邮箱存在时绑定UUID，否则整段失败；可重复执行，撤销不等待JWT刷新。API先getUser再查权限，未登录401/非管理员403/故障503、private no-store。
+
+TDD首先复现管理员读不到他人请求（0而非2），SQL加入后通过；独立审查发现用户可直接插入异常JSON使整页校验失败，新增实际PostgreSQL插入{}的失败案例后，改为异常单条显示编号/提示，保留其他请求及分页。独立复核pass。真实隔离PostgreSQL迁移/重复执行、两用户隔离、禁止自提权/写删/越界profile和trip、撤销/未验证拒绝、生产SDK排序/筛选/分页/错误，以及生产组件详情/异常行/重试/晚到响应/中文检查通过。
+
+npm test、test:accounts、test:guide-requests、test:chinese、i18n、TypeScript、相关ESLint与CSS解析通过。i18n的tsx CLI在沙箱遇到IPC EPERM，改用node --import tsx执行同一脚本通过；react-test-renderer有既有弃用提示。浏览器实际中文管理页登录保护及登录返回路径通过，未登录API401/private no-store。证据与部署步骤见docs/workflows/guide-request-admin.md、output/guide-admin/verification.json。
+
+尚未连接私有数据库管理权限或登录Supabase控制台执行线上迁移；用户需执行supabase/migrations/20261019000100_guide_request_admin.sql，然后用指定账户验证实际列表/入口、第二真实用户拒绝和宽窄屏。受控夹具不冒充客户请求或真实授权成功。没有改旅行生成/排序/路线/事实回退，不运行付费旅行案例、不重置Loop或Human Gate。
+
+
+D-033 发布准备跟进（2026-10-19）：用户报告已执行Supabase授权SQL，并明确授权推送GitHub及Vercel生产发布。npm test、test:accounts及生产构建在本轮重新通过；实际管理员会话读取与线上页面待部署后核对。发现远端main已有三个GA4提交及D-032，因此将本功能决策编号定为D-033，保留既有GA4实现和记录；不通过强制推送覆盖远端。
