@@ -8,9 +8,10 @@
 - [x] 配置、关闭自动增强型衡量、部署、实时验收及 Users/Sessions/Views/来源报表说明。
 - [x] 用户提供真实衡量 ID `G-QBCYPGN6SB`，作为公开默认值接入；环境变量可覆盖或显式空值停用，真实 ID 构建与双语产物验证通过。
 - [x] 关闭网站数据流的增强型衡量（2026-10-19 用户确认已关闭）。
-- [ ] 发布本次代码到 Vercel Production，并在正式域名核对实时收数与无重复/私人参数。
+- [x] 发布 `6cfda4b` 到 GitHub main，Vercel Production 成功；正式站真实浏览确认正确标签、站内单份脚本、英文首页/目的地与中文页 `page_view` 请求和私人查询/锚点清理。
+- [ ] 在创建该媒体资源的 GA 账号中确认 Realtime 报告收到访问；当前可用浏览器会话仅显示欢迎页，已请用户确认。浏览器资源清单无法读取批量 POST 内部事件，不声称已从线上网络证明全部事件计数。
 
-本地代码可配置，尚未部署或验证真实 GA 收数；测试不发送假访问。详细操作见 `docs/workflows/google-analytics.md`。不以访问统计代替核心旅行 Evals 或 Product Human Gate。
+已生产部署并验证真实采集请求，后台报表接收待确认；受控测试不发送假访问。证据 `output/analytics/production-check.json`；详细操作见 `docs/workflows/google-analytics.md`。不以访问统计代替核心旅行 Evals 或 Product Human Gate。
 
 ## 用户新增：Travel Stories 瀑布流（D-030，2026-10-13）
 

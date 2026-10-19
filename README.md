@@ -36,7 +36,7 @@
 
 ### Google Analytics 4
 
-The owner's public GA4 stream `G-QBCYPGN6SB` is configured as the production default. Disable the stream's Enhanced Measurement before deploying. `NEXT_PUBLIC_GA_MEASUREMENT_ID` optionally overrides it; an explicit empty value disables collection. The shared English/Chinese layout records initial and client navigation pageviews; development and preview traffic are excluded. See [setup, reporting and live acceptance](docs/workflows/google-analytics.md). Run `npm run test:analytics`. Production deployment and GA Realtime receipt are still required to confirm live collection.
+The owner's public GA4 stream `G-QBCYPGN6SB` is deployed as the production default; the owner confirmed Enhanced Measurement is disabled. `NEXT_PUBLIC_GA_MEASUREMENT_ID` optionally overrides it; an explicit empty value disables collection. The shared English/Chinese layout records initial and client navigation pageviews; development and preview traffic are excluded. See [setup, reporting and live acceptance](docs/workflows/google-analytics.md). Run `npm run test:analytics`. Live collection requests have been verified; GA Realtime report receipt still awaits owner confirmation.
 
 ### Google Maps migration
 

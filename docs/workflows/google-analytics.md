@@ -58,4 +58,4 @@ Sessions 与 Views 是不同指标：同一次访问可浏览多页。浏览器/
 
 运行 `npm run test:analytics` 检查首次/站内/中英文/返回浏览、重渲染去重、会话配置复用、推广参数、私人参数/来源清理、无配置/开发/预览门槛及统计失败隔离。测试只检查真实生产函数的命令队列，不向 Google 发送假访问。
 
-当前真实 ID 已配置；增强型衡量关闭、生产部署与 GA 实时收数均须实际确认后才可标为通过。访问统计不改变现有旅行 Evals、Loop 或 Product Human Gate。
+2026-10-19：用户确认增强型衡量已关闭，`6cfda4b` 已部署到 Production。真实浏览器观察到正确 ID 的中英文 `g/collect` 页面浏览请求、单份脚本和私人查询/锚点清理。证据 `output/analytics/production-check.json`。可用 GA 浏览器会话仅显示欢迎页，该媒体资源 Realtime 收数仍待用户确认；资源清单不暴露批量 POST 内部事件，不以请求 URL 个数证明全部事件计数。访问统计不改变现有旅行 Evals、Loop 或 Product Human Gate。
