@@ -34,6 +34,10 @@
 
 `/en/travel-stories` shows up to 100 recent China journeys from selected international YouTube creators, sorted by official view counts. Set server-only `YOUTUBE_DATA_API_KEY` with YouTube Data API v3 enabled. Data refreshes on access after a six-hour in-process cache; outages retain explicitly dated data for at most 24 hours. Playback uses the official embedded player on click. Run `npm run test:travel-stories`; configuration, editorial scope, quota and verification limits: [Travel Stories workflow](docs/workflows/travel-stories.md).
 
+### Google Analytics 4
+
+The owner's public GA4 stream `G-QBCYPGN6SB` is configured as the production default. Disable the stream's Enhanced Measurement before deploying. `NEXT_PUBLIC_GA_MEASUREMENT_ID` optionally overrides it; an explicit empty value disables collection. The shared English/Chinese layout records initial and client navigation pageviews; development and preview traffic are excluded. See [setup, reporting and live acceptance](docs/workflows/google-analytics.md). Run `npm run test:analytics`. Production deployment and GA Realtime receipt are still required to confirm live collection.
+
 ### Google Maps migration
 
 Planner and destinations now use Google Maps. Places, nearby dining, photos, walking/driving and static previews use Google server APIs; only Amap weather and transit remain. Configure **both** the website-restricted `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` and a separate `GOOGLE_MAPS_SERVER_API_KEY` for Places API (New), Routes API and Maps Static API. Keep the Amap Web Service key for the two retained services. [Configuration, migration differences and pending live checks](docs/workflows/google-maps-migration.md).

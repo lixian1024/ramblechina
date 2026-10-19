@@ -1,5 +1,17 @@
 # TASKS.md
 
+## 用户新增：Google Analytics 4（D-032，2026-10-19）
+
+- [x] 中英文共用 GA4 接入，首次与站内切页/后退浏览，重复渲染去重，生产配置与域名门槛。
+- [x] 私人查询参数与来源清理，保留受限推广来源；无配置或统计失败不影响网站。
+- [x] `test:analytics` 含实际 Next Script/Strict Mode/路由和脚本失败检查；生产构建、i18n/editorial/chinese、账户和工作区回归、ESLint通过。
+- [x] 配置、关闭自动增强型衡量、部署、实时验收及 Users/Sessions/Views/来源报表说明。
+- [x] 用户提供真实衡量 ID `G-QBCYPGN6SB`，作为公开默认值接入；环境变量可覆盖或显式空值停用，真实 ID 构建与双语产物验证通过。
+- [x] 关闭网站数据流的增强型衡量（2026-10-19 用户确认已关闭）。
+- [ ] 发布本次代码到 Vercel Production，并在正式域名核对实时收数与无重复/私人参数。
+
+本地代码可配置，尚未部署或验证真实 GA 收数；测试不发送假访问。详细操作见 `docs/workflows/google-analytics.md`。不以访问统计代替核心旅行 Evals 或 Product Human Gate。
+
 ## 用户新增：Travel Stories 瀑布流（D-030，2026-10-13）
 
 - [x] 新增英文独立页面、顶部导航与Product页脚入口，保留既有栏目相对顺序。

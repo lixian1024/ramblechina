@@ -29,7 +29,8 @@
     "test:guide-requests": "node --import tsx scripts/verify-guide-requests.ts",
     "test:accounts": "node --import tsx scripts/verify-auth-flows.ts && node --import tsx scripts/verify-accounts.ts && node --import tsx scripts/verify-trip-persistence.ts",
     "test:travel-stories": "node --import tsx scripts/verify-travel-stories.ts",
-    "test:chinese": "node --import tsx scripts/verify-chinese-website.ts"
+    "test:chinese": "node --import tsx scripts/verify-chinese-website.ts",
+    "test:analytics": "node --import tsx scripts/verify-analytics.ts"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^2.1.3",
