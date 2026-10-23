@@ -15,7 +15,7 @@ import {getCityEdition} from '@/content/editorial/en/cities';
 
 const chapters = [['overview','The introduction'],['sights','What to see'],['food','What to eat'],['stay','Where to stay'],['transport','Getting around'],['routes','Time well spent'],['sources','Sources & updates']] as const;
 export function generateStaticParams(){return cities.map(c=>({slug:c.slug}))}
-export async function generateMetadata({params}:{params:Promise<{slug:string;locale:Locale}>}){const {slug,locale}=await params;const c=findCity(slug);if(!c)return {};const view=cityView(c,locale),edition=locale==='zh'?getChineseCityEdition(slug):getCityEdition(slug);return pageMetadata(locale,`/destinations/${slug}`,view.name,edition?.whyGo||view.description)}
+export async function generateMetadata({params}:{params:Promise<{slug:string;locale:Locale}>}){const {slug,locale}=await params;const c=findCity(slug);if(!c)return {};const view=cityView(c,locale),edition=locale==='zh'?getChineseCityEdition(slug):getCityEdition(slug);return pageMetadata(locale,`/destinations/${slug}`,locale==='zh'?`${view.name}旅行指南：初次到访参考`:`${view.name} Travel Guide for First-Time Visitors`,edition?.whyGo||view.description)}
 export default async function Page({params}:{params:Promise<{slug:string;locale:Locale}>}){
  const {slug,locale}=await params;const c=findCity(slug);if(!c)notFound();const edition=locale==='zh'?getChineseCityEdition(c.slug):getCityEdition(c.slug);if(edition)return <CityFieldGuide city={cityView(c,locale)} edition={edition} locale={locale}/>;if(locale==='zh')return <CityIntroGuide city={c} locale={locale}/>;const photo=photoFor(c.slug);
  return <>

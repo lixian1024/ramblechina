@@ -1,7 +1,8 @@
 import { AmapError,configured,searchPlaces,walkBetweenGates } from '@/lib/amap/client';
+import {guardedLookup} from '@/lib/growth/trial';
 export const runtime='nodejs';
 const json=(body:unknown,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'no-store'}});
-export async function GET(request:Request){
+async function lookup(request:Request){
  const url=new URL(request.url);const action=url.searchParams.get('action');
  if(action==='status')return json({configured:configured(),provider:'Google',scope:'Beijing pilot',coordinateSystem:'WGS84'});
  try{
@@ -17,4 +18,8 @@ export async function GET(request:Request){
   }
   return json({error:'Unknown operation.',code:'INVALID_INPUT'},400);
  }catch(error){if(error instanceof AmapError)return json({error:error.message,code:error.code},error.status);return json({error:'Live lookup is temporarily unavailable.',code:'UNAVAILABLE'},502);}
+}
+export async function GET(request:Request){
+ if(new URL(request.url).searchParams.get('action')==='status')return json({configured:configured(),provider:'Google',scope:'Beijing pilot',coordinateSystem:'WGS84'});
+ return guardedLookup(request,()=>lookup(request));
 }

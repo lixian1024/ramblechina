@@ -1,8 +1,8 @@
+import {admittedTripPOST as POST} from './fixtures/admitted-travel-routes';
 import { googleFixtureFetch } from './fixtures/google-provider';
 /** Controlled regressions through the production POST handler. NOT live product/Eval evidence. */
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
-import { POST } from '../src/app/api/trip-concierge/route';
 import { compactShanghaiRepair, groundShanghaiPlanning, removeShanghaiTransportStops, shanghaiResearchFocus } from '../src/lib/travel/shanghai-grounding';
 import { shanghaiQualityIssues } from '../src/lib/travel/shanghai-quality';
 import type { ConciergeEvent, DraftTrip, TripMessage, VerifiedTrip } from '../src/lib/travel/concierge-types';

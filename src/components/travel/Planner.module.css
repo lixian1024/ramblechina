@@ -251,3 +251,5 @@
 .saveBar a,.saveFailure a{text-decoration:underline}
 .saveFailure{padding:12px 16px;background:#fff0e8;font-size:14px;border-bottom:1px solid #e6c8ba}
 .saveFailure p{margin:0 0 8px;line-height:1.5}.saveFailure button{background:none;border:0;padding:0;text-decoration:underline;color:inherit}
+
+.trialNotice{font-size:12px;line-height:1.6;padding:10px 20px;margin:0;color:#485d52;background:#f1f5ef}.trialNotice a{text-decoration:underline}

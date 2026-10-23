@@ -42,7 +42,9 @@ export function recordPageView(browser: AnalyticsBrowser, measurementId: string,
   if (!analyticsMeasurementId(measurementId, 'production') || browser.location.protocol !== 'https:' ||
       !['www.ramblechina.com', 'ramblechina.com'].includes(browser.location.hostname)) return;
   try {
-    const page = browser.location.origin + pathname;
+    // Capability URLs are bearer credentials; never send them to analytics or later referrers.
+    const safePath = pathname.replace(/^(\/(?:en|zh|ko))?\/shared(?:\/.*)?$/, '$1/shared');
+    const page = browser.location.origin + safePath;
     const state = browser.__rambleAnalytics;
     if (state?.measurementId === measurementId && state.lastPage === page) return;
     browser.dataLayer ??= [];
@@ -52,7 +54,7 @@ export function recordPageView(browser: AnalyticsBrowser, measurementId: string,
       browser.dataLayer!.push(arguments);
     };
     const values = {
-      page_location: pageUrl(browser.location.href, pathname),
+      page_location: pageUrl(browser.location.href, safePath),
       page_referrer: state?.lastPage || referralOrigin(browser.document.referrer),
       page_title: browser.document.title,
     };

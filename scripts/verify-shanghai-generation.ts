@@ -1,7 +1,7 @@
+import {admittedTripPOST as POST} from './fixtures/admitted-travel-routes';
 import { googleFixtureFetch } from './fixtures/google-provider';
 /** Controlled provider regression tests, NOT live product/Eval evidence. */
 import assert from 'node:assert/strict';
-import { POST } from '../src/app/api/trip-concierge/route';
 import { findAmapPlace } from '../src/lib/travel/concierge-amap';
 import type { ConciergeEvent } from '../src/lib/travel/concierge-types';
 

@@ -1,3 +1,4 @@
+import {controlledTravel} from './fixtures/admitted-travel-routes';
 import assert from 'node:assert/strict';
 import { cards,entrances,places,sources,validateOptions,defaultOptions,preflight } from '../src/lib/content/beijing-day';
 import { searchPlaces,walkBetweenGates,AmapError } from '../src/lib/amap/client';
@@ -33,4 +34,4 @@ async function main(){
  const healthyFetch=globalThis.fetch;globalThis.fetch=async(input,init)=>new URL(String(input)).hostname==='routes.googleapis.com'?Response.json({routes:[]}):healthyFetch(input,init);await assert.rejects(walkBetweenGates('B00000001','B00000002'),e=>e instanceof AmapError&&e.code==='NO_ROUTE');
  }finally{globalThis.fetch=originalFetch;if(originalKey===undefined)delete process.env.GOOGLE_MAPS_SERVER_API_KEY;else process.env.GOOGLE_MAPS_SERVER_API_KEY=originalKey;}
  console.log('PASS: content references, date and input validation, readiness, Google normalization, missing key, auth/quota/network/invalid response, empty search, wrong gate rejection and outdoor route.');
-}main().catch(e=>{console.error(e);process.exitCode=1});
+}controlledTravel(main).catch(e=>{console.error(e);process.exitCode=1});

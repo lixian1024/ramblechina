@@ -1,5 +1,6 @@
 import { staticGoogle } from '@/lib/travel/google-maps';
 import type { MapPoint } from '@/lib/travel/concierge-types';
+import {guardedLookup} from '@/lib/growth/trial';
 
 export const runtime = 'nodejs';
 
@@ -11,7 +12,7 @@ function coordinate(value: string): MapPoint | null {
   return { lng, lat };
 }
 
-export async function GET(request: Request) {
+async function lookup(request: Request) {
   const query = new URL(request.url).searchParams;
   const raw = query.get('points') || '';
   if (raw.length > 550) return new Response('Too many map points', { status: 400 });
@@ -20,3 +21,4 @@ export async function GET(request: Request) {
   const center = coordinate(query.get('center') || '') || { lng: 121.4737, lat: 31.2304 };
   return staticGoogle(points as MapPoint[], center);
 }
+export async function GET(request:Request){return guardedLookup(request,()=>lookup(request));}

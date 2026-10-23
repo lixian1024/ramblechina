@@ -1,3 +1,5 @@
+import {controlledTravel} from './fixtures/admitted-travel-routes';
+import {admittedPhotosPOST as photosPOST,admittedRefreshPOST as refreshPOST} from './fixtures/admitted-travel-routes';
 /** Direct Google/Amap integration contracts with injected HTTP responses, never live Evals. */
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -5,8 +7,6 @@ import { findGooglePlace, googleRoute, normalizeGooglePlace, photosForGooglePlac
 import { toGcj02, toWgs84 } from '../src/lib/travel/map-coordinates';
 import { routeBetween, weatherFor } from '../src/lib/travel/concierge-amap';
 import { storedTrip, storedMessages } from '../src/lib/travel/trip-storage';
-import { POST as photosPOST } from '../src/app/api/trip-place-photos/route';
-import { POST as refreshPOST } from '../src/app/api/trip-refresh/route';
 import type { VerifiedTrip } from '../src/lib/travel/concierge-types';
 import { configurePhotoFixture, photoScreeningFixture } from './fixtures/photo-screening';
 const poi={id:'ChIJ_test_id-with_underscore',displayName:{text:'豫园'},formattedAddress:'上海市黄浦区豫园路',location:{longitude:121.492,latitude:31.228},types:['tourist_attraction'],addressComponents:[{longText:'中国',shortText:'CN',types:['country']},{longText:'上海市',types:['locality']},{longText:'黄浦区',types:['sublocality_level_1']}]};
@@ -88,4 +88,4 @@ async function main(){
  const code=await readFile('src/lib/travel/concierge-amap.ts','utf8');assert(!/v5\/place\/|v5\/direction\/(walking|driving)|v3\/staticmap/.test(code));
  console.log('PASS: direct Google contracts, Amap two-service allowlist, coordinate conversion, route and weather provenance, dining filtering, photo authors, static maps, storage migration, outages and missing server key. Controlled evidence only.');
 }
-main().catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>{restorePhotoFixture();globalThis.fetch=originalFetch;if(originalGoogle===undefined)delete process.env.GOOGLE_MAPS_SERVER_API_KEY;else process.env.GOOGLE_MAPS_SERVER_API_KEY=originalGoogle;if(originalAmap===undefined)delete process.env.AMAMP_API_KEY;else process.env.AMAMP_API_KEY=originalAmap;});
+controlledTravel(main).catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>{restorePhotoFixture();globalThis.fetch=originalFetch;if(originalGoogle===undefined)delete process.env.GOOGLE_MAPS_SERVER_API_KEY;else process.env.GOOGLE_MAPS_SERVER_API_KEY=originalGoogle;if(originalAmap===undefined)delete process.env.AMAMP_API_KEY;else process.env.AMAMP_API_KEY=originalAmap;});

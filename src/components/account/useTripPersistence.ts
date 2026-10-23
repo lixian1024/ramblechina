@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { TripMessage, VerifiedTrip } from '@/lib/travel/concierge-types';
 import { storedMessages, storedTrip } from '@/lib/travel/trip-storage';
 import type { SavedTrip, TripSnapshot } from '@/lib/account/trips';
+import {recordGrowthEvent} from '@/lib/growth/analytics';
 
 export function useTripPersistence(tripId:string|undefined,busy:boolean,enabled=true,locale:Locale='en') {
   const [messages,setMessages]=useState<TripMessage[]>([]),[plan,setPlan]=useState<VerifiedTrip|null>(null);
@@ -15,6 +16,7 @@ export function useTripPersistence(tripId:string|undefined,busy:boolean,enabled=
   const flight=useRef(false),blocked=useRef(false),mounted=useRef(true);
   useEffect(()=>{mounted.current=true;return()=>{mounted.current=false;};},[]);
   const [loadedPlan,setLoadedPlan]=useState<VerifiedTrip|null>(null);
+  const [savedTripId,setSavedTripId]=useState(tripId||'');
   useEffect(()=>{
     if(!enabled)return;
     let active=true;
@@ -30,6 +32,11 @@ export function useTripPersistence(tripId:string|undefined,busy:boolean,enabled=
     },0);
     return()=>{active=false;controller.abort();clearTimeout(timer);};
   },[tripId,enabled]);
+  const restoreDraft=useCallback((draft:TripSnapshot)=>{
+    const restored={plan:storedTrip(draft.plan),messages:storedMessages(draft.messages)};
+    // Keep one identity for the display and refresh guard, as on an account load.
+    setMessages(restored.messages);setPlan(restored.plan);setLoadedPlan(restored.plan);
+  },[]);
   const snapshot=useMemo(()=>({plan:storedTrip(plan),messages:storedMessages(messages.slice(-40))}),[plan,messages]);
   useEffect(()=>{latest.current=snapshot;},[snapshot]);
   const flush=useCallback(async()=>{
@@ -44,7 +51,8 @@ export function useTripPersistence(tripId:string|undefined,busy:boolean,enabled=
       if(!response.ok){if(response.status===409){blocked.current=true;setConflict(true);}throw Error(data.error||'This trip could not be saved.');}
       if(!mounted.current||target.generation!==identity.current.generation)return;
       identity.current.version=data.version;committed.current=serialized;setSavedFingerprint(serialized);
-      window.history.replaceState(null,'',`/${locale}/plan?trip=${target.id}`);
+      window.history.replaceState(null,'',`/${locale}/plan?trip=${target.id}`);setSavedTripId(target.id);
+      recordGrowthEvent('itinerary_saved',{locale:locale==='zh'?'zh':'en',actor:'account',operation:'save'},{dedupeKey:target.id});
       setSaveState(JSON.stringify(latest.current)===serialized?'saved':'unsaved');
     }catch(error){if(mounted.current&&target.generation===identity.current.generation){setSaveState('unsaved');setSaveError(error instanceof Error?error.message:'Your changes could not be saved. Keep this page open and retry.');}}
     finally{flight.current=false;}
@@ -58,8 +66,8 @@ export function useTripPersistence(tripId:string|undefined,busy:boolean,enabled=
     const warn=(event:BeforeUnloadEvent)=>{if(JSON.stringify(latest.current)!==committed.current&&(latest.current.plan||latest.current.messages.length)){event.preventDefault();event.returnValue='';}};
     window.addEventListener('beforeunload',warn);return()=>window.removeEventListener('beforeunload',warn);
   },[enabled]);
-  function reset(){identity.current={id:'',version:0,generation:identity.current.generation+1};committed.current='';blocked.current=false;setConflict(false);setSavedFingerprint('');setMessages([]);setPlan(null);setLoadedPlan(null);setSaveState('idle');setSaveError('');window.history.replaceState(null,'',`/${locale}/plan`);}
+  function reset(){identity.current={id:'',version:0,generation:identity.current.generation+1};setSavedTripId('');committed.current='';blocked.current=false;setConflict(false);setSavedFingerprint('');setMessages([]);setPlan(null);setLoadedPlan(null);setSaveState('idle');setSaveError('');window.history.replaceState(null,'',`/${locale}/plan`);}
   function retrySave(){if(blocked.current)return;setSaveError('');setRetry(value=>value+1);}
   const dirty=enabled&&JSON.stringify(snapshot)!==savedFingerprint&&Boolean(snapshot.plan||snapshot.messages.length);
-  return {messages,setMessages,plan,setPlan,ready:!enabled||ready,loadError,loadedPlan,saveState,saveError,retrySave,saveNow:flush,reset,conflict,dirty};
+  return {messages,setMessages,plan,setPlan,restoreDraft,ready:!enabled||ready,loadError,loadedPlan,saveState,saveError,retrySave,saveNow:flush,reset,conflict,dirty,savedTripId};
 }

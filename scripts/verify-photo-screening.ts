@@ -1,8 +1,9 @@
+import {controlledTravel} from './fixtures/admitted-travel-routes';
+import {admittedPhotosPOST as POST} from './fixtures/admitted-travel-routes';
 /** Controlled failures and photo identity; no claim of live visual accuracy. */
 import assert from 'node:assert/strict';
 import { photoSelection } from '../src/lib/travel/photo-screening';
 import { photosForGooglePlaces, findGooglePlace, googlePlaceMatches, normalizeGooglePlace } from '../src/lib/travel/google-maps';
-import { POST } from '../src/app/api/trip-place-photos/route';
 import { configurePhotoFixture, photoScreeningFixture } from './fixtures/photo-screening';
 const originalFetch=globalThis.fetch,originalKey=process.env.GOOGLE_MAPS_SERVER_API_KEY;
 const restore=configurePhotoFixture();
@@ -57,4 +58,4 @@ async function main(){
  const invalid=await POST(new Request('http://controlled/api/trip-place-photos',{method:'POST',body:JSON.stringify({places:[{id:garden.id,query:'',city:'Shanghai'}]})}));assert.equal(invalid.status,400);
  console.log('PASS: garden vs district, expected place identity, second-photo selection, matching author, uncertain/malformed/model-failure rejection and cross-place resource protection. Controlled evidence only.');
 }
-main().catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>{restore();globalThis.fetch=originalFetch;if(originalKey===undefined)delete process.env.GOOGLE_MAPS_SERVER_API_KEY;else process.env.GOOGLE_MAPS_SERVER_API_KEY=originalKey;});
+controlledTravel(main).catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>{restore();globalThis.fetch=originalFetch;if(originalKey===undefined)delete process.env.GOOGLE_MAPS_SERVER_API_KEY;else process.env.GOOGLE_MAPS_SERVER_API_KEY=originalKey;});

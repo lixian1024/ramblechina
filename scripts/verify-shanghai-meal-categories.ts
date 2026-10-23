@@ -1,10 +1,10 @@
+import {admittedTripPOST as POST} from './fixtures/admitted-travel-routes';
 import { googleFixtureFetch } from './fixtures/google-provider';
 /** Controlled production POST regression; not live API, UI or Eval evidence.
  * Reproduces categories from Runner's 2026-10-09T10-28-47-644Z baseline output.
  */
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
-import { POST } from '../src/app/api/trip-concierge/route';
 import { shanghaiQualityIssues } from '../src/lib/travel/shanghai-quality';
 import type { ConciergeEvent, DraftTrip } from '../src/lib/travel/concierge-types';
 

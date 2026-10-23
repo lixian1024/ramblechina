@@ -1,0 +1,10 @@
+RambleOG-Subset.otf is a subset of the bundled NotoSansSC-Regular.otf.
+Copyright and SIL Open Font License: see OFL.txt in this directory.
+No external images or generated photography are used in the social preview.
+
+The subset contains ASCII and the characters in the public city names,
+travel-tips data and OG route. When adding a city or guide, regenerate with
+fonttools pyftsubset using those source files as a UTF-8 --text-file, plus
+ASCII U+0020 through U+007E; retain --name-IDs='*' --name-legacy.
+The original font is retained. Fonttools is needed only to regenerate this
+asset, not to build or serve the website.

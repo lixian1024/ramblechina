@@ -1,8 +1,8 @@
+import {admittedTripPOST as POST} from './fixtures/admitted-travel-routes';
 import { googleFixtureFetch } from './fixtures/google-provider';
 /** Controlled provider replay of saved failures. NOT live product/Eval evidence. */
 import assert from 'node:assert/strict';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
-import { POST } from '../src/app/api/trip-concierge/route';
 import { findAmapPlace, routeBetween } from '../src/lib/travel/concierge-amap';
 import { scheduleShanghaiMeals, shanghaiQualityIssues } from '../src/lib/travel/shanghai-quality';
 import type { ConciergeEvent, DraftTrip, VerifiedDay, VerifiedStop, VerifiedTrip } from '../src/lib/travel/concierge-types';

@@ -1,3 +1,4 @@
+import {controlledTravel} from './fixtures/admitted-travel-routes';
 import { googleFixtureFetch, testPlaceId } from './fixtures/google-provider';
 import assert from 'node:assert/strict';
 import { planTrip } from '../src/lib/travel/concierge';
@@ -206,4 +207,4 @@ async function main() {
   assert.equal(modelRequests.length, requestsBeforeRestricted);
   console.log('Route Concierge: forced web research on every plan, source display data, Google places/roads and Amap transit/weather checks, Chinese output and scheduling checks, intercity transfer and Token Plan guard verified.');
 }
-void main().catch(error => { console.error(error); process.exitCode = 1; });
+void controlledTravel(main).catch(error => { console.error(error); process.exitCode = 1; });

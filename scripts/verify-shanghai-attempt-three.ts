@@ -1,3 +1,4 @@
+import {admittedTripPOST as POST} from './fixtures/admitted-travel-routes';
 import { googleFixtureFetch } from './fixtures/google-provider';
 /** Controlled production POST + component rendering. NOT live API, browser or Eval evidence. */
 import assert from 'node:assert/strict';
@@ -5,7 +6,6 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { POST } from '../src/app/api/trip-concierge/route';
 import { shanghaiQualityIssues, scheduleShanghaiMeals } from '../src/lib/travel/shanghai-quality';
 import type { ConciergeEvent, DraftTrip, VerifiedTrip } from '../src/lib/travel/concierge-types';
 

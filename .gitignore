@@ -16,3 +16,5 @@ __pycache__/
 
 # Local generated QA artifacts (existing tracked PDF samples remain versioned)
 output/
+.playwright-cli/
+supabase/.temp/

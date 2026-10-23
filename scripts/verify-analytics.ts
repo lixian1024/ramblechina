@@ -51,6 +51,16 @@ recordPageView(target, id, '/en');
 assert.equal(commands().filter(value => value[0] === 'event').length, 3, 'Returning to an earlier page is a real view');
 assert(!JSON.stringify(commands()).match(/private-id|another-id|secret|token|private-email/));
 
+const shared = browser('https://www.ramblechina.com/en/shared/private-share-token?utm_source=community');
+recordPageView(shared, id, '/en/shared/private-share-token');
+assert.equal((Array.from(shared.dataLayer!.at(-1)!)[2] as Record<string,unknown>).page_location,
+  'https://www.ramblechina.com/en/shared?utm_source=community');
+assert.equal(shared.__rambleAnalytics!.lastPage, 'https://www.ramblechina.com/en/shared');
+shared.location = new URL('https://www.ramblechina.com/en/plan');
+recordPageView(shared, id, '/en/plan');
+assert.equal((Array.from(shared.dataLayer!.at(-1)!)[2] as Record<string,unknown>).page_referrer, 'https://www.ramblechina.com/en/shared');
+assert(!JSON.stringify(shared.dataLayer).includes('private-share-token'), 'Capability tokens never enter events, global gtag settings or later referrers');
+
 for (const origin of ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://preview.vercel.app', 'https://www.ramblechina.com.evil.test']) {
   const excluded = browser(origin + '/en');
   recordPageView(excluded, id, '/en');

@@ -38,7 +38,7 @@ export function Footer(){
   <div className={footerStyles.top}><div className={footerStyles.brand}><Link href="/" className="brand"><BrandLogo /></Link><p>{getMessages(locale).nav.footerLine}</p></div>
   <div className={footerStyles.columns}>
     <section className={footerStyles.column} aria-labelledby="footer-product"><h2 id="footer-product">{t("Product")}</h2>
-      <nav className={footerStyles.links} aria-label={t("Footer product")}><Link href="/plan">{t("Plan a trip")}</Link><Link href="/destinations">{t("Destinations")}</Link><Link href="/travel-stories">{t("Travel Stories")}</Link><Link href="/essentials">{t("Travel essentials")}</Link><Link href="/local-guide">{t("Need local guide")}</Link></nav>
+      <nav className={footerStyles.links} aria-label={t("Footer product")}><Link href="/plan">{t("Plan a trip")}</Link><Link href="/destinations">{t("Destinations")}</Link><Link href="/travel-stories">{t("Travel Stories")}</Link><Link href="/essentials">{t("Travel essentials")}</Link><Link href="/travel-tips">{locale==='zh'?'实用攻略':'Practical guides'}</Link><Link href="/trip-review">{locale==='zh'?'免费人工核对行程':'Free human trip review'}</Link><Link href="/local-guide">{t("Need local guide")}</Link></nav>
     </section>
     <section className={footerStyles.column} aria-labelledby="footer-support"><h2 id="footer-support">{t("Support")}</h2>
       <nav className={footerStyles.links} aria-label={t("Footer support")}><Link href="/about">{t("About us")}</Link><a href="mailto:service@ramblechina.com">{t("Email")}</a><a href="https://x.com/ramblecn" target="_blank" rel="noopener noreferrer">X <ArrowUpRight size={14}/></a></nav>

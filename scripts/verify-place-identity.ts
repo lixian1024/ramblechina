@@ -1,3 +1,4 @@
+import {controlledTravel} from './fixtures/admitted-travel-routes';
 /** Controlled identity regressions; these fixtures are not live destination facts. */
 import assert from 'node:assert/strict';
 import { findGooglePlace, googlePlaceMatches, normalizeGooglePlace, photosForGooglePlaces } from '../src/lib/travel/google-maps';
@@ -50,4 +51,4 @@ async function main(){
  assert.equal((await photosForGooglePlaces([street.id]))[street.id],undefined,'A photo resource owned by another place is not accepted');
  console.log('PASS: museum aliases, city/type/location rejection, restored user choices, district photo subject/attribution and missing-anchor protection. Controlled evidence only.');
 }
-main().catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>{restorePhotoFixture();globalThis.fetch=originalFetch;if(originalKey===undefined)delete process.env.GOOGLE_MAPS_SERVER_API_KEY;else process.env.GOOGLE_MAPS_SERVER_API_KEY=originalKey;});
+controlledTravel(main).catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>{restorePhotoFixture();globalThis.fetch=originalFetch;if(originalKey===undefined)delete process.env.GOOGLE_MAPS_SERVER_API_KEY;else process.env.GOOGLE_MAPS_SERVER_API_KEY=originalKey;});

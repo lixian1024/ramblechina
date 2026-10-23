@@ -1,3 +1,4 @@
+import {guardedLookup} from '@/lib/growth/trial';
 import { routeBetween } from '@/lib/travel/concierge-amap';
 import type { VerifiedStop } from '@/lib/travel/concierge-types';
 
@@ -18,7 +19,7 @@ function place(value: unknown): Place | null {
   return { id: '', name: '', address: '', point: { lng, lat, system: point?.system === 'GCJ-02' ? 'GCJ-02' : 'WGS84' }, provider: source.provider === 'Amap' ? 'Amap' : 'Google', citycode, adcode, checkedAt: '' };
 }
 
-export async function POST(request: Request) {
+async function lookup(request: Request) {
   const size = Number(request.headers.get('content-length') || 0);
   if (size > 32_000) return Response.json({ error: 'Route request is too large.' }, { status: 413 });
   let jobs: Job[];
@@ -48,3 +49,5 @@ export async function POST(request: Request) {
   }));
   return Response.json({ routes: results }, { headers: { 'Cache-Control': 'no-store' } });
 }
+
+export async function POST(request:Request){return guardedLookup(request,()=>lookup(request));}

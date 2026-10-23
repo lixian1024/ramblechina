@@ -1,6 +1,9 @@
+import {controlledTravel} from './fixtures/admitted-travel-routes';
+import {admittedTripPOST} from './fixtures/admitted-travel-routes';
+// Replay the original October 11 brief; implicit dates must not drift with wall time.
+const POST=(request:Request)=>admittedTripPOST(request,'2026-10-11T00:00:00Z');
 /** Controlled production API regressions. Fixtures are not live travel facts. */
 import assert from 'node:assert/strict';
-import { POST } from '../src/app/api/trip-concierge/route';
 import { refreshTrip } from '../src/lib/travel/concierge';
 import { tripRequirements, tripDate } from '../src/lib/travel/trip-requirements';
 import type { ConciergeEvent, DraftTrip, TripMessage } from '../src/lib/travel/concierge-types';
@@ -119,4 +122,4 @@ async function main() {
   assert.equal(draftCalls, 0); assert.equal(researchCalls, 0);
   console.log('PASS: exact day count, consecutive dates, one repair, persistent failure, prior-plan preservation, transfer-day restore and missing-data disclosure through production POST. Controlled fixtures only.');
 }
-void main().catch(error => { console.error(error); process.exitCode = 1; });
+void controlledTravel(main).catch(error => { console.error(error); process.exitCode = 1; });

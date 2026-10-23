@@ -30,7 +30,10 @@
     "test:accounts": "node --import tsx scripts/verify-auth-flows.ts && node --import tsx scripts/verify-accounts.ts && node --import tsx scripts/verify-trip-persistence.ts && node --import tsx scripts/verify-guide-admin.ts && node --import tsx scripts/verify-guide-admin-ui.ts",
     "test:travel-stories": "node --import tsx scripts/verify-travel-stories.ts",
     "test:chinese": "node --import tsx scripts/verify-chinese-website.ts",
-    "test:analytics": "node --import tsx scripts/verify-analytics.ts"
+    "test:analytics": "node --import tsx scripts/verify-analytics.ts",
+    "test:growth": "node --import tsx scripts/verify-trial.ts && node --import tsx scripts/verify-model-budget.ts && node --import tsx scripts/verify-trial-scope.ts && node --import tsx scripts/verify-trial-api.ts && node --import tsx scripts/verify-growth-analytics.ts && node --import tsx scripts/verify-guest-handoff.ts && node --import tsx scripts/verify-research-requests.ts && node --import tsx scripts/verify-research-storage.ts && node --import tsx scripts/verify-research-form.ts && node --import tsx scripts/verify-signup-receipts.ts && node --import tsx scripts/verify-signup-analytics.ts",
+    "test:sharing": "node --import tsx scripts/verify-sharing.ts && node --import tsx scripts/verify-sharing-ui.ts && node --import tsx scripts/verify-sharing-api.ts",
+    "test:seo": "node --import tsx scripts/verify-seo.ts && node --import tsx scripts/verify-travel-tips.ts"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^2.1.3",

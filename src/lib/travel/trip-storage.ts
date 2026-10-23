@@ -2,9 +2,9 @@ import type { TripMessage, VerifiedTrip } from './concierge-types';
 /** Retain user choices and permitted place IDs; fetch provider content again on restore. */
 export function storedTrip(plan:VerifiedTrip|null):VerifiedTrip|null {
  if(!plan)return null;
- return {...plan,provider:'Google + Amap',checks:[],days:plan.days.map(day=>({
+ return {...plan,provider:'Google + Amap',checks:plan.checks||[],days:plan.days.map(day=>({
   ...day,hotelGooglePlaceId:day.hotelPlace?.provider==='Google'?day.hotelPlace.id:day.hotelGooglePlaceId,
-  hotelPlace:undefined,dining:undefined,weather:{status:day.date?'unavailable':'date-needed'},checks:[],transfer:undefined,
+  hotelPlace:undefined,dining:undefined,weather:{status:day.date?'unavailable':'date-needed'},checks:day.checks||[],transfer:undefined,
   stops:day.stops.map(stop=>({...stop,googlePlaceId:stop.place?.provider==='Google'?stop.place.id:stop.googlePlaceId,place:undefined,placeStatus:'unresolved',scheduledAt:undefined})),
   legs:day.legs.map(leg=>({from:leg.from,to:leg.to,mode:'unverified'})),
  }))};

@@ -1,6 +1,7 @@
+import {controlledTravel} from './fixtures/admitted-travel-routes';
+import {admittedTripPOST as POST} from './fixtures/admitted-travel-routes';
 import { googleFixtureFetch } from './fixtures/google-provider';
 import assert from 'node:assert/strict';
-import { POST } from '../src/app/api/trip-concierge/route';
 import { routeConversation } from '../src/lib/travel/concierge';
 import type { ConciergeEvent, TripMessage } from '../src/lib/travel/concierge-types';
 
@@ -121,4 +122,4 @@ async function main() {
   console.log('PASS: travel questions do not build a route, unrelated questions stop at scope reply, itinerary changes reach Route Concierge.');
 }
 
-void main().catch(error => { console.error(error); process.exitCode = 1; });
+void controlledTravel(main).catch(error => { console.error(error); process.exitCode = 1; });

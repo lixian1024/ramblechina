@@ -16,6 +16,9 @@ import {useAuth} from '@/components/account/AuthProvider';
 import {useTripPersistence} from '@/components/account/useTripPersistence';
 import Link from 'next/link';
 import styles from './Planner.module.css';
+import {recordGrowthEvent} from '@/lib/growth/analytics';
+import {stageGuestDraft,readGuestDraft,clearGuestDraft} from '@/lib/growth/handoff';
+import {TripShareControls} from './TripShareControls';
 
 const phases = ['understanding', 'research', 'drafting', 'places', 'routes', 'weather', 'review'] as const;
 type Phase = typeof phases[number];
@@ -41,11 +44,32 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
   const [phase, setPhase] = useState<Phase | null>(null);
   const [intent, setIntent] = useState<TripIntent | null>(null);
   const [busy, setBusy] = useState(false);
-  const {messages,setMessages,plan,setPlan,ready,loadedPlan,loadError,saveState,saveError,retrySave,saveNow,reset,conflict,dirty}=useTripPersistence(tripId,busy,Boolean(user),locale);
+  const {messages,setMessages,plan,setPlan,ready,loadedPlan,loadError,saveState,saveError,retrySave,saveNow,reset,conflict,dirty,savedTripId,restoreDraft}=useTripPersistence(tripId,busy,Boolean(user),locale);
+  const [error, setError] = useState('');
+  const [trial,setTrial]=useState<{enabled:boolean;generated:boolean;edited:boolean}|null>(null);
+  const [restoredGuestDraft,setRestoredGuestDraft]=useState(false);
+  const imported=useRef(false),trialLoaded=useRef(false),firstEdit=useRef(false);
+  const actor=user?'account':'guest';
+  useEffect(()=>{
+    if(authLoading||user||trialLoaded.current)return;trialLoaded.current=true;
+    let active=true;
+    void fetch('/api/trial',{cache:'no-store'}).then(async r=>{if(!r.ok)throw Error(zh?'游客试用暂不可用，请稍后重试。':'Guest trial is temporarily unavailable. Please retry later.');return r.json();}).then(data=>{if(!active)return;setTrial(data);if(!tripId&&data.plan){setPlan(data.plan);setMessages(data.messages||[]);setRestoredGuestDraft(true);}}).catch(error=>{if(active)setError(error.message);});
+    return()=>{active=false;trialLoaded.current=false;};
+  },[authLoading,user,tripId,zh,setPlan,setMessages]);
+  useEffect(()=>{
+    if(!user||!ready||tripId||imported.current)return;
+    const draft=readGuestDraft();if(!draft)return;imported.current=true;
+    restoreDraft(draft);
+  },[user,ready,tripId,restoreDraft]);
+  useEffect(()=>{if(imported.current&&saveState==='saved'&&!dirty){try{clearGuestDraft();}catch{/* The saved account copy is safe. */}}},[saveState,dirty]);
+  function saveGuest(){
+    if(!plan)return;
+    try{stageGuestDraft(plan,messages);router.push(planSignInPathFor(locale));}
+    catch{setError(zh?'浏览器未能保留草稿，请允许本网站的会话存储后重试。行程仍保留在此页。':'Your browser could not retain the draft. Allow session storage and retry; your itinerary remains on this page.');}
+  }
   const [input, setInput] = useState('');
   const [editContext, setEditContext] = useState('');
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const [error, setError] = useState('');
   const [dayIndex, setDayIndex] = useState(0);
   const [allDays, setAllDays] = useState(true);
   const [selectedStop, setSelectedStop] = useState(0);
@@ -104,7 +128,7 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
   },[loadedPlan,locale,setPlan,t]);
   useEffect(() => { const feed = feedRef.current; if (feed) feed.scrollTo({ top: feed.scrollHeight, behavior: 'smooth' }); }, [messages, phase]);
   useEffect(() => {
-    if (!ready || !plan || busy || geometryChecked.current === plan.createdAt) return;
+    if (!user || !ready || !plan || busy || geometryChecked.current === plan.createdAt) return;
     geometryChecked.current = plan.createdAt;
     type Place = NonNullable<VerifiedStop['place']>;
     const jobs: { dayIndex: number; legIndex: number; transfer: boolean; from: Place; to: Place }[] = [];
@@ -143,7 +167,7 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
         return { ...current, days };
       });
     }).catch(() => { /* Existing schematic connections remain visible. */ });
-  }, [plan, ready, busy, setPlan]);
+  }, [plan, ready, busy, setPlan,user]);
   const day = plan?.days[Math.min(dayIndex, Math.max(0, plan.days.length - 1))];
 
 
@@ -169,10 +193,13 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
 
   async function send(value = input, reuse = false) {
     if(authLoading)return;
-    if(!user){router.push(planSignInPathFor(locale));return;}
+    if(!user&&tripId){router.push(planSignInPathFor(locale));return;}
+    if(!user&&(!trial?.enabled||trial.edited||!plan&&trial.generated)){setError(zh?'试用不可用或额度已用完。已有行程可登录保存后继续。':'The trial is unavailable or your allowance is used. Sign in to save your itinerary and continue.');return;}
     const requestText = value.trim();
     setRestoreFailed(false);
     if (!requestText || busy) return;
+    const operation=plan?'edit':'generate';
+    recordGrowthEvent('planner_start',{locale:zh?'zh':'en',actor,operation},{dedupeKey:`${actor}:${plan?.createdAt||'new'}`});
     const nextMessages: TripMessage[] = reuse ? messages : [...messages, { role: 'user', text: requestText }];
     if (!reuse) setMessages(nextMessages);
     setInput(''); setEditContext(''); setError(''); setBusy(true); setPhase(null); setIntent(null);
@@ -191,6 +218,8 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
       const decoder = new TextDecoder();
       let buffer = '';
       let routedIntent: TripIntent | null = null;
+      let completed: Extract<ConciergeEvent,{type:'result'|'answer'}>|null=null;
+      let terminalFingerprint='';
       const consume = (line: string) => {
         if (!line.trim()) return;
         const event = JSON.parse(line) as ConciergeEvent;
@@ -201,16 +230,10 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
         }
         if (event.type === 'phase') setPhase(event.phase);
         if (event.type === 'error') throw new Error(event.message);
-        if (event.type === 'result') {
-          revealPlan.current = true;
-          setPreviousPlan(plan);
-          setPlan(event.plan); setPopup(null); setDayToReveal(null); setDayIndex(0); setSelectedStop(0); setAllDays(true);
-          setMessages(current => [...current, { role: 'assistant', agent: 'route-concierge', text: event.reply }]);
-          setPhase(null);
-        }
-        if (event.type === 'answer') {
-          setMessages(current => [...current, { role: 'assistant', agent: 'travel-assistant', intent: routedIntent || undefined, text: event.reply, sources: event.sources }]);
-          setPhase(null);
+        if (event.type === 'result'||event.type === 'answer') {
+          const fingerprint=JSON.stringify(event);
+          if(completed&&terminalFingerprint!==fingerprint)throw new Error(zh?'收到互相冲突的结果，请重试。':'Conflicting results arrived. Please retry.');
+          completed=event;terminalFingerprint=fingerprint;
         }
       };
       while (true) {
@@ -221,9 +244,27 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
         lines.forEach(consume);
       }
       if (buffer.trim()) consume(buffer);
+      if(controller.signal.aborted)throw new Error('Request stopped.');
+      if(!completed)throw new Error(zh?'连接提前结束，未收到完整结果。请稍后重试。':'The connection ended before a complete result arrived. Please retry later.');
+      // A terminal line is provisional until clean EOF. Publish UI and success together.
+      const outcome=completed as Extract<ConciergeEvent,{type:'result'|'answer'}>;
+      if(outcome.type==='result'){
+        if(!plan||!firstEdit.current)recordGrowthEvent(plan?'itinerary_first_edit':'itinerary_generated',{locale:zh?'zh':'en',actor,operation,days:outcome.plan.days.length},{dedupeKey:plan?`edit:${plan.createdAt}`:`generated:${outcome.plan.createdAt}`});
+        if(plan)firstEdit.current=true;
+        if(!user)setTrial(current=>current?{...current,generated:true,edited:Boolean(plan)}:current);
+        setRestoredGuestDraft(false);revealPlan.current=true;setPreviousPlan(plan);
+        setPlan(outcome.plan);setPopup(null);setDayToReveal(null);setDayIndex(0);setSelectedStop(0);setAllDays(true);
+        setMessages(current=>[...current,{role:'assistant',agent:'route-concierge',text:outcome.reply}]);
+      }else{
+        setMessages(current=>[...current,{role:'assistant',agent:'travel-assistant',intent:routedIntent||undefined,text:outcome.reply,sources:outcome.sources}]);
+      }
+      setPhase(null);
     } catch (cause) {
+      recordGrowthEvent('planner_error',{locale:zh?'zh':'en',actor,operation,failure:controller.signal.aborted?'aborted':cause instanceof TypeError?'network':'unknown'});
       if (!controller.signal.aborted) setError(zh && cause instanceof TypeError ? '网络连接中断，请检查网络后重试。' : cause instanceof Error ? cause.message : (zh ? '行程规划失败。' : 'Trip planning failed.'));
-    } finally { setBusy(false); setPhase(null); setIntent(null); abort.current = null; }
+    } finally { setBusy(false); setPhase(null); setIntent(null); abort.current = null;
+      if(!user)void fetch('/api/trial',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(data=>{if(data)setTrial(data);}).catch(()=>{});
+    }
   }
 
   function submit(event: FormEvent<HTMLFormElement>) { event.preventDefault(); void send(); }
@@ -233,11 +274,11 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
     abort.current?.abort();
     setPopup(null);
     setDayToReveal(null);
-    reset(); setPreviousPlan(null); setError(''); setInput(''); setEditContext(''); setPhase(null); setIntent(null); setBusy(false); setDayIndex(0); setSelectedStop(0); setAllDays(true); setMobileView('chat');
+    reset(); setRestoredGuestDraft(false); firstEdit.current=false; setPreviousPlan(null); setError(''); setInput(''); setEditContext(''); setPhase(null); setIntent(null); setBusy(false); setDayIndex(0); setSelectedStop(0); setAllDays(true); setMobileView('chat');
   }
   function requestNew() {
     if(authLoading)return;
-    if(!user){router.push(planSignInPathFor(locale));return;}
+    if(!user){if(plan){setError(zh?'试用行程已在此页，可登录保存；刷新页面不会增加额度。':'Your trial itinerary is here. Sign in to save it; reloading does not add another trial.');return;}setInput(zh?'规划上海三天行程，节奏轻松，喜欢美食。':'Plan three days in Shanghai with easy walking and local food.');inputRef.current?.focus();return;}
     if(busy){setError('Wait for the current request to finish before starting a new trip.');return;}
     if(saveState==='saving'||saveError){setError('Save your current changes before starting a new trip.');return;}
     if(dirty){void saveNow();setError('Saving your current changes. Start the new trip once they are saved.');return;}
@@ -247,7 +288,6 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
   function chooseDay(index: number, focusMap = false) { setPopup(null); setDayIndex(index); setSelectedStop(0); setDayToReveal({ index }); if (focusMap) setAllDays(false); }
   function prepareEdit(request: string, context: string) {
     if(authLoading)return;
-    if(!user){router.push(planSignInPathFor(locale));return;}
     if (busy) return;
     setInput(request); setEditContext(context); setMobileView('chat');
     window.requestAnimationFrame(() => {
@@ -273,7 +313,9 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
     <div className={styles.workspace}>
       <section className={`${styles.chatPanel} ${mobileView !== 'chat' ? styles.hidePaneMobile : ''}`} aria-label={zh ? '旅行助手对话' : t("Travel Assistant conversation")}>
         <div className={styles.chatHead}><h2 className={styles.assistantLabel}>{zh ? '旅行助手 · 路线管家' : 'Travel Assistant · Route Concierge'}</h2><span className={styles.liveBadge}><span /> {zh ? '按问题选择助手' : t("THE RIGHT HELP FOR EACH QUESTION")}</span><button type="button" className={styles.newTrip} onClick={requestNew} disabled={authLoading}><Plus size={13} /> {zh ? '新行程' : t("New trip")}</button></div>
-        <div className={styles.saveBar}><span role="status">{!user?t("Start a new trip to plan your journey."):saveState==='saving'?t("Saving to your account…"):saveError?t("Changes not saved"):dirty?t("Changes waiting to save"):saveState==='saved'?t("Saved to your account"):t("Your trips save to your account")}</span>{user?<Link href={`/${locale}/account`} onClick={event=>{if(dirty||busy){event.preventDefault();void saveNow();setError(t("Wait until your changes are saved before opening My trips."));}}}>{t("My trips →")}</Link>:tripId?<Link href={`/${locale}/login?next=${encodeURIComponent(`/${locale}/plan?trip=${tripId}`)}`}>{t("Open saved trip →")}</Link>:null}</div>
+        <div className={styles.saveBar}><span role="status">{!user?(zh?'游客试用：上海1–3天 · 一次生成 + 一次修改':'Guest trial: Shanghai, 1–3 days · one plan + one edit'):saveState==='saving'?t("Saving to your account…"):saveError?t("Changes not saved"):dirty?t("Changes waiting to save"):saveState==='saved'?t("Saved to your account"):t("Your trips save to your account")}</span>{user?<Link href={`/${locale}/account`} onClick={event=>{if(dirty||busy){event.preventDefault();void saveNow();setError(t("Wait until your changes are saved before opening My trips."));}}}>{t("My trips →")}</Link>:plan?<button type="button" disabled={busy} onClick={saveGuest}>{zh?'登录保存行程':'Sign in to save'}</button>:tripId?<Link href={`/${locale}/login?next=${encodeURIComponent(`/${locale}/plan?trip=${tripId}`)}`}>{t("Open saved trip →")}</Link>:null}</div>
+        {!user&&<p className={styles.trialNotice}>{zh?'无需注册即可试用。临时行程保留24小时；请求失败或中止也可能消耗额度。保存时才需登录。':'Try without an account. Temporary drafts last 24 hours. Failed or stopped requests may use the allowance. Sign in when you want to save.'} <Link href={`/${locale}/trip-review`}>{zh?'申请免费人工核对':'Request a free human review'}</Link></p>}
+        {!user&&restoredGuestDraft&&plan&&<p className={styles.trialNotice} role="status">{zh?'已恢复临时草稿；地图资料仍需核验。登录保存后刷新地图。':'Temporary draft restored; map details need verification. Sign in to save and refresh.'}</p>}
         {authError&&<p className={styles.error} role="alert">{t(authError)}</p>}
         {saveError&&<div className={styles.saveFailure} role="alert"><p>{t(saveError)}</p>{conflict?<button onClick={()=>{if(window.confirm(t("Reopen the saved version? Unsaved changes in this tab will be discarded.")))window.location.reload();}}>{t("Reopen saved trip")}</button>:<><button onClick={retrySave}>{t("Retry saving")}</button> · <Link target="_blank" href={`/${locale}/login?next=/${locale}/account`}>{t("Check sign-in in a new tab")}</Link></>}</div>}
         {resetConfirmation && <div className={styles.resetPrompt} role="group" aria-label={zh ? '确认开始新行程' : t("Confirm starting a new trip")}>
@@ -285,7 +327,7 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
           <details className={styles.conversationHistory} open>
             <summary>{zh ? `与助手对话 · ${messages.length} 条消息` : `Conversation · ${messages.length} messages`}<ChevronDown size={14} /></summary>
             <div className={styles.conversationMessages}>
-          {!messages.length && <div className={styles.welcome}><span className={styles.welcomeMark}><Sparkles size={18} /></span><h2>{zh ? '先问问，再决定。' : 'Curious? Start there.'}</h2><p>{zh ? '可以先了解值得去的地方。选好后，再告诉路线管家日期、酒店和已预约的票，让它编排地图上的行程。' : 'Explore places and travel tips first. When you know what you like, share your dates and bookings to turn them into a route.'}</p><div className={styles.suggestions}><button type="button" onClick={() => void send(zh ? '上海有哪些值得去的著名景点？先推荐一些，我会挑选。' : 'Give me famous places to visit in Shanghai. I will choose from your suggestions.')}>{zh ? '先看看上海景点' : 'Explore Shanghai places'} <ArrowRight size={14} /></button><button type="button" onClick={() => void send(zh ? '我住在上海外滩附近，带父母玩三天，第一天10点预约了豫园。希望少走路，留点时间看江景。' : 'Plan three days in Shanghai with my parents. We stay near the Bund, have Yu Garden tickets for Day 1 at 10:00, and want easy walking and a river view.')}>{zh ? '规划带父母的三天行程' : 'Plan three days with my parents'} <ArrowRight size={14} /></button></div></div>}
+          {!messages.length && <div className={styles.welcome}><span className={styles.welcomeMark}><Sparkles size={18} /></span><h2>{zh ? '先问问，再决定。' : 'Curious? Start there.'}</h2><p>{zh ? '可以先了解值得去的地方。选好后，再告诉路线管家日期、酒店和已预约的票，让它编排地图上的行程。' : 'Explore places and travel tips first. When you know what you like, share your dates and bookings to turn them into a route.'}</p><div className={styles.suggestions}><button type="button" onClick={() => void send(zh ? '规划上海两天行程，喜欢街区散步和当地美食。' : 'Plan two days in Shanghai with neighborhood walks and local food.')}>{zh ? '试规划上海两天' : 'Try two days in Shanghai'} <ArrowRight size={14} /></button><button type="button" onClick={() => void send(zh ? '我住在上海外滩附近，带父母玩三天，第一天10点预约了豫园。希望少走路，留点时间看江景。' : 'Plan three days in Shanghai with my parents. We stay near the Bund, have Yu Garden tickets for Day 1 at 10:00, and want easy walking and a river view.')}>{zh ? '规划带父母的三天行程' : 'Plan three days with my parents'} <ArrowRight size={14} /></button></div></div>}
           {messages.map((message, index) => <div key={`${index}-${message.role}`} className={`${styles.message} ${message.role === 'user' ? styles.userMessage : styles.assistantMessage}`}>
             {message.role === 'assistant' && <span className={`${styles.messageAvatar} ${message.agent === 'travel-assistant' ? styles.travelAvatar : ''}`}>{zh ? (message.agent === 'travel-assistant' ? '旅' : '行') : (message.agent === 'travel-assistant' ? 'T' : 'C')}</span>}
             <div className={message.role === 'assistant' ? styles.assistantBubble : undefined}>
@@ -308,11 +350,12 @@ function PlannerWorkspace({tripId}:{tripId?:string}) {
           {error && <div className={styles.error} role="alert">{error}<button type="button" onClick={() => void (restoreFailed ? refreshSaved() : send(messages.at(-1)?.text || '', true))}>{zh ? '重试' : t("Retry")}</button></div>}
           {plan && !busy && <div className={styles.refine}><strong>{zh ? '继续调整这趟旅行' : 'Keep refining this trip'}</strong><button type="button" onClick={() => void send(zh ? '把第一天安排得更轻松，但保留所有已预约的票。' : 'Make Day 1 easier, but keep every booked ticket fixed.')}>{zh ? '少走一些路' : 'Less walking'}</button><button type="button" onClick={() => void send(zh ? '如果下雨，给我一套室内备选，并说明哪些地方需要重新确认。' : 'If it rains, suggest nearby indoor alternatives and tell me what needs checking.')}>{zh ? '准备雨天方案' : 'Rainy-day backup'}</button></div>}
         </div>
-        <form className={styles.composer} onSubmit={submit}><label htmlFor="trip-request" className={styles.srOnly}>{zh ? '描述行程或提出修改' : 'Describe your trip or request a change'}</label>{editContext && <div className={styles.editContext} role="status"><span><Sparkles size={13} />{editContext}</span><button type="button" onClick={() => { setInput(''); setEditContext(''); }} aria-label={zh ? '取消修改需求' : 'Cancel edit request'}>×</button><small>{zh ? '修改需求已填入，发送后由路线管家更新行程。' : 'Request ready. Send it to update your itinerary.'}</small></div>}<textarea ref={inputRef} id="trip-request" value={input} onChange={event => setInput(event.target.value)} onKeyDown={inputKey} rows={2} maxLength={2500} disabled={!user||authLoading} placeholder={!user?t("Select New trip to start planning."):zh ? '告诉我你住哪里、和谁同行、预约了什么，或想改哪一天…' : 'Where are you staying? Who is coming? Any tickets booked? Or tell me what to change…'} /><button type={busy ? 'button' : 'submit'} onClick={busy ? () => abort.current?.abort() : undefined} aria-label={busy ? (zh ? '停止规划' : 'Stop planning') : (zh ? '发送需求' : 'Send request')} disabled={!user||authLoading||(!busy && !input.trim())}>{busy ? <Square size={17} fill="currentColor" /> : <Send size={17} />}</button><div className={styles.composeHint}><span>{zh ? '通过对话修改 · 保留已预约时间' : 'Edit by conversation · keep bookings fixed'}</span><span><CornerDownLeft size={12} /> {zh ? '回车发送' : 'Enter to send'}</span></div></form>
+        <form className={styles.composer} onSubmit={submit}><label htmlFor="trip-request" className={styles.srOnly}>{zh ? '描述行程或提出修改' : 'Describe your trip or request a change'}</label>{editContext && <div className={styles.editContext} role="status"><span><Sparkles size={13} />{editContext}</span><button type="button" onClick={() => { setInput(''); setEditContext(''); }} aria-label={zh ? '取消修改需求' : 'Cancel edit request'}>×</button><small>{zh ? '修改需求已填入，发送后由路线管家更新行程。' : 'Request ready. Send it to update your itinerary.'}</small></div>}<textarea ref={inputRef} id="trip-request" value={input} onChange={event => setInput(event.target.value)} onKeyDown={inputKey} rows={2} maxLength={2500} disabled={authLoading||(!user&&Boolean(tripId))} placeholder={!user?(zh?'上海1–3天：告诉我同行人、偏好与日期…':'Shanghai, 1–3 days: share your dates, companions and interests…'):zh ? '告诉我你住哪里、和谁同行、预约了什么，或想改哪一天…' : 'Where are you staying? Who is coming? Any tickets booked? Or tell me what to change…'} /><button type={busy ? 'button' : 'submit'} onClick={busy ? () => abort.current?.abort() : undefined} aria-label={busy ? (zh ? '停止规划' : 'Stop planning') : (zh ? '发送需求' : 'Send request')} disabled={authLoading||(!user&&Boolean(tripId))||(!busy && !input.trim())}>{busy ? <Square size={17} fill="currentColor" /> : <Send size={17} />}</button><div className={styles.composeHint}><span>{zh ? '通过对话修改 · 保留已预约时间' : 'Edit by conversation · keep bookings fixed'}</span><span><CornerDownLeft size={12} /> {zh ? '回车发送' : 'Enter to send'}</span></div></form>
       </section>
 
       <section className={`${styles.itineraryPanel} ${mobileView !== 'itinerary' ? styles.hidePaneMobile : ''}`} aria-label={zh ? '每日行程工作区' : 'Daily itinerary workspace'}>
         <div className={styles.itineraryPanelHead}><div className={styles.itineraryPanelTitle}><h2>{zh ? '每日行程' : t("Itinerary")}</h2><h1>{plan ? (zh ? plan.title : readableEnglish(plan.title, t("Your China journey"))) : (zh ? '你的中国旅行，从这里开始' : t("Your China journey starts here"))}</h1></div></div>
+        {user&&plan&&savedTripId&&saveState==='saved'&&!dirty&&!busy&&<TripShareControls tripId={savedTripId} locale={locale}/>}
         {plan && <div className={styles.dayRail} role="group" aria-label={zh ? '浏览行程日期' : 'Browse itinerary days'}><button type="button" aria-pressed={allDays} onClick={() => { setPopup(null); setDayToReveal(null); setAllDays(true); itineraryRef.current?.scrollTo({ top: 0, behavior: 'smooth' }); }}>{zh ? '总览' : 'Overview'}</button>{plan.days.map((item, index) => <button type="button" aria-pressed={!allDays && dayIndex === index} key={item.id} onClick={() => chooseDay(index, true)}>{zh ? `第 ${index + 1} 天` : `Day ${index + 1}`}</button>)}</div>}
         <div className={styles.itineraryFeed} ref={itineraryRef}>
           {plan && <ItineraryOverview plan={plan} zh={zh} dayIndex={dayIndex} selectedStop={selectedStop} allDays={allDays} busy={busy} onSelect={selectStop} onDay={index => { chooseDay(index, true); setMobileView('map'); }} onEdit={prepareEdit} onUndo={previousPlan ? () => { setPlan(previousPlan); setPopup(null); setDayToReveal(null); setPreviousPlan(null); setDayIndex(0); setSelectedStop(0); setAllDays(true); } : undefined} />}

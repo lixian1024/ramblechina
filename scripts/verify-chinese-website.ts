@@ -1,3 +1,4 @@
+import {admittedTripPOST as POST} from './fixtures/admitted-travel-routes';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
@@ -14,7 +15,6 @@ import * as chineseEssentials from '../src/content/editorial/zh/essentials';
 import {guideCities,guideLanguages,guideBudgets} from '../src/lib/travel/guide-request-options';
 import {guideOptionLabel} from '../src/i18n/guide-options';
 import sitemap from '../src/app/sitemap';
-import {POST} from '../src/app/api/trip-concierge/route';
 
 async function main(){
  const snapshot=JSON.parse(readFileSync('src/content/editorial/zh/source-manifest.json','utf8'));
@@ -32,7 +32,8 @@ async function main(){
  const login=new URL(languageDestination('/en/login?next=%2Fen%2Fplan%3Ftrip%3Dexisting-id','zh'),'https://www.ramblechina.com');assert.equal(login.pathname,'/zh/login');assert.equal(login.searchParams.get('next'),'/zh/plan?trip=existing-id');
  assert.equal(languageDestination('/en/guide','zh'),'/en/guide');
  assert.equal(safeDestination('/zh/plan?trip=existing-id'),'/zh/plan?trip=existing-id');for(const bad of ['/ko/plan','//evil.test','/zh/login','/zh/plan\\evil','/zh/account\nLocation:evil'])assert.equal(safeDestination(bad),'/en/account');
- const urls=sitemap();assert.equal(urls.length,100);assert.equal(urls.filter(item=>/^\/zh(?:\/|$)/.test(new URL(item.url).pathname)).length,50);assert(!urls.some(item=>/\/(ko|account|login|checkout)(?:\/|$)/.test(item.url)));
+ const urls=sitemap();assert.equal(urls.length,108);assert.equal(urls.filter(item=>/^\/zh(?:\/|$)/.test(new URL(item.url).pathname)).length,54);assert(!urls.some(item=>/\/(ko|account|login|checkout)(?:\/|$)/.test(item.url)));
+ for(const locale of ['en','zh'])for(const path of ['/travel-tips','/travel-tips/forbidden-city-tickets','/travel-tips/china-train-tickets-passport','/trip-review'])assert(urls.some(item=>item.url===`https://www.ramblechina.com/${locale}${path}`),'Sourced guide and review routes must be published in both languages');
  const metadata=pageMetadata('zh','/destinations/shanghai','上海');assert.equal(metadata.alternates?.canonical,'https://www.ramblechina.com/zh/destinations/shanghai');assert.deepEqual(Object.keys(metadata.alternates?.languages||{}),['en','zh-CN']);
  for(const key of ['Account services are not configured.','This trip was edited in another tab. Reopen its saved version before continuing.','End date must be on or after the start date.','Some videos could not be refreshed.','Select New trip to start planning.'])assert.match(websiteText('zh',key),/[\u4e00-\u9fff]/);
  for(const [key,value] of Object.entries(websiteChinese)){assert(value.trim(),key);assert.equal(websiteText('en',key),key,'English source copy must not change');}

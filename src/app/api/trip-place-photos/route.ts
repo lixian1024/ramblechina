@@ -1,8 +1,9 @@
+import {guardedLookup} from '@/lib/growth/trial';
 import { photosForGooglePlaces, validPlaceId } from '@/lib/travel/google-maps';
 
 export const runtime = 'nodejs';
 
-export async function POST(request: Request) {
+async function lookup(request: Request) {
   const raw = await request.text();
   if (raw.length > 3200) return Response.json({ error: 'Too many places.' }, { status: 413 });
   let ids: unknown;
@@ -26,3 +27,5 @@ export async function POST(request: Request) {
     return Response.json({ photos }, { headers: { 'Cache-Control': 'private, no-store' } });
   } catch { return Response.json({ photos: {} }, { headers: { 'Cache-Control': 'private, no-store' } }); }
 }
+
+export async function POST(request:Request){return guardedLookup(request,()=>lookup(request));}

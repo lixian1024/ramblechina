@@ -1,4 +1,5 @@
 import { modelSettings } from './model-settings';
+import {admitModelCall} from '@/lib/growth/model-budget';
 
 type Subject = { name: string; city: string; address: string };
 export type PhotoSelection = { index: number; evidence: string };
@@ -46,6 +47,7 @@ export async function screenPlacePhotos(subject: Subject, urls: string[]): Promi
     if (!qwen || !/^qwen3\.[5-8]-(?:plus|flash|max)(?:-|$)/i.test(model)) return;
     if (Date.now() - windowStart > 60_000) { windowStart = Date.now(); reviews = 0; }
     if (++reviews > 24) return;
+    await admitModelCall();
     const images = await Promise.all(urls.map(imageData));
     const response = await fetch(`${base}/chat/completions`, {
       method: 'POST', cache: 'no-store', signal: AbortSignal.timeout(25000),
