@@ -30,9 +30,13 @@ function localChineseClause(value: string) {
 }
 function ambiguousDestination(text: string) {
   if (/\b(?:(?:another|other|second|different|unknown)\s+(?:city|destination)|multi[ -]?city|outside\s+shanghai|leave\s+shanghai|travel\s+elsewhere|visit\s+elsewhere|day\s+trip(?!\s+(?:to\s+)?(?:zhujiajiao|shanghai)))\b|其他城市|别的城市|另一个城市|未知城市|多城市|跨城|上海以外|离开上海/.test(text)) return true;
+  // In “Yu Garden interior visit because ...”, visit is a noun. Replace only
+  // that known local noun, so destination directives inside the reason are
+  // still scanned (for example, “because I want to visit Atlantis”).
+  const directives = text.replace(/\b((?:the bund|bund|pudong|puxi|wukang|yu garden|yuyuan|zhujiajiao|xintiandi|disneyland|shanghai disney|french concession)(?:\s+interior)?)\s+visit(?=\s+(?:because|due to|since)\b)/g, '$1 stop');
   const clauses = [
     ...text.matchAll(/\bshanghai(?:\s+(?:for\s+)?(?:\d+|one|two|three)\s+days?)?\s*(?:and|plus|then|&|\/|,)\s+([^.!?;\n]+)/g),
-    ...text.matchAll(/\b(?:add|include|visit|travel\s+to|go\s+to|head\s+to|continue\s+(?:on\s+to|on|to)|fly\s+to|train\s+to|overnight\s+in|stop\s+in)\s+([^.,;!?\n]+)/g),
+    ...directives.matchAll(/\b(?:add|include|visit|travel\s+to|go\s+to|head\s+to|continue\s+(?:on\s+to|on|to)|fly\s+to|train\s+to|overnight\s+in|stop\s+in)\s+([^.,;!?\n]+)/g),
     // Lookaheads allow overlapping matches: “a museum near Paris” must not be
     // accepted merely because the longer earlier clause starts with “museum”.
     ...text.matchAll(/(?=\b(?:in|at|near|around)\s+([^.,;!?\n]+))/g),

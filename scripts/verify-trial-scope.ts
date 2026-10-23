@@ -23,6 +23,11 @@ for (const text of ['Remove museums from day two', 'Replace the museum with a pa
 for (const text of ['Shanghai three days. At 10:00 in Paris.', 'Shanghai three days. Spend day 2 in Pudong and Atlantis.', '上海三天。第一天10点在巴黎。', '上海三天。第二天下午去火星。', '上海三天。第二天在浦东和巴黎。']) rejects(text);
 for (const text of ['Shanghai three days. Visit the Bund and Yu Garden.', 'Shanghai three days with food and architecture and a river view.', '上海三天。第二天在外滩和豫园。']) assert.doesNotThrow(() => assertGuestScope(messages(text), null), text);
 for (const text of ['3 days in Shanghai. I like walking around historic streets.', 'Shanghai three days. Walk around old streets and riverside parks.', 'Shanghai three days. Spend day 2 in quiet neighborhoods.', 'Shanghai three days. Stay near art galleries and restaurants.', '上海三天。第二天去老街散步，第三天看江景。', '上海三天。第一天在历史街区散步。']) assert.doesNotThrow(() => assertGuestScope(messages(text), null), text);
+const mondayEdit = 'Remove the Yu Garden interior visit because 2026-11-02 is a Monday. Keep the same one-day Shanghai date and the Bund, keep walking easy, focus on historic streets and local food, and do not add museums or theme parks.';
+const mondayHistory: TripMessage[] = [{role:'user',text:'Plan one day in Shanghai starting 2026-11-02, with food and historic streets, easy walking, no museums.'}];
+const mondayPrevious = {startDate:'2026-11-02',days:[{city:'Shanghai',date:'2026-11-02'}]};
+assert.doesNotThrow(() => assertGuestScope([...mondayHistory,{role:'user',text:mondayEdit}], mondayPrevious), 'A local venue visit noun must not be parsed as a destination directive');
+for (const directive of ['Visit Atlantis.', 'Remove the Yu Garden interior visit because I want to visit Atlantis.', 'Remove the Yu Garden interior visit because we will stay in Atlantis.', 'Remove the Yu Garden interior visit because I want to travel to Paris.']) rejects(`Shanghai one day. ${directive}`, mondayPrevious);
 rejects('Add Wuhan on day two', previous);
 rejects('Add a day trip to Atlantis', previous);
 assert.doesNotThrow(() => assertGuestScope([{role:'user',text:'Shanghai three days'}, {role:'assistant',text:'Beijing is outside the trial.'}, {role:'user',text:'Keep it relaxed'}], previous), 'Assistant prose cannot introduce or override destinations');

@@ -26,32 +26,36 @@
 
 ### 1. Durable trial admission and account handoff
 Files: `src/lib/trial/*`, `src/app/api/trial/*`, `src/app/api/trip-concierge/route.ts`, `src/components/travel/Planner.tsx`, account persistence/handoff, timestamped Supabase migration, `scripts/verify-trial.ts`.
-- [ ] Write failing PostgreSQL concurrency/limits/expiry/authorization tests and unsupported-trial/continuation tests.
-- [ ] Implement an atomic quota/lease store and server token, guarded request admission and successful canonical continuation.
-- [ ] Permit the bounded guest UI; retain current signed-in flow and implement explicit login/save recovery.
-- [ ] Verify trial failure, real generation/edit and login handoff; run existing relevant Evals.
+- [x] Write failing PostgreSQL concurrency/limits/expiry/authorization tests and unsupported-trial/continuation tests.
+- [x] Implement an atomic quota/lease store and server token, guarded request admission and successful canonical continuation.
+- [x] Permit the bounded guest UI; retain current signed-in flow and implement explicit login/save recovery.
+- [x] Verify trial failure, real generation/edit and login handoff; run existing relevant Evals.
 
 ### 2. Revocable public snapshots
 Files: `src/lib/sharing/*`, `src/app/api/trips/[id]/share/route.ts`, `src/app/[locale]/shared/[token]/page.tsx`, owner controls and `scripts/verify-sharing.ts`.
-- [ ] Write redaction, two-owner isolation, token and revoke tests first.
-- [ ] Implement explicit owner publication/revocation and a noindex, read-only, dated public view.
-- [ ] Verify all source/uncertainty fields remain honest and no paid lookup occurs on public reads.
+- [x] Write redaction, two-owner isolation, token and revoke tests first.
+- [x] Implement explicit owner publication/revocation and a noindex, read-only, dated public view.
+- [x] Verify all source/uncertainty fields remain honest and no paid lookup occurs on public reads.
 
 ### 3. GA4 funnel and metadata
 Files: analytics module/helper, planner/auth/persistence integration, metadata/home/city/OG routes, `scripts/verify-growth-analytics.ts`, `scripts/verify-seo.ts`.
-- [ ] Test success/abort/failure counting and no private payloads; implement bounded event API.
-- [ ] Test and implement branded localized metadata and image previews.
-- [ ] Integrate events at confirmed outcomes in the core task; verify actual production payloads.
+- [x] Test success/abort/failure counting and no private payloads; implement bounded event API.
+- [x] Test and implement branded localized metadata and image previews.
+- [x] Integrate events at confirmed outcomes in the core task; verify actual production payloads.
 
 ### 4. Sourced guides and research intake
 Files: dedicated guide data/routes/styles, research intake route/form, research workflow and blank template.
-- [ ] Research two current official-source topics; review factual boundaries and dated citations.
-- [ ] Publish bilingual guides with real planner entry, metadata, source links and sitemap entries.
-- [ ] Build a private/recoverable review-request intake and prepare human recruitment/interview artifacts.
-- [ ] Verify malformed requests/storage failure/retries and no invented participants.
+- [x] Research two current official-source topics; review factual boundaries and dated citations.
+- [x] Publish bilingual guides with real planner entry, metadata, source links and sitemap entries.
+- [x] Build a private/recoverable review-request intake and prepare human recruitment/interview artifacts.
+- [x] Verify malformed requests/storage failure/retries and no invented participants.
 
 ### 5. External setup, integration and release
-- [ ] Verify Google/Bing ownership, submit current sitemap, inspect coverage using available owner sessions; record concrete blockers if unavailable.
-- [ ] Inspect existing production database/environment, apply tested scoped migration, configure secrets privately and verify anon/owner boundaries.
-- [ ] Run full relevant regression, production build, and independent critic review; fix failures without lowering standards.
-- [ ] Deploy and verify real metadata, intake, trial/edit/share/revoke and GA4 events. Update PRODUCT/DECISIONS/TASKS/EVALS and report human research separately.
+- [x] Verify Google/Bing ownership, submit current sitemap, inspect coverage using available owner sessions; record concrete blockers if unavailable.
+- [x] Inspect existing production database/environment, apply tested scoped migration, configure secrets privately and verify anon/owner boundaries.
+- [x] Run full relevant regression, production build, and independent critic review; fix failures without lowering standards.
+- [x] Deploy and verify real metadata, intake, trial/edit/share/revoke and GA4 events. Update PRODUCT/DECISIONS/TASKS/EVALS and report human research separately.
+
+## Evidence boundary
+
+Engineering and account-side configuration/technical flow gates above were executed. The first live plan failed a Monday-access rule and remains failed evidence; its subsequent corrected edit/save/share/revoke passed. Search indexing and processed conversion counts remain pending platform data. Ten real traveller sessions are not completed: the owner authorized an application entry in their absence. No synthetic participant or new production Auth user was invented.
