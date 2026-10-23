@@ -33,7 +33,8 @@
     "test:analytics": "node --import tsx scripts/verify-analytics.ts",
     "test:growth": "node --import tsx scripts/verify-trial.ts && node --import tsx scripts/verify-model-budget.ts && node --import tsx scripts/verify-trial-scope.ts && node --import tsx scripts/verify-trial-api.ts && node --import tsx scripts/verify-growth-analytics.ts && node --import tsx scripts/verify-guest-handoff.ts && node --import tsx scripts/verify-research-requests.ts && node --import tsx scripts/verify-research-storage.ts && node --import tsx scripts/verify-research-form.ts && node --import tsx scripts/verify-signup-receipts.ts && node --import tsx scripts/verify-signup-analytics.ts",
     "test:sharing": "node --import tsx scripts/verify-sharing.ts && node --import tsx scripts/verify-sharing-ui.ts && node --import tsx scripts/verify-sharing-api.ts",
-    "test:seo": "node --import tsx scripts/verify-seo.ts && node --import tsx scripts/verify-travel-tips.ts"
+    "test:seo": "node --import tsx scripts/verify-seo.ts && node --import tsx scripts/verify-travel-tips.ts",
+    "test:venue-access": "node --import tsx scripts/verify-venue-access-rules.ts && node --import tsx scripts/verify-venue-access.ts"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^2.1.3",

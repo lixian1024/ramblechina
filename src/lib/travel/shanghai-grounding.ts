@@ -1,6 +1,8 @@
 import { findGooglePlace } from './google-maps';
 import { shanghaiDiningAdvice } from './shanghai-quality';
 import type { DraftTrip, TripMessage, VerifiedStop, VerifiedTrip } from './concierge-types';
+import {venueCandidateBlocked} from './venue-access';
+import {tripRequirements,tripDate} from './trip-requirements';
 
 type Place = NonNullable<VerifiedStop['place']>;
 type Candidate = { search: string; place: Place };
@@ -32,8 +34,9 @@ const selectedClusters = (selected: ReturnType<typeof mode>) => selected === 'mo
 export function shanghaiResearchFocus(messages: TripMessage[], previous: unknown) {
   const selected = mode(messages, previous);
   if (!selected) return undefined;
+  const start=tripRequirements(messages,previous).startDate;
   const areas = selectedClusters(selected)
-    .map(cluster => `${cluster.theme}: ${cluster.queries.join(', ')}`).join('; ');
+    .map((cluster,index) => `${cluster.theme}: ${cluster.queries.filter(query=>!venueCandidateBlocked(query,'上海',start?tripDate(start,index):undefined)).join(', ')}`).join('; ');
   return `Research these separate Shanghai candidate areas: ${areas}. These are search candidates, not asserted facts. Find source-supported dishes or dining options for EACH area, with citations and precise area associations, not just a citywide food list. Search for food near Yu Garden/Bund, Wukang/Sinan and Lujiazui when those areas are included. Flag missing venue facts and food information; do not infer restaurants, hours or access rules. For modern architecture only, focus on skyline buildings rather than historic residential architecture.`;
 }
 
@@ -43,8 +46,10 @@ export async function groundShanghaiPlanning(messages: TripMessage[], previous: 
   const selected = mode(messages, previous);
   if (!selected) return undefined;
   const unavailable: string[] = [];
+  const start=tripRequirements(messages,previous).startDate;
   const planned = await Promise.all(selectedClusters(selected).map(async (cluster, index) => {
     const matches = await Promise.all(cluster.queries.map(async search => {
+      if(venueCandidateBlocked(search,'上海',start?tripDate(start,index):undefined)){unavailable.push(search);return undefined;}
       try {
         const place = await findGooglePlace(search, '上海');
         if (place && (place.adcode === '310115') === cluster.pudong) return { search, place };

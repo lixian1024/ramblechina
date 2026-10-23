@@ -11,7 +11,7 @@
 - [x] 独立审查发现并修复照片模型额度绕过、私人理由泄漏、草稿地图恢复、普通跨城语句范围绕过，新增实际反例回归。
 - [x] 生产构建、原质量回归、新增growth/sharing/SEO检查、线上四份迁移、secret实际匹配和真实多连接并发门槛。
 - [ ] 正式站部署及匿名/账户端到端验收。
-- [ ] Google Search Console与Bing实际验证、提交sitemap与覆盖检查（已取得两家验证标记，发布后完成账户侧步骤）。
+- [x] Google Search Console与Bing实际验证并提交sitemap；Google Success/发现108，Bing Processing/无错误。已打开覆盖报告，两家实际收录数尚在处理，仍未知。
 - [ ] 实际游客申请、人工跟进和10次真实研究；未向任何社区或个人发送招募消息。
 
 受控绿色不等于真实游客转化、索引或旅行事实已验收；原Evals标准、历史失败与Human Gate保留。细节见docs/workflows/growth-release.md。

@@ -38,3 +38,13 @@ Delivery is **best effort**. The database marks a receipt claimed before GA4 rec
 - `scripts/verify-signup-analytics.ts`: actual AuthProvider/Login components against controlled SDK and receipt transport, including unverified/old/new users and analytics failure recovery.
 
 Fixtures are synthetic and do not contact Google, create real accounts or establish production conversion results.
+
+## Production account evidence2026-10-23
+
+The correct GA4 property Realtime report received actual `page_view`, `planner_start` and `itinerary_generated` from release QA. A private saved Explore named **Ramble China · First visit to saved trip** was reopened to verify five persisted closed, indirectly followed steps: `page_view` → `planner_start` → `itinerary_generated` → `itinerary_first_edit` → `sign_up`. Custom steps use exact Event name filters. The final step measures verified signup, not private saving; `itinerary_saved` remains a separate event. Today is selected initially. Explore currently reports no processed data; this is not evidence of zero conversions. The exploration is not shared, and enhanced measurement/settings/permissions were not changed. Local screenshots: `output/growth/ga4-funnel-reopened.png`, `ga4-funnel-definitions.png`, `ga4-realtime-received.png`.
+
+## Private GA4 exploration setup (2026-10-23)
+
+The owner's signed-in GA4 UI now has a private exploration named **Ramble China · First visit to saved trip**. Its saved configuration was reopened and verified: a closed funnel with indirectly following steps `page_view → planner_start → itinerary_generated → itinerary_first_edit → sign_up`. The list explicitly marks the exploration as not shared. The initial date preset is Today; adjust the date range when reviewing later cohorts. Save/share events remain available in instrumentation and can be added as supplemental steps later.
+
+GA4 Realtime independently displayed the launch QA visit, planner start and generated-result events. This verifies collection in the backend, without implying user demand or later-stage conversion. The processed exploration still displayed no data when checked, so signup/edit/save conversion totals remain unverified. Screenshots and the sanitized observation record live under ignored `output/growth/`; account identifiers and telemetry are not included in versioned documentation. No reporting access, sharing, enhanced measurement or existing reports were changed.

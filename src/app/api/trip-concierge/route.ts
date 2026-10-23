@@ -1,6 +1,7 @@
 import {guestTrialScope,assertGuestResultScope} from '@/lib/growth/trial-scope';
 import { answerTravelQuestion, classifyTripIntent, outOfScopeReply, planTrip, routeConversation, validateMessages } from '@/lib/travel/concierge';
 import { TripRequirementsError } from '@/lib/travel/trip-requirements';
+import {VenueAccessError,venueAccessFailure} from '@/lib/travel/venue-access';
 import type { ConciergeEvent } from '@/lib/travel/concierge-types';
 import {admitGrowth,finishGrowth,GrowthDenied} from '@/lib/growth/trial';
 import {storedTrip,storedMessages} from '@/lib/travel/trip-storage';
@@ -52,7 +53,7 @@ export async function POST(request: Request) {
         }
       } catch (error) {
         const detail = error instanceof Error ? error.message : '';
-        const message = error instanceof ModelBudgetError?error.message:zh
+        const message = error instanceof VenueAccessError?venueAccessFailure(zh?'zh':'en'):error instanceof ModelBudgetError?error.message:zh
           ? error instanceof TripRequirementsError
             ? '行程未满足你要求的天数或日期，已有行程未改变。请重试；目前支持 1–10 天，请确认出发日期有效。'
             : /key|credential|service URL|base|HTTPS/i.test(detail)
