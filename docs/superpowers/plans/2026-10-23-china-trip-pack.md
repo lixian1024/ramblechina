@@ -26,18 +26,18 @@
 ### Task 1 — truthful document and PDF
 Files: create `src/lib/trip-pack/model.ts`, `catalog.ts`, `pdf.ts`; tests `scripts/verify-trip-pack-document.ts`, `verify-trip-pack-pdf.ts`.
 Interfaces: export `PackDocument` (schemaVersion1,locale en|zh,generatedAt,startDate,days[{date,stops[{venueId,nameEnglish,nameChinese,pinyin,address?,sourceUrl,reviewedAt,durationMinutes,time?,booked,bookingNote?}]}],warnings:string[],hotel?:{name,address}); `preparePack(snapshot:unknown,locale:'en'|'zh',hotel?:{name:string;address:string},now?:string):{document:PackDocument|null;issues:string[]}`; `renderPackPdf(document:PackDocument,preview?:boolean):Promise<Uint8Array>`; exported schema validates stored documents; root owns fingerprint/server persistence.
-- [ ] Write failing document cases for actual1/3day snapshot, all stops/date/order/booking retention, wrong city/days/missing dates/unsupported stops, Monday interior, bazaar distinction, no provider/chat leakage.
-- [ ] Research official Shanghai sources; implement strict catalog projection. Time is saved `at` suggestion, not stripped provider schedule. Show source review date, known booking rules and unknowns.
-- [ ] Write failing PDF extraction/links/Chinese/long-text/multipage tests; implement renderer. PDF under2MiB for supported input, no remote calls; Chinese font must render and extract correctly.
-- [ ] Render representative1/3day bilingual examples and inspect every page; source/copy/date unknowns must be legible.
+- [x] Write failing document cases for actual1/3day snapshot, all stops/date/order/booking retention, wrong city/days/missing dates/unsupported stops, Monday interior, bazaar distinction, no provider/chat leakage.
+- [x] Research official Shanghai sources; implement strict catalog projection. Time is saved `at` suggestion, not stripped provider schedule. Show source review date, known booking rules and unknowns.
+- [x] Write failing PDF extraction/links/Chinese/long-text/multipage tests; implement renderer. PDF under2MiB for supported input, no remote calls; Chinese font must render and extract correctly.
+- [x] Render representative1/3day bilingual examples and inspect every page; source/copy/date unknowns must be legible.
 
 ### Task 2 — private entitlement and purchase lifecycle
 Files: CLI-generated migration; create `src/lib/trip-pack/store.ts`, `commerce.ts`, provider adapter; `/api/trip-pack` preview/prepare,checkout,status,download,regenerate and raw webhook routes; tests storage and actual API transports.
 Interfaces: authenticated owner trip lookup uses `accountSession`; server calls narrow secret-gated RPC through existing `callGrowthRpc`; no client-supplied user/price/paid/date. Prepared record stores document, bounded PDF/base64/hash and trip version. Events normalized only after official provider verification; one provider adapter, no generic invented API.
-- [ ] Write failing PostgreSQL isolation/concurrency/90day/refund-first/idempotency tests.
-- [ ] Implement private orders+events, immutable ownership and payment identifiers, explicit prepared/pending/paid/revoked states, original paidAt/expiresAt and successful regeneration compare-and-swap.
-- [ ] Write failing actual route tests for auth/origin/config/malformed payload/fake redirects/signature/price/currency/duplicate/cross-owner/file limits/failure retention.
-- [ ] Implement pre-render-before-checkout, provider status validation, signed webhook durable ack, interrupted return reconciliation and download private/no-store/no-referrer. Until merchant acceptance and secrets exist, checkout returns unavailable while previews remain usable.
+- [x] Write failing PostgreSQL isolation/concurrency/90day/refund-first/idempotency tests.
+- [x] Implement private orders+events, immutable ownership and payment identifiers, explicit prepared/pending/paid/revoked states, original paidAt/expiresAt and successful regeneration compare-and-swap.
+- [x] Write failing actual route tests for auth/origin/config/malformed payload/fake redirects/signature/price/currency/duplicate/cross-owner/file limits/failure retention.
+- [x] Implement pre-render-before-checkout, provider status validation, signed webhook durable ack, interrupted return reconciliation and download private/no-store/no-referrer. Until merchant acceptance and secrets exist, checkout returns unavailable while previews remain usable.
 
 2026-10-24 Task 2 implementation contract:
 - Creem is selected and its actual test store/product are provisioned. Implement only `off|test`; live money is unavailable in this release regardless of credentials. Read official Creem create/retrieve checkout, get product, raw webhook and test-mode docs. REST is acceptable if it avoids another SDK; never invent payload fields or assume request_id is a documented idempotency guarantee.
@@ -54,10 +54,10 @@ Interfaces: authenticated owner trip lookup uses `accountSession`; server calls 
 
 ### Task 3 — owner experience and publish
 Files: `src/app/[locale]/trip-pack/page.tsx`, pack client/preview; Planner saved-trip link; account order/download list; localized copy; analytics bounded pack events; docs/product decisions.
-- [ ] Write failing component tests for unsaved/loading/unsupported, visible990USD price/90days, checkout unavailable, return pending/paid/error, retry, regeneration expired, previous download retained.
-- [ ] Implement current saved-trip preview, optional private hotel card, prepare/pay/download workflow and account recovery; no implementation jargon in product UI.
-- [ ] Run document/PDF/storage/API/UI tests, relevant original product/i18n/analytics tests, lint/typecheck/build and independent review. Apply reviewed additive migration, deploy safe disabled sales until external gates pass, inspect real browser desktop/mobile/PDF and no-cookie paid download denial.
-- [ ] Prepare actual sample/review materials and merchant onboarding steps. User completes terms/KYC/secrets; only then enable and verify real provider test flow/live checkout without charging a real card on the user's behalf.
+- [x] Write failing component tests for unsaved/loading/unsupported, visible990USD price/90days, checkout unavailable, return pending/paid/error, retry, regeneration expired, previous download retained.
+- [x] Implement current saved-trip preview, optional private hotel card, prepare/pay/download workflow and account recovery; no implementation jargon in product UI.
+- [x] Run document/PDF/storage/API/UI tests, relevant original product/i18n/analytics tests, lint/typecheck/build and independent review. Apply reviewed additive migration, deploy safe disabled sales until external gates pass, inspect real browser desktop/mobile/PDF and no-cookie paid download denial.
+- [x] Prepare actual sample/review materials and merchant onboarding steps. Owner entered test secrets; real provider test flow verified with public test card. KYC/merchant approval and live checkout remain separate unfinished external gates.
 
 2026-10-24 Task 3 extension: add bilingual `/terms`, `/privacy`, `/refunds` and public `/trip-pack` product/sample content, footer links and policy consent to checkout. Operator/refund choices in current spec bind copy. Record actual analytics consent/cookie and AI processor behavior; implement a real analytics consent mechanism if claiming opt-in. Capture exact policies accepted per order, preserve private URL hygiene in GA and noindex private orders. A safe production review build may expose public pages with paid sales closed and allowlisted test checkout only. Separate engineering readiness, actual test-mode payment evidence and external merchant approval in final reporting.
 
@@ -68,3 +68,5 @@ The owner explicitly approved the product and requested implementation/deploymen
 2026-10-23 execution status: Task 1 is implemented and undergoing review. Task 2/3 remain pending, not completed: official policies do not establish this new AI-assisted travel product's acceptance. Prepare concrete samples and the truthful pre-review brief first, then resume provider-specific purchase integration with an actual eligible test account. Do not manufacture credentials, payment evidence or a production bypass. The current production site is unchanged.
 
 2026-10-24 resumption: Task 1 is reviewed complete per ledger. Owner created Creem test store/product and expressly directs completing test integration, public product and policy pages now. Resume at Task 2; previous deferral is superseded for test development only. Root continues credential setup, research, policy preparation and release; one implementation subagent at a time, followed by scoped independent review.
+
+2026-10-24 final test-release status: Tasks1–3 engineering, independent reviews and actual production TEST acceptance complete; source2b9349d, deployed safe off/test scope. Actual payment/refund signed events, private download/hash, account recovery and same-order bilingual regeneration verified. No live sales, KYC/merchant acceptance or H6 validation claimed. Historical execution status above is retained as chronology.

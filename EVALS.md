@@ -4,7 +4,7 @@
 
 本地全套trip-pack检查已通过：严格文档/PDF、真实PGlite私有SQL、实际生产route exports的受控网络、固定测试商品价格/模式/验签、准备后结账、未知创建不重试、重复/乱序退款、2160小时边界与失败保留旧文件；UI状态及账户恢复覆盖未登录/未保存/未知地点/等待确认/撤销。真实Creem未付款探针发现创建/读取不回显request_id，补RED/GREEN并独立复核；此探针没有付款或生成购买权益。
 
-原check:product、统计、增长、分享、SEO、场馆和eval:validate均通过；原端到端verify需指定TEST_ORIGIN到本轮3107服务，配置后通过。Next16.4.3生产构建通过，prepare/regenerate的NotoSC字体实际进入函数trace。公开en/zh样本共10页真实渲染查看，中文提取、PREVIEW标记与边界正常；本地桌面/390像素移动匿名页可访问、拒绝统计不影响政策访问。最新同意生命周期修复的复审与最终构建、真实测试付款/通知/下载/重导出、生产发布另验收。
+原check:product、统计、增长、分享、SEO、场馆和eval:validate均通过；原端到端verify需指定TEST_ORIGIN到本轮3107服务，配置后通过。Next16.4.3生产构建通过，prepare/regenerate的NotoSC字体实际进入函数trace。公开en/zh样本共10页真实渲染查看，中文提取、PREVIEW标记与边界正常；本地桌面/390像素移动匿名页可访问、拒绝统计不影响政策访问。最新同意生命周期和三项订单恢复修复获限定复审通过，确切代码生产构建成功，提交2b9349d的VercelProduction部署完成。正式域名真实沙盒付款小计990美分、模拟税82美分成功，实际evt付款/退款签名回调入库；私人PDF实际下载并与数据库SHA256一致。账户可找回原订单，同一QA行程受控更新后中文重新导出为版本3/revision2，唯一订单、paidAt/expiresAt保持不变且间隔2160小时。测试全额退款后服务器拒绝旧页下载及重导出，刷新显示撤权；无cookie访问该真实订单返回401/no-store/no-referrer。QA行程非AI/客户结果，时长修改为直接受控夹具更新，不冒充规划修改验收。
 
 以上不是商家获批、付费意愿或旅途可执行性的验证。原旅行案例、历史失败、Loop及ProductHumanGate保持；本轮没有额外AI调用。
 
