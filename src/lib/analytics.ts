@@ -6,9 +6,10 @@ export const DEFAULT_GA_MEASUREMENT_ID = 'G-QBCYPGN6SB';
 export interface AnalyticsBrowser {
   location: Pick<Location, 'href' | 'origin' | 'hostname' | 'protocol'>;
   document: Pick<Document, 'referrer' | 'title'>;
+  __rambleAnalyticsConsent?: boolean;
   dataLayer?: IArguments[];
   gtag?: Gtag;
-  __rambleAnalytics?: {measurementId: string; lastPage: string};
+  __rambleAnalytics?: {measurementId: string; lastPage: string; needsConfiguration?: boolean};
 }
 
 export function analyticsMeasurementId(value: string | undefined, mode: string | undefined, deployment?: string): string | null {
@@ -39,7 +40,7 @@ function referralOrigin(referrer: string): string {
 
 /** Queue safely before gtag.js loads; analytics must never block the travel UI. */
 export function recordPageView(browser: AnalyticsBrowser, measurementId: string, pathname: string): void {
-  if (!analyticsMeasurementId(measurementId, 'production') || browser.location.protocol !== 'https:' ||
+  if (browser.__rambleAnalyticsConsent !== true || !analyticsMeasurementId(measurementId, 'production') || browser.location.protocol !== 'https:' ||
       !['www.ramblechina.com', 'ramblechina.com'].includes(browser.location.hostname)) return;
   try {
     // Capability URLs are bearer credentials; never send them to analytics or later referrers.
@@ -51,15 +52,15 @@ export function recordPageView(browser: AnalyticsBrowser, measurementId: string,
     // Google tag's queue uses an Arguments object, matching the official snippet.
     browser.gtag ??= function () {
       // eslint-disable-next-line prefer-rest-params -- gtag.js expects the official Arguments queue format.
-      browser.dataLayer!.push(arguments);
+      if(browser.__rambleAnalyticsConsent===true||arguments[0]==='consent')browser.dataLayer!.push(arguments);
     };
     const values = {
       page_location: pageUrl(browser.location.href, safePath),
       page_referrer: state?.lastPage || referralOrigin(browser.document.referrer),
-      page_title: browser.document.title,
+      page_title: /\/(?:trip-pack|account)(?:\/|$)/.test(safePath) ? 'Ramble China — Private workspace' : browser.document.title,
     };
     browser.gtag('set', values);
-    if (state?.measurementId !== measurementId) {
+    if (state?.measurementId !== measurementId || state.needsConfiguration) {
       browser.gtag('js', new Date());
       browser.gtag('config', measurementId, {
         send_page_view: false,

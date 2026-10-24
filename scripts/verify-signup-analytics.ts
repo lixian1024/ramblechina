@@ -20,7 +20,7 @@ async function main(){
  const calls:{url:string;body:unknown}[]=[];
  let receipt:'new'|'existing'|'failure'='existing';
  Object.assign(globalThis,{IS_REACT_ACT_ENVIRONMENT:true,self:globalThis,
-  window:{location:new URL('https://www.ramblechina.com/en/login'),__rambleAnalytics:{measurementId:'G-QBCYPGN6SB',lastPage:'https://www.ramblechina.com/en/login'},gtag:(...args:unknown[])=>events.push(args)},
+  window:{location:new URL('https://www.ramblechina.com/en/login'),__rambleAnalyticsConsent:true,__rambleAnalytics:{measurementId:'G-QBCYPGN6SB',lastPage:'https://www.ramblechina.com/en/login'},gtag:(...args:unknown[])=>events.push(args)},
   document:{documentElement:{dataset:{}}},
   __signupClient:{auth:{
    getUser:async()=>({data:{user:current},error:null}),

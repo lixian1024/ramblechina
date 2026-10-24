@@ -2,7 +2,7 @@ import {z} from 'zod';
 import type {AnalyticsBrowser} from '@/lib/analytics';
 
 export const growthEvents = ['planner_start', 'itinerary_generated', 'itinerary_first_edit', 'sign_up',
-  'itinerary_saved', 'planner_error', 'share_created', 'share_revoked', 'research_requested'] as const;
+  'itinerary_saved', 'planner_error', 'share_created', 'share_revoked', 'research_requested', 'pack_prepared', 'pack_checkout_started', 'pack_regenerated'] as const;
 export type GrowthEvent = typeof growthEvents[number];
 const parametersSchema = z.object({
   locale: z.enum(['en','zh']).optional(),
@@ -12,7 +12,7 @@ const parametersSchema = z.object({
   days: z.number().int().min(1).max(10).optional(),
 }).strict();
 export type GrowthParameters = z.infer<typeof parametersSchema>;
-export type GrowthBrowser = Pick<AnalyticsBrowser,'location'|'gtag'|'__rambleAnalytics'>;
+export type GrowthBrowser = Pick<AnalyticsBrowser,'location'|'gtag'|'__rambleAnalytics'|'__rambleAnalyticsConsent'>;
 const recorded = new WeakMap<GrowthBrowser, Set<string>>();
 
 /** Invoke only at the actual outcome. Dedupe keys stay in memory and never enter GA4. */
@@ -24,7 +24,7 @@ export function recordGrowthEvent(name: GrowthEvent, parameters: GrowthParameter
     const parsed = parametersSchema.safeParse(parameters);
     if (!parsed.success) return;
     const browser = options.browser ?? (typeof window !== 'undefined' ? window as unknown as GrowthBrowser : undefined);
-    if (!browser?.gtag || browser.location.protocol !== 'https:' ||
+    if (browser?.__rambleAnalyticsConsent !== true || !browser?.gtag || browser.location.protocol !== 'https:' ||
       !['www.ramblechina.com','ramblechina.com'].includes(browser.location.hostname) || !browser.__rambleAnalytics) return;
     const key = options.dedupeKey ? `${name}:${options.dedupeKey}` : undefined;
     const sent = recorded.get(browser) ?? new Set<string>();

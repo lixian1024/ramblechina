@@ -1,0 +1,31 @@
+/** Independent editorial catalog. Sources were opened and reviewed on 2026-10-23.
+ * Names/pinyin are editorial identity labels, not claims of official English branding.
+ * No provider payloads, coordinates, photos or route estimates belong here.
+ */
+export type PackVenue = {
+ id:string; nameEnglish:string; nameChinese:string; pinyin:string; aliases:readonly string[];
+ address?:string; sourceUrl:string; reviewedAt:string; closedMonday?:boolean;
+ note:{en:string;zh:string};
+};
+const reviewedAt='2026-10-23';
+const city='https://english.shanghai.gov.cn/';
+const outdoor={en:'Outdoor area only. Individual buildings, shops and events have separate access rules; current opening times and reservations are unconfirmed.',zh:'仅指户外区域。各建筑、商铺和活动有独立入场规则；当前开放时间与预约要求尚未确认。'};
+export const packVenues:readonly PackVenue[]=[
+ {id:'bund',nameEnglish:'The Bund',nameChinese:'外滩',pinyin:'Wài Tān',aliases:['Bund','The Bund','外滩','上海外滩'],sourceUrl:city+'en-ScenicSpots/20231205/584672cc6d044eabb5f7f6fc9049a19f.html',reviewedAt,note:outdoor},
+ {id:'yuyuan-bazaar',nameEnglish:'Yuyuan Bazaar',nameChinese:'豫园商城',pinyin:'Yù Yuán Shāng Chéng',aliases:['Yuyuan Bazaar','Yu Garden Bazaar','Yuyuan Market','Yuyuan Garden Malls','Yuyuan Tourist Mart','豫园商城','豫园商场','豫园市场'],address:'上海市黄浦区方浜中路265号',sourceUrl:city+'en-PlanANightOut/20260813/cea741c33386434e88ecf04a801b056c.html',reviewedAt,note:{en:'Shopping district, distinct from the ticketed Yu Garden interior. Festival access, shop hours and event tickets vary and are unconfirmed for your date.',zh:'购物街区，与收费的豫园内园不同。节庆管控、商铺时间与活动门票随日期变化，本次行程日期尚未确认。'}},
+ {id:'yu-garden-interior',nameEnglish:'Yu Garden',nameChinese:'豫园',pinyin:'Yù Yuán',aliases:['Yu Garden','Yuyuan Garden','Yu Yuan Garden','Shanghai Yu Garden','Yuyuan Classical Garden','豫园','上海豫园','豫园内园','豫园-内园','上海豫园内园','豫园古典园林'],sourceUrl:'https://www.yugarden.com.cn/Page/ArticleView/articleDetail1523.html',reviewedAt,closedMonday:true,note:{en:'Operator standing rule: closed Mondays except national holidays. No date-specific exception is verified. Check official ticket, identity and entry-time requirements; a saved booking flag is your note, not proof of admission.',zh:'运营方长期规则：每周一闭园，国定假日除外。本次未核实任何特定日期例外。请确认官方购票、证件与入园时段要求；已预约标记仅为您的记录，不代表入园凭证。'}},
+ {id:'wukang-road',nameEnglish:'Wukang Road',nameChinese:'武康路',pinyin:'Wǔ Kāng Lù',aliases:['Wukang Road','武康路','上海武康路'],sourceUrl:city+'en-ScenicSpots/20231218/596192f5f59048bbbc3fa54d92304e93.html',reviewedAt,note:outdoor},
+ {id:'former-french-concession',nameEnglish:'Former French Concession',nameChinese:'原法租界街区',pinyin:'Yuán Fǎ Zū Jiè Jiē Qū',aliases:['Former French Concession','Shanghai Former French Concession','French Concession','原法租界','法租界','上海法租界','衡山路复兴路历史文化风貌区','原法租界街区'],sourceUrl:city+'en-HeritageZones/20240516/795623b394c440529375ad36a0c62c08.html',reviewedAt,note:{en:'A broad historic street area, not one entrance or one attraction. The source describes the Hengshan-Fuxing historic zone. Choose a specific meeting point before travelling; indoor access is unconfirmed.',zh:'这是范围较大的历史街区，并非单一入口或景点。来源介绍衡山路复兴路历史文化风貌区。出行前请另行确定具体集合地点；室内开放尚未确认。'}},
+ {id:'xintiandi',nameEnglish:'Xintiandi',nameChinese:'新天地',pinyin:'Xīn Tiān Dì',aliases:['Xintiandi','Shanghai Xintiandi','Shanghai Xintiandi Shikumen Block','新天地','上海新天地'],sourceUrl:city+'en-HeritageZones/20240104/292e9fb43eec407783af83e547e61281.html',reviewedAt,note:outdoor},
+ {id:'tianzifang',nameEnglish:'Tianzifang',nameChinese:'田子坊',pinyin:'Tián Zǐ Fāng',aliases:['Tianzifang','Tian Zi Fang','田子坊'],sourceUrl:city+'en-CityTour/20250325/a0b2498d73b74b658da4f279ee3d3684.html',reviewedAt,note:outdoor},
+ {id:'fuxing-park',nameEnglish:'Fuxing Park',nameChinese:'复兴公园',pinyin:'Fù Xīng Gōng Yuán',aliases:['Fuxing Park','复兴公园'],address:'上海市黄浦区复兴中路516号',sourceUrl:city+'en-MajorConsumerEvents/20250415/5b4afaba33f9404684f88eeada730a1e.html',reviewedAt,note:{en:'Park address from an official 2025 event listing; this is not a confirmed gate or vehicle drop-off. Current hours and event access are unconfirmed.',zh:'公园地址来自官方2025年活动介绍，并非已确认的入口或车辆下客点。当前开放时间和活动入场要求尚未确认。'}},
+ {id:'sinan-mansions',nameEnglish:'Sinan Mansions',nameChinese:'思南公馆',pinyin:'Sī Nán Gōng Guǎn',aliases:['Sinan Mansions','思南公馆'],address:'上海市黄浦区复兴中路509号',sourceUrl:city+'en-MajorConsumerEvents/20250415/5b4afaba33f9404684f88eeada730a1e.html',reviewedAt,note:{en:'Complex address from an official 2025 event listing, not a guaranteed entrance. Current exhibitions, interior admission and reservations are unconfirmed.',zh:'园区地址来自官方2025年活动介绍，不保证为当前入口。展览、室内入场和预约要求尚未确认。'}},
+ {id:'oriental-pearl',nameEnglish:'Oriental Pearl Tower',nameChinese:'东方明珠广播电视塔',pinyin:'Dōng Fāng Míng Zhū Guǎng Bō Diàn Shì Tǎ',aliases:['Oriental Pearl Tower','Oriental Pearl TV Tower','Oriental Pearl','东方明珠','东方明珠塔','东方明珠广播电视塔'],address:'上海市浦东新区世纪大道1号',sourceUrl:city+'en-ScenicSpots/20231205/19a5f5184eca45728fd57a4d4c8efc61.html',reviewedAt,note:{en:'Check the operator for your chosen observation product, ticket, identity and entry-time requirements. Current prices, hours and availability are unconfirmed; the address is not a verified drop-off.',zh:'请向运营方确认所选观光项目、门票、证件与入场时段。当前价格、开放时间与余票尚未确认；此地址并非核实的下客点。'}},
+ {id:'nanjing-road',nameEnglish:'Nanjing Road Pedestrian Street',nameChinese:'南京路步行街',pinyin:'Nán Jīng Lù Bù Xíng Jiē',aliases:['Nanjing Road Pedestrian Street','East Nanjing Road','Nanjing East Road','南京路步行街','南京东路','南京东路步行街'],sourceUrl:city+'en-ScenicSpots/20231226/45172d56a204477195888159d4698ac8.html',reviewedAt,note:outdoor},
+ {id:'peoples-square',nameEnglish:"People's Square",nameChinese:'人民广场',pinyin:'Rén Mín Guǎng Chǎng',aliases:["People's Square","Shanghai People's Square",'人民广场','上海人民广场'],sourceUrl:city+'en-ScenicSpots/20231218/6a92c131565646c59bf9db015ca82ed2.html',reviewedAt,note:outdoor},
+];
+const normalize=(value:string)=>value.normalize('NFKC').trim().toLowerCase().replace(/[’‘]/g,"'").replace(/[\s-]+/g,'');
+const aliases=new Map(packVenues.flatMap(venue=>venue.aliases.map(alias=>[normalize(alias),venue] as const)));
+/** Exact whole-label aliases only. A hotel/station/action containing a venue name is unsupported. */
+export function packVenueForAlias(value:string):PackVenue|undefined {return aliases.get(normalize(value));}
+export function packVenueById(id:string):PackVenue|undefined{return packVenues.find(venue=>venue.id===id);}

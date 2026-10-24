@@ -19,10 +19,10 @@ async function main() {
   const globals=globalThis as unknown as Record<string,unknown>;
   Object.assign(globalThis,{IS_REACT_ACT_ENVIRONMENT:true,self:globalThis,
     sessionStorage:{getItem:(key:string)=>storage.get(key)??null,setItem:(key:string,value:string)=>storage.set(key,value),removeItem:(key:string)=>storage.delete(key)},
-    window:{location:new URL('https://www.ramblechina.com/en/plan'),__rambleAnalytics:{measurementId:'G-QBCYPGN6SB',lastPage:'https://www.ramblechina.com/en/plan'},
+    window:{location:new URL('https://www.ramblechina.com/en/plan'),__rambleAnalyticsConsent:true,__rambleAnalytics:{measurementId:'G-QBCYPGN6SB',lastPage:'https://www.ramblechina.com/en/plan'},
       gtag:(...args:unknown[])=>events.push(args),history:{replaceState:(_data:unknown,_unused:string,path:string)=>paths.push(path)},
       addEventListener(){},removeEventListener(){},matchMedia:()=>({matches:true}),requestAnimationFrame:(fn:()=>void)=>fn()},
-    document:{documentElement:{dataset:{}},addEventListener(){},removeEventListener(){}},
+    document:{documentElement:{dataset:{},removeAttribute(){}},addEventListener(){},removeEventListener(){}},
     __growthAuth:{user:null,loading:false,error:''},__growthRouter:{push:(path:string)=>paths.push(path)}});
   try {
     const outfile=join(directory,'ui.cjs');

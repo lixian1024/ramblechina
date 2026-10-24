@@ -10,6 +10,7 @@ import whatsappCode from '../../../images/whatsapp.png';
 import {getMessages} from '@/i18n/messages';
 import BrandLogo from './BrandLogo';
 import footerStyles from './Footer.module.css';
+import {AnalyticsPreferences} from '@/components/analytics/AnalyticsConsent';
 import {useAuth} from '@/components/account/AuthProvider';
 export function Header() {
   const t=useWebsiteText(),locale=useLocale();
@@ -41,7 +42,7 @@ export function Footer(){
       <nav className={footerStyles.links} aria-label={t("Footer product")}><Link href="/plan">{t("Plan a trip")}</Link><Link href="/destinations">{t("Destinations")}</Link><Link href="/travel-stories">{t("Travel Stories")}</Link><Link href="/essentials">{t("Travel essentials")}</Link><Link href="/travel-tips">{locale==='zh'?'实用攻略':'Practical guides'}</Link><Link href="/trip-review">{locale==='zh'?'免费人工核对行程':'Free human trip review'}</Link><Link href="/local-guide">{t("Need local guide")}</Link></nav>
     </section>
     <section className={footerStyles.column} aria-labelledby="footer-support"><h2 id="footer-support">{t("Support")}</h2>
-      <nav className={footerStyles.links} aria-label={t("Footer support")}><Link href="/about">{t("About us")}</Link><a href="mailto:service@ramblechina.com">{t("Email")}</a><a href="https://x.com/ramblecn" target="_blank" rel="noopener noreferrer">X <ArrowUpRight size={14}/></a></nav>
+      <nav className={footerStyles.links} aria-label={t("Footer support")}><Link href="/trip-pack">{locale==='zh'?'上海旅行包':'Shanghai Trip Pack'}</Link><Link href="/terms">{locale==='zh'?'服务条款':'Terms'}</Link><Link href="/privacy">{locale==='zh'?'隐私政策':'Privacy'}</Link><Link href="/refunds">{locale==='zh'?'退款政策':'Refunds'}</Link><AnalyticsPreferences zh={locale==='zh'}/><Link href="/about">{t("About us")}</Link><a href="mailto:service@ramblechina.com">{t("Email")}</a><a href="https://x.com/ramblecn" target="_blank" rel="noopener noreferrer">X <ArrowUpRight size={14}/></a></nav>
     </section>
     <figure className={footerStyles.whatsapp}><Image src={whatsappCode} alt={t("Scan to contact Ramble China on WhatsApp")} unoptimized/><figcaption>WhatsApp</figcaption></figure>
   </div></div><div className={footerStyles.bottom}><span>© {new Date().getFullYear()} Ramble China</span><Link href="/credits">{t("Image credits")}</Link></div>
