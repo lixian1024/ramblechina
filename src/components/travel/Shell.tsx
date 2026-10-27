@@ -25,6 +25,7 @@ export function Header() {
       <Link aria-current={current('/destinations')} onClick={() => setOpen(false)} href="/destinations">{m.destinations}</Link>
       <Link aria-current={current('/travel-stories')} onClick={() => setOpen(false)} href="/travel-stories">{t("Travel Stories")}</Link>
       <Link aria-current={current('/essentials')} onClick={() => setOpen(false)} href="/essentials">{m.essentials}</Link>
+      <Link aria-current={current('/medical')} onClick={() => setOpen(false)} href="/medical">{locale==='zh'?'来华就医':'Medical care'}</Link>
       <Link aria-current={current('/local-guide')} onClick={() => setOpen(false)} href="/local-guide">{t("Need local guide")}</Link>
     </nav>
     <div className="header-actions">
@@ -39,7 +40,7 @@ export function Footer(){
   <div className={footerStyles.top}><div className={footerStyles.brand}><Link href="/" className="brand"><BrandLogo /></Link><p>{getMessages(locale).nav.footerLine}</p></div>
   <div className={footerStyles.columns}>
     <section className={footerStyles.column} aria-labelledby="footer-product"><h2 id="footer-product">{t("Product")}</h2>
-      <nav className={footerStyles.links} aria-label={t("Footer product")}><Link href="/plan">{t("Plan a trip")}</Link><Link href="/destinations">{t("Destinations")}</Link><Link href="/travel-stories">{t("Travel Stories")}</Link><Link href="/essentials">{t("Travel essentials")}</Link><Link href="/travel-tips">{locale==='zh'?'实用攻略':'Practical guides'}</Link><Link href="/trip-review">{locale==='zh'?'免费人工核对行程':'Free human trip review'}</Link><Link href="/local-guide">{t("Need local guide")}</Link></nav>
+      <nav className={footerStyles.links} aria-label={t("Footer product")}><Link href="/plan">{t("Plan a trip")}</Link><Link href="/destinations">{t("Destinations")}</Link><Link href="/travel-stories">{t("Travel Stories")}</Link><Link href="/essentials">{t("Travel essentials")}</Link><Link href="/medical">{locale==='zh'?'来华就医指南':'Medical care in China'}</Link><Link href="/travel-tips">{locale==='zh'?'实用攻略':'Practical guides'}</Link><Link href="/trip-review">{locale==='zh'?'免费人工核对行程':'Free human trip review'}</Link><Link href="/local-guide">{t("Need local guide")}</Link></nav>
     </section>
     <section className={footerStyles.column} aria-labelledby="footer-support"><h2 id="footer-support">{t("Support")}</h2>
       <nav className={footerStyles.links} aria-label={t("Footer support")}><Link href="/trip-pack">{locale==='zh'?'上海旅行包':'Shanghai Trip Pack'}</Link><Link href="/terms">{locale==='zh'?'服务条款':'Terms'}</Link><Link href="/privacy">{locale==='zh'?'隐私政策':'Privacy'}</Link><Link href="/refunds">{locale==='zh'?'退款政策':'Refunds'}</Link><AnalyticsPreferences zh={locale==='zh'}/><Link href="/about">{t("About us")}</Link><a href="mailto:service@ramblechina.com">{t("Email")}</a><a href="https://x.com/ramblecn" target="_blank" rel="noopener noreferrer">X <ArrowUpRight size={14}/></a></nav>

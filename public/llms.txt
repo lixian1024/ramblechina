@@ -13,6 +13,7 @@ Key facts:
 ## Start here
 - [Home](https://www.ramblechina.com/en): overview of the site
 - [Travel essentials](https://www.ramblechina.com/en/essentials): entry, connectivity, payments, maps, trains, taxis, airports, language and safety
+- [Medical care in China](https://www.ramblechina.com/en/medical): hospitals, appointments, costs, insurance, entry, communication and follow-up; general information with official sources, not diagnosis or booking. [中文版](https://www.ramblechina.com/zh/medical)
 - [Request a local guide](https://www.ramblechina.com/en/local-guide): share your cities, dates and interests after signing in
 - [Plan a trip](https://www.ramblechina.com/en/plan): explore the planning workspace; sign in to generate and save an itinerary
 - [All destinations](https://www.ramblechina.com/en/destinations): browse the destination collection
