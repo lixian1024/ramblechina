@@ -1,6 +1,6 @@
 # 来华就医指南：来源、维护与验收
 
-2026-10-27；D-039。设计和范围经用户确认；本地实现，未部署。
+2026-10-27；D-039。设计、范围与生产发布经用户确认；已部署至正式域名并完成双语检查。
 
 ## 文件与修改方式
 
@@ -69,3 +69,15 @@ npm run build
 ## 生产发布准备（2026-10-27）
 
 用户明确授权将本次指南部署线上并检查中英文。已确认既有 Vercel 项目 `ramblechina`（`prj_cMG5CfDNKgYceGADYwkcG6CWaRSM`）、正式域名 `www.ramblechina.com` 及 GitHub `lixian1024/ramblechina` 的 main 自动发布路径。远端 main 与本轮基线 `dab769c` 一致；发布前重新执行指南/双语/SEO/原 npm test、相关 ESLint 和生产构建。此次不改环境变量、数据库或支付模式。发布结果与正式域名检查另记，不能仅凭 push 推定部署成功。
+
+## 生产发布结果（2026-10-27）
+
+- 代码提交：`00b6a284bafbc99222a6be1c02914e7c90e22991`，已推送 `origin/main`。
+- Vercel Production 部署：`BtP1VzXWNNCDvPgzL6B1U9gxT79w`；GitHub deployment `7358552432` 为 `success`，非仅上传完成。
+- 正式页面：https://www.ramblechina.com/zh/medical 、https://www.ramblechina.com/en/medical 。
+- 两页实际 HTTP200、各30问答、正确标题/canonical/hreflang、官方来源保留，原文整理说明与 HongJing 宣传内容均不存在；行前准备入口和线上sitemap通过。
+- 真实浏览器 en/zh × 1440/1280/390/320px 均无横向溢出；目录及问答 Enter 展开，双向语言切换保留 `#costs-insurance`，手机菜单点选后关闭，浏览器错误日志为空。
+- 证据：`output/medical/production-deployment-status.json`、`production-http-checks.json`、`production-browser-checks.json`、`production-interactions.json`、`production-zh-sources.jpg` 和两种语言桌面/手机截图；发布前新构建日志 `deploy-build.log`。
+- Vercel MCP 读取团队部署详情权限不足，改用既有 GitHub 自动部署与 GitHub Vercel 状态/部署记录，再以正式域名 HTTP 和浏览器交叉验证；未新授予权限、未改变配置。未取得平台运行日志扫描权限，不把浏览器无报错等同于全站后端无错误。
+
+以上为上线和有限技术验收。没有开展新的临床审核、真实医院预约、个人签证/保险认定或读者任务研究，不推定 H7 成立。

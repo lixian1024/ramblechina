@@ -6,7 +6,7 @@
 - [x] `/en/medical`、`/zh/medical` 共享页面；主导航、Product 页脚、行前准备医疗章节、sitemap/canonical/hreflang 接入。
 - [x] 官方公开来源核对、临时取消及缺英文报告的恢复步骤；症状加重时就地求医的指引默认可见，未经证实的价格/时效/疗效承诺不发布。
 - [x] 新模块回归、原中英文/i18n/editorial/SEO、TypeScript、相关 ESLint、原 npm test 与生产构建；实际浏览器 1440/1280/390/320px 双语、手机菜单、键盘目录/问答及切换保留章节检查。
-- [ ] 按现有发布流程部署后复验正式域名；本轮保留可审阅本地修改，未部署。
+- [x] 2026-10-27 将 `00b6a28` 经 GitHub main → Vercel Production 发布到正式域名；中英文 HTTP、手机/桌面、菜单/问答/语言切换和已删除区块复验通过。
 - [ ] 邀请双语读者完成预约渠道、预算、保险和随访查找任务；由合适的专业人员继续审阅医疗和政策内容，建立定期维护责任。
 
 证据与维护说明：`docs/workflows/medical-guide.md`、本地 `output/medical/`。技术测试不代替临床评估、实时预约或用户价值验证，旅行 Evals 与 Human Gate 不变。
